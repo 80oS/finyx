@@ -8,7 +8,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>@yield('titulo')</title>
 </head>
-<body class="">
+<body class="bg-neutral-200">
     <div
         x-data="{
             sidebarOpen: true
