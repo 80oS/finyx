@@ -16,5 +16,10 @@ class CategoriaService{
     {
         return $this->categoria_repository->index();
     }
+
+    public function crear(array $datos)
+    {
+        return $this->categoria_repository->crear($datos);
+    }
 }
 ?>

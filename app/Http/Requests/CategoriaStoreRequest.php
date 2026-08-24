@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Override;
 
 class CategoriaStoreRequest extends FormRequest
 {
@@ -12,7 +13,7 @@ class CategoriaStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +24,16 @@ class CategoriaStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => 'required|string',
+            'descripcion' => 'required|string'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'nombre.required' => 'nombre de la ctegoria es requerido',
+            'descripcion.required' => 'descripcion de la categoria requerida'
         ];
     }
 }

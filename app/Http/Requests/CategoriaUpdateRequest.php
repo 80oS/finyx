@@ -12,7 +12,7 @@ class CategoriaUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,16 @@ class CategoriaUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => 'required|string',
+            'descripcion' => 'required|string'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'nombre.required' => 'nombre de la ctegoria es requerido',
+            'descripcion.required' => 'descripcion de la categoria requerida'
         ];
     }
 }

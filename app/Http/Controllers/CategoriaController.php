@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoriaStoreRequest;
 use App\Models\categoria;
 use App\Services\CategoriaService;
 use Illuminate\Http\Request;
@@ -20,20 +21,16 @@ class CategoriaController extends Controller
         return view('categoria.index', compact('categorias'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('categoria.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(CategoriaStoreRequest $request)
     {
-        //
+        $this->categoria_service->crear($request->validated());
+
+        return redirect()->route('categoria.index')->with('success', 'categoria creada correctamnete');
     }
 
     /**

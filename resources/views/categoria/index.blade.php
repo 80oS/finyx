@@ -31,9 +31,9 @@
                     <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Editar</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-600 text-sm text-gray-200">
+            <tbody class="divide-y divide-gray-600 text-sm text-gray-800">
                 @foreach ($categorias as $categoria)
-                    <tr class="bg-gray-900 hover:bg-gray-700 transition-all">
+                    <tr class="bg-gray-400 hover:bg-gray-700 transition-all">
                         <td class="p-3 border border-gray-800">{{ $categoria->id }}</td>
                         <td class="px-6 py-4 border border-gray-800">{{ $categoria->nombre }}</td>
                         <td class="px-6 py-4 border border-gray-800">{{ $categoria->descripcion }}</td>

@@ -20,9 +20,9 @@
     <div class="flex items-center gap-4">
 
         <a
-            class="flex h-10 w-10 items-center justify-center rounded-sm hover:text-white 
-            cursor-pointer bg-gray-400 transition-all">
-            <i class="fa-solid fa-power-off"></i>
+            class="flex h-10 w-10 items-center justify-center rounded-sm hover:text-gray-600 
+            cursor-pointer transition-all text-2xl">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </a>
 
         <div class="flex items-center gap-3">

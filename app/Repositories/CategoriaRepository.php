@@ -9,5 +9,10 @@ class CategoriaRepository{
     {
         return categoria::all();
     }
+
+    public function crear(array $datos)
+    {
+        categoria::create($datos);
+    }
 }
 ?>
