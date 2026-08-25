@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoriaStoreRequest;
+use App\Http\Requests\CategoriaUpdateRequest;
 use App\Models\categoria;
 use App\Services\CategoriaService;
 use Illuminate\Http\Request;
@@ -33,35 +34,22 @@ class CategoriaController extends Controller
         return redirect()->route('categoria.index')->with('success', 'categoria creada correctamnete');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(categoria $categoria)
+    public function edit(int $id)
     {
-        //
+        $categoria  = $this->categoria_service->buscarId($id);
+
+        return view('categoria.edit', compact('categoria'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(categoria $categoria)
+    public function update(int $id, CategoriaUpdateRequest $request)
     {
-        //
+        $this->categoria_service->update($id, $request->validated());
+
+        return redirect()->route('categoria.index')->with('success', 'categoria exitosamente actualizada');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, categoria $categoria)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(categoria $categoria)
     {
-        //
+        
     }
 }

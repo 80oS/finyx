@@ -5,7 +5,7 @@
 @section('content')
 
     @if (session('success'))
-        <div class=" bg-green-700/15 border border-green-400 text-slate-400 px-4 py-3 rounded mb-4">
+        <div class=" bg-green-700/10 border border-green-400 text-gray-800 px-4 py-3 rounded mb-4">
             {{ session('success') }}
         </div>
     @endif
@@ -33,13 +33,13 @@
             </thead>
             <tbody class="divide-y divide-gray-600 text-sm text-gray-800">
                 @foreach ($categorias as $categoria)
-                    <tr class="bg-gray-400 hover:bg-gray-700 transition-all">
+                    <tr class="bg-gray-300 hover:bg-gray-400 transition-all">
                         <td class="p-3 border border-gray-800">{{ $categoria->id }}</td>
                         <td class="px-6 py-4 border border-gray-800">{{ $categoria->nombre }}</td>
                         <td class="px-6 py-4 border border-gray-800">{{ $categoria->descripcion }}</td>
                         <td class="px-6 py-4 border border-gray-800 text-center">
                             <a href="{{ route('categoria.edit', $categoria->id) }}"
-                                class="bg-sky-700 hover:bg-sky-900 rounded-sm px-5 py-1">
+                                class="bg-sky-500 hover:bg-sky-700 rounded-sm px-5 py-1">
                                 Editar</a>
                         </td>
                     </tr>

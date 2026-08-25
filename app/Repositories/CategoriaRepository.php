@@ -14,5 +14,16 @@ class CategoriaRepository{
     {
         categoria::create($datos);
     }
+
+    public function buscarId(int $id)
+    {
+        return categoria::findOrFail($id);
+    }
+
+    public function update(int $id, array $datos)
+    {
+        $categoria = categoria::findOrFail($id);
+        $categoria->update($datos);
+    }
 }
 ?>
