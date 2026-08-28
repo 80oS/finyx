@@ -29,7 +29,9 @@ class ClienteController extends Controller
 
     public function store(ClienteStoreRequest $request)
     {
-       
+       $this->cliente_service->crear($request->validated());
+
+        return redirect()->route('cliente.index')->with('success', 'cliente creado correctamnete');
     }
 
     public function edit(int $id)
