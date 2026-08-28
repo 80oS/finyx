@@ -20,7 +20,7 @@ class ClienteService
 
     public function crear($datos)
     {
-       
+       return $this->cliente_repository->crear($datos);
     }
 
     public function buscarId($id)

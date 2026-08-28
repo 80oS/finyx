@@ -12,7 +12,7 @@ class ClienteRepository{
 
    public function crear(array $datos)
     {
-        
+        return cliente::create($datos);
     }
 
     public function buscarId(int $id)
