@@ -11,17 +11,17 @@ class ProveedorRepository
         return Proveedor::all();
     }
 
-    public function crear($datos)
+    public function crear(array $datos)
     {
         return Proveedor::create($datos);
     }
 
-    public function buscarId($id)
+    public function buscarId(int $id)
     {
         return Proveedor::findOrFail($id);
     }
 
-    public function update($id, $datos)
+    public function update(int $id, array $datos)
     {
         $proveedor = Proveedor::findOrFail($id);
 
@@ -30,11 +30,8 @@ class ProveedorRepository
         return $proveedor;
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        $proveedor = Proveedor::findOrFail($id);
-        $proveedor->delete();
-
-        return true;
+        Proveedor::destroy($id);
     }
 }

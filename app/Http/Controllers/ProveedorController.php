@@ -32,8 +32,7 @@ class ProveedorController extends Controller
     {
         $this->proveedor_service->crear($request->validated());
 
-        return redirect()->route('proveedores.index')
-            ->with('success', 'Proveedor creado correctamente');
+        return redirect()->route('proveedores.index')->with('success', 'Proveedor creado correctamente');
     }
 
     public function edit(int $id)
@@ -47,15 +46,13 @@ class ProveedorController extends Controller
     {
         $this->proveedor_service->update($id, $request->validated());
 
-        return redirect()->route('proveedores.index')
-            ->with('success', 'Proveedor actualizado exitosamente');
+        return redirect()->route('proveedores.index')->with('success', 'Proveedor actualizado exitosamente');
     }
 
-    public function destroy($proveedor)
-{
-    $this->proveedor_service->destroy($proveedor);
+    public function destroy(int $id)
+    {
+        $this->proveedor_service->destroy($id);
 
-    return redirect()->route('proveedores.index')
-        ->with('success', 'Proveedor eliminado correctamente');
-}
+        return redirect()->route('proveedores.index')->with('success', 'Proveedor eliminado correctamente');
+    }
 }

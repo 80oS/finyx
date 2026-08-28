@@ -1,6 +1,6 @@
 <header
     class="sticky top-0 z-30 flex h-18 items-center justify-between border-b 
-        border-neutral-100 bg-neutral-200
+        border-neutral-400 bg-neutral-200
         px-6 backdrop-blur">
 
     <div class="flex items-center gap-4">

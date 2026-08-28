@@ -48,8 +48,8 @@ class CategoriaController extends Controller
         return redirect()->route('categoria.index')->with('success', 'categoria exitosamente actualizada');
     }
 
-    public function destroy(categoria $categoria)
+    public function destroy(int $id)
     {
-        
+        $this->categoria_service->destroy($id);
     }
 }

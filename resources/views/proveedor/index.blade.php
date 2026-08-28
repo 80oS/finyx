@@ -36,14 +36,15 @@
                     <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Dirección</th>
                     <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Correo</th>
                     <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Editar</th>
+                    <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Eliminar</th>
                 </tr>
             </thead>
 
-            <tbody class="divide-y divide-gray-600 text-sm text-gray-200">
+            <tbody class="divide-y divide-gray-600 text-sm text-gray-900">
 
                 @foreach ($proveedores as $proveedor)
 
-                    <tr class="bg-gray-900 hover:bg-gray-700 transition-all">
+                    <tr class="bg-gray-300 hover:bg-gray-400 transition-all">
 
                         <td class="p-3 border border-gray-800">{{ $proveedor->id }}</td>
                         <td class="p-3 border border-gray-800">{{ $proveedor->nit }}</td>
@@ -59,21 +60,21 @@
                                 class="bg-sky-700 hover:bg-sky-900 rounded-sm px-5 py-1 text-white">
                                 Editar
                             </a>
+                        </td>
 
-                            <form action="{{ route('proveedores.destroy', $proveedor->id) }}" 
-                                method="POST" 
-                                class="inline">
+                        <td class="p-3 border border-gray-800 text-center">
+                            <form action="{{ route('proveedores.destroy', $proveedor->id) }}" method="POST">
 
                                 @csrf
                                 @method('DELETE')
 
                                 <button type="submit"
-                                    class="bg-red-500 hover:bg-red-700 rounded-sm px-5 py-1 text-white">
+                                    class="bg-red-500 hover:bg-red-700 text-white rounded-sm px-5 py-1 transition-all cursor-pointer"
+                                    onclick="return confirm('Seguro que quiere eliminar este proveedor')">
                                     Eliminar
                                 </button>
 
                             </form>
-
                         </td>
                     
 

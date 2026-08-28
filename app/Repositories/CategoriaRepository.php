@@ -25,5 +25,10 @@ class CategoriaRepository{
         $categoria = categoria::findOrFail($id);
         $categoria->update($datos);
     }
+
+    public function destroy(int $id)
+    {
+        categoria::destroy($id);
+    }
 }
 ?>

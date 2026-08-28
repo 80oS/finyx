@@ -29,9 +29,10 @@
                     <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Nombre</th>
                     <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Descripcion</th>
                     <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Editar</th>
+                    <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Eliminar</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-600 text-sm text-gray-800">
+            <tbody class="divide-y divide-gray-600 text-sm text-gray-900">
                 @foreach ($categorias as $categoria)
                     <tr class="bg-gray-300 hover:bg-gray-400 transition-all">
                         <td class="p-3 border border-gray-800">{{ $categoria->id }}</td>
@@ -39,8 +40,18 @@
                         <td class="px-6 py-4 border border-gray-800">{{ $categoria->descripcion }}</td>
                         <td class="px-6 py-4 border border-gray-800 text-center">
                             <a href="{{ route('categoria.edit', $categoria->id) }}"
-                                class="bg-sky-500 hover:bg-sky-700 rounded-sm px-5 py-1">
+                                class="bg-sky-500 hover:bg-sky-700 text-white rounded-sm px-5 py-1 transition-all">
                                 Editar</a>
+                        </td>
+                        <td class="px-6 py-4 border border-gray-800 text-center">
+                            <form action="{{ route('categoria.destroy', $categoria->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                class="bg-red-500 hover:bg-red-700 text-white rounded-sm px-5 py-1 transition-all cursor-pointer"
+                                onclick="return confirm('Seguro que quiere eliminar esta categoria')">
+                                Eliminar</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
