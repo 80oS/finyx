@@ -25,5 +25,10 @@ class ClienteRepository{
          $cliente = cliente::findOrFail($id);
          $cliente->update($datos);
     }
+
+  public function destroy(cliente $cliente)
+{
+    return $cliente->delete();
+}
 }
 ?>

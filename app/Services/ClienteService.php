@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\ClienteRepository;
+use App\Models\cliente;
 
 class ClienteService
 {
@@ -33,8 +34,8 @@ class ClienteService
          return $this->cliente_repository->update($id, $datos);
     }
 
-    public function destroy($id)
+    public function destroy(cliente $cliente)
     {
-        
+         return $this->cliente_repository->destroy($cliente);
     }
 }

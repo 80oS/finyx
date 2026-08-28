@@ -50,6 +50,10 @@ class ClienteController extends Controller
 
     public function destroy(cliente $cliente)
     {
-        
+          $this->cliente_service->destroy($cliente);
+
+    return redirect()
+        ->route('cliente.index')
+        ->with('success', 'Cliente eliminado correctamente');
     }
 }
