@@ -36,12 +36,16 @@ class ClienteController extends Controller
 
     public function edit(int $id)
     {
-       
+           $cliente  = $this->cliente_service->buscarId($id);
+
+        return view('cliente.edit', compact('cliente'));
     }
 
     public function update(int $id, ClienteUpdateRequest $request)
     {
-        
+        $this->cliente_service->update($id, $request->validated());
+
+        return redirect()->route('cliente.index')->with('success', 'cliente actualizado correctamente');
     }
 
     public function destroy(cliente $cliente)

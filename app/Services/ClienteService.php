@@ -25,12 +25,12 @@ class ClienteService
 
     public function buscarId($id)
     {
-        
+         return $this->cliente_repository->buscarId($id);
     }
 
     public function update($id, $datos)
     {
-        
+         return $this->cliente_repository->update($id, $datos);
     }
 
     public function destroy($id)

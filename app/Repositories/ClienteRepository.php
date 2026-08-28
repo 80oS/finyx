@@ -17,12 +17,13 @@ class ClienteRepository{
 
     public function buscarId(int $id)
     {
-        
+        return cliente::findOrFail($id);
     }
 
     public function update(int $id, array $datos)
     {
-        
+         $cliente = cliente::findOrFail($id);
+         $cliente->update($datos);
     }
 }
 ?>
