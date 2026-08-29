@@ -21,4 +21,16 @@ class ClienteStoreRequest extends FormRequest
             'correo' => 'required|email',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'nombre.required' => 'nombre del cliente es requerido',
+            'cedula.required' => 'cedula del cliente es requerido',
+            'telefono.required' => 'telefono del cliente es requerido',
+            'correo.required' => 'correo del cliente es requerido',
+            'direccion.required' => 'direccion del cliente es requerido',
+
+        ];
+    }
 }

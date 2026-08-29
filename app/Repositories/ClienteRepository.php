@@ -10,7 +10,7 @@ class ClienteRepository{
         return cliente::all();
     }
 
-   public function crear(array $datos)
+    public function crear(array $datos)
     {
         return cliente::create($datos);
     }
@@ -22,13 +22,13 @@ class ClienteRepository{
 
     public function update(int $id, array $datos)
     {
-         $cliente = cliente::findOrFail($id);
-         $cliente->update($datos);
+        $cliente = cliente::findOrFail($id);
+        $cliente->update($datos);
     }
 
-  public function destroy(cliente $cliente)
-{
-    return $cliente->delete();
-}
+    public function destroy(int $id)
+    {
+        cliente::destroy($id);
+    }
 }
 ?>

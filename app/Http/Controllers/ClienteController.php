@@ -29,14 +29,14 @@ class ClienteController extends Controller
 
     public function store(ClienteStoreRequest $request)
     {
-       $this->cliente_service->crear($request->validated());
+        $this->cliente_service->crear($request->validated());
 
         return redirect()->route('cliente.index')->with('success', 'cliente creado correctamnete');
     }
 
     public function edit(int $id)
     {
-           $cliente  = $this->cliente_service->buscarId($id);
+        $cliente  = $this->cliente_service->buscarId($id);
 
         return view('cliente.edit', compact('cliente'));
     }
@@ -48,12 +48,10 @@ class ClienteController extends Controller
         return redirect()->route('cliente.index')->with('success', 'cliente actualizado correctamente');
     }
 
-    public function destroy(cliente $cliente)
+    public function destroy(int $id)
     {
-          $this->cliente_service->destroy($cliente);
+        $this->cliente_service->destroy($id);
 
-    return redirect()
-        ->route('cliente.index')
-        ->with('success', 'Cliente eliminado correctamente');
+    return redirect()->route('cliente.index')->with('success', 'Cliente eliminado correctamente');
     }
 }

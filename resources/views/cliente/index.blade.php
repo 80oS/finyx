@@ -31,7 +31,8 @@
                     <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Telefono</th>
                     <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Correo</th>
                     <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Dirección</th>
-                    <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Acciones</th>
+                    <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Editar</th>
+                    <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-600 text-sm text-gray-800">
@@ -47,19 +48,18 @@
                             <a href="{{ route('cliente.edit', $cliente->id) }}"
                                 class="bg-sky-500 hover:bg-sky-700 rounded-sm px-5 py-1">
                                 Editar</a>
+                        </td>
+                        <td class="px-6 py-4 border border-gray-800 text-center">
+                            <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
 
-                         <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
-                              @csrf
-                             @method('DELETE')
-
-                                        <button type="submit"
-                                            class="bg-red-500 hover:bg-red-700 text-white rounded-sm px-5 py-1">
-                                            Eliminar
-                                        </button>
-                                            </form>
-
-                                        </div>
-                                </td>
+                                <button type="submit"
+                                    class="bg-red-500 hover:bg-red-700 text-white rounded-sm px-5 py-1 cursor-pointer"
+                                    onclick="return confirm('Seguro que quiere eliminar este cliente')">
+                                    Eliminar
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
