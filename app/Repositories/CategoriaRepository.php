@@ -26,9 +26,22 @@ class CategoriaRepository{
         $categoria->update($datos);
     }
 
-    public function destroy(int $id)
+    public function changeState(int $id)
     {
-        categoria::destroy($id);
+        $categoria = categoria::findOrFail($id);
+        
+        if($categoria->estado == 1){
+            $categoria->estado = 0;
+            
+            $mensaje = 'Categoria desabilitada exitosamnete';
+        }else{
+            $categoria->estado = 1;
+            $mensaje = 'Categoria habilitada exitosamnete';
+        }
+
+        $categoria->save();
+        
+        return $mensaje;
     }
 }
 ?>

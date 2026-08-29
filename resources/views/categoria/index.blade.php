@@ -28,8 +28,9 @@
                     <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Id</th>
                     <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Nombre</th>
                     <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Descripcion</th>
+                    <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Estado</th>
                     <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Editar</th>
-                    <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Eliminar</th>
+                    <th class="px-6 py-3 font-medium border border-gray-800" scope="col">Cambiar Estado</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-600 text-sm text-gray-900">
@@ -38,20 +39,30 @@
                         <td class="p-3 border border-gray-800">{{ $categoria->id }}</td>
                         <td class="px-6 py-4 border border-gray-800">{{ $categoria->nombre }}</td>
                         <td class="px-6 py-4 border border-gray-800">{{ $categoria->descripcion }}</td>
+                        <td class="px-6 py-4 border border-gray-800">{{ $categoria->estado == 1 ? 'activo' : 'inactivo' }}</td>
                         <td class="px-6 py-4 border border-gray-800 text-center">
                             <a href="{{ route('categoria.edit', $categoria->id) }}"
                                 class="bg-sky-500 hover:bg-sky-700 text-white rounded-sm px-5 py-1 transition-all">
                                 Editar</a>
                         </td>
                         <td class="px-6 py-4 border border-gray-800 text-center">
-                            <form action="{{ route('categoria.destroy', $categoria->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                class="bg-red-500 hover:bg-red-700 text-white rounded-sm px-5 py-1 transition-all cursor-pointer"
-                                onclick="return confirm('Seguro que quiere eliminar esta categoria')">
-                                Eliminar</button>
-                            </form>
+                            @if ($categoria->estado == 1)
+                                <form action="{{ route('categoria.changeState', $categoria->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                    class="bg-red-500 hover:bg-red-700 text-white rounded-sm px-5 py-1 transition-all cursor-pointer" >
+                                        desabilitar</button>
+                                </form>
+                            @endif
+
+                            @if ($categoria->estado == 0)
+                                <form action="{{ route('categoria.changeState', $categoria->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                    class="bg-green-500 hover:bg-green-700 text-white rounded-sm px-5 py-1 transition-all cursor-pointer">
+                                        abilitar</button>
+                                </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

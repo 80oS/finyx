@@ -25,7 +25,8 @@ class CategoriaStoreRequest extends FormRequest
     {
         return [
             'nombre' => 'required|string',
-            'descripcion' => 'required|string'
+            'descripcion' => 'required|string',
+            'estado' => 'required'
         ];
     }
 
@@ -33,7 +34,8 @@ class CategoriaStoreRequest extends FormRequest
     {
         return [
             'nombre.required' => 'nombre de la ctegoria es requerido',
-            'descripcion.required' => 'descripcion de la categoria requerida'
+            'descripcion.required' => 'descripcion de la categoria requerida',
+            'estado.required' => 'el estado es requerido'
         ];
     }
 }

@@ -9,4 +9,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('/categoria', CategoriaController::class);
+Route::post('/categoriaChangeState/{id}', [CategoriaController::class, 'changeState'])->name('categoria.changeState');
+
+
 Route::resource('/proveedores', ProveedorController::class);

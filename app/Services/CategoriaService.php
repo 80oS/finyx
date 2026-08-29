@@ -32,9 +32,9 @@ class CategoriaService{
         return $this->categoria_repository->update($id, $datos);
     }
 
-    public function destroy(int $id)
+    public function changeState(int $id)
     {
-        return $this->categoria_repository->destroy($id);
+        return $this->categoria_repository->changeState($id);
     }
 }
 ?>
