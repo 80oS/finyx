@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class producto extends Model
 {
+    protected $table = 'producto';
+    
     protected $fillable = [
         'nombre',
         'codigo',
@@ -13,6 +15,7 @@ class producto extends Model
         'precio_unitario',
         'stock',
         'fecha_vencimiento',
+        'ubicacion_real',
         'estado',
         'id_categoria'
     ];

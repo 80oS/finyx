@@ -46,23 +46,18 @@
                                 Editar</a>
                         </td>
                         <td class="px-6 py-4 border border-gray-800 text-center">
-                            @if ($categoria->estado == 1)
-                                <form action="{{ route('categoria.changeState', $categoria->id) }}" method="POST">
-                                    @csrf
+                            <form action="{{ route('categoria.changeState', $categoria->id) }}" method="POST">
+                                @csrf
+                                @if ($categoria->estado == 1)
                                     <button type="submit"
                                     class="bg-red-500 hover:bg-red-700 text-white rounded-sm px-5 py-1 transition-all cursor-pointer" >
                                         desabilitar</button>
-                                </form>
-                            @endif
-
-                            @if ($categoria->estado == 0)
-                                <form action="{{ route('categoria.changeState', $categoria->id) }}" method="POST">
-                                    @csrf
+                                @else
                                     <button type="submit"
                                     class="bg-green-500 hover:bg-green-700 text-white rounded-sm px-5 py-1 transition-all cursor-pointer">
-                                        abilitar</button>
-                                </form>
-                            @endif
+                                        habilitar</button>
+                                @endif
+                            </form>
                         </td>
                     </tr>
                 @endforeach

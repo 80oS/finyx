@@ -3,61 +3,50 @@
 namespace App\Http\Controllers;
 
 use App\Models\producto;
+use App\Services\ProductoService;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    private ProductoService $producto_service;
+
+    public function __construct(ProductoService $producto_service)
     {
-        //
+        $this->producto_service = $producto_service;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function index()
+    {
+        $productos = $this->producto_service->index();
+
+        return view('producto.index', compact('productos'));
+    }
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(producto $producto)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(producto $producto)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, producto $producto)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(producto $producto)
     {
         //
