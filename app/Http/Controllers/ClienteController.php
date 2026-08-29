@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\ClienteStoreRequest;
+use App\Http\Requests\ClienteUpdateRequest;
+use App\Models\cliente;
+use App\Services\ClienteService;
+use Illuminate\Http\Request;
+
+class ClienteController extends Controller
+{
+    private ClienteService $cliente_service;
+
+    public function __construct(ClienteService $cliente_service)
+    {
+        $this->cliente_service = $cliente_service;
+    }
+    public function index()
+    {
+        $cliente = $this->cliente_service->index();
+        return view('cliente.index', compact('cliente'));
+    }
+
+    public function create()
+    {
+        return view('cliente.create');
+    }
+
+    public function store(ClienteStoreRequest $request)
+    {
+       $this->cliente_service->crear($request->validated());
+
+        return redirect()->route('cliente.index')->with('success', 'cliente creado correctamnete');
+    }
+
+    public function edit(int $id)
+    {
+           $cliente  = $this->cliente_service->buscarId($id);
+
+        return view('cliente.edit', compact('cliente'));
+    }
+
+    public function update(int $id, ClienteUpdateRequest $request)
+    {
+        $this->cliente_service->update($id, $request->validated());
+
+        return redirect()->route('cliente.index')->with('success', 'cliente actualizado correctamente');
+    }
+
+    public function destroy(cliente $cliente)
+    {
+          $this->cliente_service->destroy($cliente);
+
+    return redirect()
+        ->route('cliente.index')
+        ->with('success', 'Cliente eliminado correctamente');
+    }
+}
