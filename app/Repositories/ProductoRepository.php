@@ -25,5 +25,21 @@ class ProductoRepository{
         $producto = producto::findOrFail($id);
         $producto->update($datos);
     }
+
+    public function changeState(int $id)
+    {
+        $producto = producto::findOrFail($id);
+
+        if($producto->estado == 1){
+            $producto->estado = 0;
+            $mensaje = 'Producto desabilitado con exito';
+        }else{
+            $producto->estado = 1;
+            $mensaje = 'Producto habilitado con exito';
+        }
+        $producto->save();
+
+        return $mensaje;
+    }
 }
 ?>

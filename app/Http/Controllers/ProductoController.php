@@ -56,8 +56,10 @@ class ProductoController extends Controller
         return redirect()->route('producto.index')->with('success', 'Producto actualizado con exito');
     }
 
-    public function destroy(producto $producto)
+    public function changeState(int $id)
     {
-        
+        $mensaje = $this->producto_service->changeState($id);
+
+        return redirect()->route('producto.index')->with('success', $mensaje);
     }
 }

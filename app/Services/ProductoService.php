@@ -30,5 +30,10 @@ class ProductoService{
     {
         return $this->producto_repository->actualizar($id, $datos);
     }
+
+    public function changeState(int $id)
+    {
+        return $this->producto_repository->changeState($id);
+    }
 }
 ?>

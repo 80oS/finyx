@@ -18,3 +18,4 @@ Route::resource('/proveedores', ProveedorController::class);
 Route::resource('/producto', ProductoController::class);
 
 Route::resource('/cliente', ClienteController::class);
+Route::post('/productoChangeState/{id}', [ProductoController::class, 'changeState'])->name('producto.changeState');

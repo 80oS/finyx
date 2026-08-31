@@ -58,7 +58,7 @@
                                 Editar</a>
                         </td>
                         <td class="p-2 border border-gray-800">
-                            <form action="">
+                            <form action="{{ route('producto.changeState', $producto->id) }}" method="POST">
                                 @csrf
                                 @if ($producto->estado == 1)
                                     <button type="submit"
