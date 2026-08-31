@@ -20,5 +20,15 @@ class ProductoService{
     {
         return $this->producto_repository->crear($datos);
     }
+
+    public function buscarId(int $id)
+    {
+        return $this->producto_repository->buscarId($id);
+    }
+
+    public function actualizar(int $id, array $datos)
+    {
+        return $this->producto_repository->actualizar($id, $datos);
+    }
 }
 ?>

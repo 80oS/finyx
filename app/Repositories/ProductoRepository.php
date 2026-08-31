@@ -14,5 +14,16 @@ class ProductoRepository{
     {
         producto::create($datos);
     }
+
+    public function buscarId(int $id)
+    {
+        return producto::findOrFail($id);
+    }
+
+    public function actualizar(int $id, array $datos)
+    {
+        $producto = producto::findOrFail($id);
+        $producto->update($datos);
+    }
 }
 ?>

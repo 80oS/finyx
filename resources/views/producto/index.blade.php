@@ -53,7 +53,7 @@
                         <td class="p-3 border border-gray-800">{{ $producto->estado == 1 ? 'disponible' : 'agotado' }}</td>
                         <td class="p-3 border border-gray-800">{{ $producto->categoria->nombre }}</td>
                         <td class="p-3 border border-gray-800">
-                            <a href=""
+                            <a href="{{ route('producto.edit', $producto->id) }}"
                                 class="bg-sky-500 hover:bg-sky-700 text-white rounded-sm px-5 py-1 transition-all">
                                 Editar</a>
                         </td>
