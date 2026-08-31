@@ -15,5 +15,10 @@ class ProductoService{
     {
         return $this->producto_repository->index();
     }
+
+    public function crear(array $datos)
+    {
+        return $this->producto_repository->crear($datos);
+    }
 }
 ?>

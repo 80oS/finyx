@@ -9,5 +9,10 @@ class ProductoRepository{
     {
         return producto::with('categoria')->get();
     }
+
+    public function crear(array $datos)
+    {
+        producto::create($datos);
+    }
 }
 ?>

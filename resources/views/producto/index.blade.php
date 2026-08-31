@@ -24,20 +24,20 @@
     <div class="overflow-x-auto rounded-md">
         <table class="w-full text-left border-collapse">
             <thead class="bg-gray-400 text-gray-800 uppercase text-xs text-center sticky">
-                <th>
-                    <td class="px-3 py-3 font-medium border border-gray-800">id</td>
-                    <td class="px-3 py-3 font-medium border border-gray-800">nombre</td>
-                    <td class="px-3 py-3 font-medium border border-gray-800">codigo</td>
-                    <td class="px-3 py-3 font-medium border border-gray-800">codigo de barras</td>
-                    <td class="px-3 py-3 font-medium border border-gray-800">precio unitario</td>
-                    <td class="px-3 py-3 font-medium border border-gray-800">stock</td>
-                    <td class="px-3 py-3 font-medium border border-gray-800">fecha de vencimiento</td>
-                    <td class="px-3 py-3 font-medium border border-gray-800">ubicacion real</td>
-                    <td class="px-3 py-3 font-medium border border-gray-800">estado</td>
-                    <td class="px-3 py-3 font-medium border border-gray-800">categoria</td>
-                    <td class="px-3 py-3 font-medium border border-gray-800">Editar</td>
-                    <td class="px-3 py-3 font-medium border border-gray-800">cambiar estado</td>
-                </th>
+                <tr>
+                    <th class="px-3 py-3 font-medium border border-gray-800">id</th>
+                    <th class="px-3 py-3 font-medium border border-gray-800">nombre</th>
+                    <th class="px-3 py-3 font-medium border border-gray-800">codigo</th>
+                    <th class="px-3 py-3 font-medium border border-gray-800">codigo de barras</th>
+                    <th class="px-3 py-3 font-medium border border-gray-800">precio unitario</th>
+                    <th class="px-3 py-3 font-medium border border-gray-800">stock</th>
+                    <th class="px-3 py-3 font-medium border border-gray-800">fecha de vencimiento</th>
+                    <th class="px-3 py-3 font-medium border border-gray-800">ubicacion real</th>
+                    <th class="px-3 py-3 font-medium border border-gray-800">estado</th>
+                    <th class="px-3 py-3 font-medium border border-gray-800">categoria</th>
+                    <th class="px-3 py-3 font-medium border border-gray-800">Editar</th>
+                    <th class="px-3 py-3 font-medium border border-gray-800">cambiar estado</th>
+                </tr>
             </thead>
             <tbody class="divide-y divide-gray-600 text-sm text-gray-900">
                 @foreach ($productos as $producto)
@@ -53,20 +53,20 @@
                         <td class="p-3 border border-gray-800">{{ $producto->estado == 1 ? 'disponible' : 'agotado' }}</td>
                         <td class="p-3 border border-gray-800">{{ $producto->categoria->nombre }}</td>
                         <td class="p-3 border border-gray-800">
-                            <a href="{{ route('producto.edit'), $producto->id }}"
+                            <a href=""
                                 class="bg-sky-500 hover:bg-sky-700 text-white rounded-sm px-5 py-1 transition-all">
                                 Editar</a>
                         </td>
-                        <td class="p-3 border border-gray-800">
+                        <td class="p-2 border border-gray-800">
                             <form action="">
                                 @csrf
                                 @if ($producto->estado == 1)
                                     <button type="submit"
-                                    class="bg-red-500 hover:bg-red-700 text-white rounded-sm px-5 py-1 transition-all cursor-pointer">
+                                    class="bg-red-500 hover:bg-red-700 text-white rounded-sm px-2 py-1 transition-all cursor-pointer">
                                         desabilitar</button>
                                 @else
                                     <button type="submit"
-                                    class="bg-green-500 hover:bg-green-700 text-white rounded-sm px-5 py-1 transition-all cursor-pointer">
+                                    class="bg-green-500 hover:bg-green-700 text-white rounded-sm px-1 py-1 transition-all cursor-pointer">
                                         habilitar</button>
                                 @endif
                             </form>
