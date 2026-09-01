@@ -10,8 +10,8 @@
             @click="sidebarOpen = !sidebarOpen"
             class="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-300
                     text-gray-800 bg-gray-400
-                    hover:text-white cursor-pointer">
-            ☰
+                    hover:text-white cursor-pointer transition-all">
+            <i class="fa-solid fa-bars"></i>
         </button>
     </div>
 

@@ -26,7 +26,7 @@
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-slate-800 mb-1.5">Codigo de Barras</label>
-                            <input type="text" name="barcode" class="w-full px-3.5 py-2.5 bg-slate-300 border border-slate-300 rounded-lg text-sm text-slate-800  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
+                            <input type="text" name="barcode" autofocus class="w-full px-3.5 py-2.5 bg-slate-300 border border-slate-300 rounded-lg text-sm text-slate-800  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-slate-800 mb-1.5">Precio Unitario</label>
