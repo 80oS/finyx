@@ -58,6 +58,11 @@
             <i class="fa-solid fa-users pr-3"></i>
             <span x-show="sidebarOpen" x-transition>Cliente</span>
         </a>
+        <a href="{{ route('compra.index') }}" 
+        class="mb-2 flex items-center gap-3 rounded-lg capitalize bg-indigo-500/20 px-3 py-3 hover:bg-indigo-200/30 transition-all">
+            <i class="fa-solid fa-users pr-3"></i>
+            <span x-show="sidebarOpen" x-transition>Compra</span>
+        </a>
 
     </nav>
 

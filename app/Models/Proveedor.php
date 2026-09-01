@@ -8,5 +8,18 @@ class Proveedor extends Model
 {
     protected $table = 'proveedor';
 
-    protected $fillable = ['nit','cedula','nombre','telefono','direccion','correo'];
+    protected $fillable = [
+    'nit',
+    'cedula',
+    'nombre',
+    'telefono',
+    'direccion',
+    'correo'
+    ];
+
+    public function compra()
+{
+    return $this->hasMany(Compra::class);
+}
+
 }
