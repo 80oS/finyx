@@ -55,7 +55,8 @@
                         <td class="p-3 border border-gray-800">
                             <a href="{{ route('producto.edit', $producto->id) }}"
                                 class="bg-sky-500 hover:bg-sky-700 text-white rounded-sm px-5 py-1 transition-all">
-                                Editar</a>
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
                         </td>
                         <td class="p-2 border border-gray-800">
                             <form action="{{ route('producto.changeState', $producto->id) }}" method="POST">

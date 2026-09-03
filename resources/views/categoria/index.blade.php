@@ -43,7 +43,8 @@
                         <td class="px-6 py-4 border border-gray-800 text-center">
                             <a href="{{ route('categoria.edit', $categoria->id) }}"
                                 class="bg-sky-500 hover:bg-sky-700 text-white rounded-sm px-5 py-1 transition-all">
-                                Editar</a>
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
                         </td>
                         <td class="px-6 py-4 border border-gray-800 text-center">
                             <form action="{{ route('categoria.changeState', $categoria->id) }}" method="POST">

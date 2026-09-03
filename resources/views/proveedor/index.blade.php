@@ -58,7 +58,7 @@
 
                             <a href="{{ route('proveedores.edit', $proveedor->id) }}" 
                                 class="bg-sky-700 hover:bg-sky-900 rounded-sm px-5 py-1 text-white">
-                                Editar
+                                <i class="fa-regular fa-pen-to-square"></i>
                             </a>
                         </td>
 
@@ -71,7 +71,7 @@
                                 <button type="submit"
                                     class="bg-red-500 hover:bg-red-700 text-white rounded-sm px-5 py-1 transition-all cursor-pointer"
                                     onclick="return confirm('Seguro que quiere eliminar este proveedor')">
-                                    Eliminar
+                                    <i class="fa-solid fa-trash-can"></i>
                                 </button>
 
                             </form>

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Arquitectura de alto nivel — Finyx (Laravel)",
+    "output": "docs/archify/finyx-architecture-high-level.html",
+    "quality_profile": "showcase",
+    "viewBox": [1400, 660],
+    "views": [
+      { "id": "peticionWeb", "label": "Flujo HTTP", "focus": ["usuarios", "rutas", "controllers", "vistas"], "note": "La petición entra por rutas, se despacha a controllers y se responde con vistas Blade." },
+      { "id": "persistencia", "label": "Persistencia", "focus": ["controllers", "servicios", "modelos", "mysql"], "note": "Controllers delegan en servicios y repositorios; Eloquent persiste en la base configurada." },
+      { "id": "ventasDominio", "label": "Dominio de ventas", "focus": ["productos", "clientes", "ventas", "detallesVenta"], "note": "Una venta (factura) pertenece a un cliente y tiene detalles asociados a productos." }
+    ]
+  },
+  "components": [
+    { "id": "usuarios", "type": "external", "label": "Usuarios", "pos": [40, 310], "size": [135, 64] },
+    { "id": "rutas", "type": "backend", "label": "Routes", "pos": [230, 310], "size": [145, 64], "tag": "web.php" },
+    { "id": "controllers", "type": "backend", "label": "Controllers", "pos": [440, 310], "size": [190, 64], "tag": "HTTP" },
+    { "id": "vistas", "type": "frontend", "label": "Views", "pos": [445, 125], "size": [190, 64], "tag": "Blade" },
+    { "id": "servicios", "type": "backend", "label": "Services y Repositories", "pos": [700, 310], "size": [205, 64] },
+    { "id": "modelos", "type": "backend", "label": "Models", "pos": [970, 310], "size": [250, 64], "tag": "Eloquent" },
+    { "id": "mysql", "type": "database", "label": "MySQL", "pos": [1255, 310], "size": [145, 64] },
+    { "id": "productos", "type": "database", "label": "Productos", "pos": [950, 455], "size": [140, 58], "tag": "producto" },
+    { "id": "clientes", "type": "database", "label": "Clientes", "pos": [1180, 455], "size": [140, 58], "tag": "cliente" },
+    { "id": "ventas", "type": "database", "label": "Ventas", "pos": [1180, 590], "size": [140, 58], "tag": "factura" },
+    { "id": "detallesVenta", "type": "database", "label": "Detalles de venta", "pos": [950, 590], "size": [160, 58], "tag": "detalle_factura" }
+  ],
+  "connections": [
+    { "id": "solicitud", "from": "usuarios", "to": "rutas", "label": "HTTP", "variant": "emphasis" },
+    { "id": "despacho", "from": "rutas", "to": "controllers", "label": "despacha" },
+    { "id": "renderizado", "from": "controllers", "to": "vistas", "label": "renderiza", "fromSide": "top", "toSide": "bottom" },
+    { "id": "respuesta", "from": "vistas", "to": "usuarios", "label": "HTML", "variant": "dashed", "fromSide": "left", "toSide": "top" },
+    { "id": "logica", "from": "controllers", "to": "servicios", "label": "delega" },
+    { "id": "repositorios", "from": "servicios", "to": "modelos", "label": "usa repositorios", "labelDy": 56 },
+    { "id": "eloquent", "from": "modelos", "to": "mysql", "label": "Eloquent / SQL", "labelDy": 56 },
+    { "id": "clienteFactura", "from": "clientes", "to": "ventas", "label": "1 : N", "fromSide": "bottom", "toSide": "top", "labelDy": 28 },
+    { "id": "facturaDetalle", "from": "ventas", "to": "detallesVenta", "label": "1 : N", "fromSide": "left", "toSide": "right", "labelDy": -24 },
+    { "id": "productoDetalle", "from": "productos", "to": "detallesVenta", "label": "1 : N", "fromSide": "bottom", "toSide": "top", "labelDx": -28 }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Capas verificadas", "items": ["routes/web.php registra recursos de categoría, proveedor, producto y cliente", "Controllers delegan en servicios; servicios usan repositorios", "Las vistas existentes son Blade bajo resources/views"] },
+    { "dot": "emerald", "title": "Relaciones del dominio", "items": ["cliente 1:N factura", "factura 1:N detalle_factura", "producto 1:N detalle_factura"] },
+    { "dot": "amber", "title": "Estado actual de ventas", "items": ["Ventas equivale al modelo y tabla factura", "Detalle de venta equivale a detalleFactura y detalle_factura", "VentasController existe, pero no tiene lógica ni ruta registrada en web.php"] }
+  ]
+}
