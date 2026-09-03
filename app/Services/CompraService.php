@@ -17,5 +17,17 @@ class CompraService{
         return $this->compra_repository->index();
     }
 
+   
+    public function crear(array $datos)
+    {
+        return $this->compra_repository->crear($datos);
+    }
+
     
+    public function buscarId(int $id)
+    {
+        return $this->compra_repository->buscarId($id);
+    }
+
+
 }

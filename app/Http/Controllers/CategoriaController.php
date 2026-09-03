@@ -31,7 +31,7 @@ class CategoriaController extends Controller
     {
         $this->categoria_service->crear($request->validated());
 
-        return redirect()->route('categoria.index')->with('success', 'categoria creada correctamnete');
+        return redirect()->route('categoria.index')->with('success', 'categoria creada correctamente');
     }
 
     public function edit(int $id)

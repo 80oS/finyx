@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Services\CompraService;
+use App\Models\Proveedor;
+use App\Http\Requests\CompraStoreRequest;
+
 
 class CompraController extends Controller
 {
@@ -26,16 +29,19 @@ class CompraController extends Controller
      */
     public function create()
     {
-        //
+        $proveedores = Proveedor::all();
+
+        return view('compra.create', compact('proveedores'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store()
-    {
-        //
-    }
+    public function store(CompraStoreRequest $request)
+{
+    $this->compra_service->crear($request->validated());
+    return redirect()->route('compra.index') ->with('success', 'Compra creada correctamente');
+}
 
     /**
      * Display the specified resource.

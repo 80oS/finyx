@@ -41,7 +41,7 @@
                         <td class="px-6 py-4 border border-gray-800">{{ $compra->metodo_pago}}</td>
                         <td class="px-6 py-4 border border-gray-800">{{ $compra->total }}</td>
                         <td class="px-6 py-4 border border-gray-800 text-center">
-                            <a href="{{ route('compra.edit', $categoria->id) }}"
+                            <a href="{{ route('compra.edit', $compra->id) }}"
                                 class="bg-sky-500 hover:bg-sky-700 text-white rounded-sm px-5 py-1 transition-all">
                                 Editar</a>
                         </td>
