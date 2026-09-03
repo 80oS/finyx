@@ -29,5 +29,10 @@ class CompraService{
         return $this->compra_repository->buscarId($id);
     }
 
+    public function update(int $id, array $datos)
+    {
+        return $this->compra_repository->update($id, $datos);
+    }
+
 
 }

@@ -28,17 +28,11 @@
                             </option>
                         @endforeach
                     </select>
-
-                    @error('id_proveedor')
-                        <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-                    @enderror
                 </div>
             
 
                 <div class="mb-5">
-                    <label for="metodo_pago" class="block text-sm font-medium text-slate-800 mb-1.5">
-                        metodo pago
-                    </label>
+                    <label for="metodo_pago" class="block text-sm font-medium text-slate-800 mb-1.5">metodo pago</label>
 
                     <select name="metodo_pago" id="metodo_pago" class="w-full px-3.5 py-2.5 bg-slate-300 border border-slate-300 rounded-lg text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
                         <option value="">Seleccione un método de pago</option>

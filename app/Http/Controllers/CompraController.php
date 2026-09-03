@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\CompraService;
 use App\Models\Proveedor;
 use App\Http\Requests\CompraStoreRequest;
+use App\Http\Requests\CompraUpdateRequest;
 
 
 class CompraController extends Controller
@@ -54,17 +55,22 @@ class CompraController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+   public function edit($id)
     {
-        //
-    }
+        $compra = $this->compra_service->buscarId($id);
 
+        $proveedores = Proveedor::all();
+
+        return view('compra.edit', compact('compra', 'proveedores'));
+    }
     /**
      * Update the specified resource in storage.
      */
-    public function update()
+      public function update(int $id, CompraUpdateRequest $request)
     {
-        //
+        $this->compra_service->update($id, $request->validated());
+
+        return redirect()->route('compra.index')->with('success', 'compra actualizada correctamente');
     }
 
     /**
