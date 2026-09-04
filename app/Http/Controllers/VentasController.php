@@ -20,4 +20,10 @@ class VentasController extends Controller
 
         return view('factura.index', compact('facturas'));
     }
+
+    public function show(int $id)
+    {
+        $factura = $this->venta_service->show($id);
+        return view('factura.show', compact('factura'));
+    }
 }

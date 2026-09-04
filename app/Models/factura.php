@@ -22,7 +22,7 @@ class factura extends Model
         return $this->belongsTo(cliente::class, 'id_cliente');
     }
 
-    public function destalleFactura()
+    public function detalleFactura()
     {
         return $this->hasMany(detalleFactura::class);
     }

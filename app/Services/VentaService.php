@@ -15,5 +15,10 @@ class VentaService{
     {
         return $this->venta_repository->index();
     }
+
+    public function show(int $id)
+    {
+        return $this->venta_repository->show($id);
+    }
 }
 ?>
