@@ -16,6 +16,11 @@ class VentaService{
         return $this->venta_repository->index();
     }
 
+    public function create(array $datos)
+    {
+        return $this->venta_repository->create($datos);
+    }
+
     public function show(int $id)
     {
         return $this->venta_repository->show($id);
