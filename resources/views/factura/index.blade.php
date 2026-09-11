@@ -35,8 +35,8 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-600 text-sm text-gray-900">
-                <tr class="bg-gray-300 hover:bg-gray-400 transition-all">
-                    @foreach ($facturas as $factura)
+                @foreach ($facturas as $factura)
+                    <tr class="bg-gray-300 hover:bg-gray-400 transition-all">
                         <td class="p-3 border border-gray-800">{{ $factura->id }}</td>
                         <td class="p-3 border border-gray-800">{{ $factura->codigo }}</td>
                         <td class="p-3 border border-gray-800">{{ $factura->cliente->nombre }}</td>
@@ -49,12 +49,12 @@
                             </a>
                         </td>
                         <td class="p-3 border border-gray-800">
-                            <a href="" class="bg-gray-300 text-emerald-700 hover:text-emerald-900 p-1">
+                            <a href="{{ route('venta.show', $factura->id) }}" class="bg-gray-300 text-emerald-700 hover:text-emerald-900 p-1">
                                 <i class="fa-regular fa-eye"></i>
                             </a>
                         </td>
-                    @endforeach
-                </tr>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

@@ -3,38 +3,89 @@
 @section('titulo', 'Detalle Factura')
 
 @section('content')
-
-    <div class="text-2xl font-bold tracking-tight text-foreground text-gray-800">
-        Venta {{ $factura->codigo }}
+    <div class="grid grid-cols-2">
+        <div class="">
+            <h1>Factura </h1>
+            <p>Empresa</p>
+        </div>
+        <div class="">
+            <h2>Numero de Factura</h2>
+            {{ $factura->codigo }}
+        </div>
     </div>
-    <div class="overflow-x-auto rounded-md">
-        <table class="w-full text-left border-collapse">
-            <thead class="bg-gray-400 text-gray-800 uppercase text-xs text-center sticky">
+
+    <hr>
+
+    <div class="grid grid-cols-3">
+        <div class="">
+            <label for="">facturado a</label>
+            <h1>{{ $factura->cliente->nombre }}</h1>
+            <ul>
+                <li>{{ $factura->cliente->cedula }}</li>
+                <li>{{ $factura->cliente->direccion }}</li>
+            </ul>
+        </div>
+        <div class="">
+            <label for="">Fecha de creacion</label>
+            <h2>{{ $factura->created_at }}</h2>
+        </div>
+        <div class="">
+            <label for="">Metodo de pago</label>
+            <h2>{{ $factura->metodo_pago }}</h2>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="">
+        <table>
+            <thead>
                 <tr>
-                    <th class="px-6 py-3 font-medium border border-gray-800 capitalize">codigo</th>
-                    <th class="px-6 py-3 font-medium border border-gray-800 capitalize">nombre</th>
-                    <th class="px-6 py-3 font-medium border border-gray-800 capitalize">cantidad</th>
-                    <th class="px-6 py-3 font-medium border border-gray-800 capitalize">precio_unitario</th>
-                    <th class="px-6 py-3 font-medium border border-gray-800 capitalize">subtotal</th>
+                    <th>Producto</th>
+                    <th>Codigo</th>
+                    <th>Precio Unitario</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-600 text-sm text-gray-900">
+            <tbody>
                 @foreach ($factura->detalleFactura as $detalle)
-                    <tr class="bg-gray-300 hover:bg-gray-400 transition-all">
-                        <td class="p-3 border border-gray-800">{{ $detalle->producto->codigo }}</td>
-                        <td class="p-3 border border-gray-800">{{ $detalle->producto->nombre }}</td>
-                        <td class="p-3 border border-gray-800">{{ $detalle->cantidad }}</td>
-                        <td class="p-3 border border-gray-800">{{ $detalle->precio_unitario }}</td>
-                        <td class="p-3 border border-gray-800">{{ $detalle->subtotal }}</td>
+                    <tr>
+                        <td>{{ $detalle->producto->nombre }}</td>
+                        <td>{{ $detalle->producto->codigo }}</td>
+                        <td>{{ $detalle->precio_unitario }}</td>
+                        <td>{{ $detalle->cantidad }}</td>
+                        <td>{{ $detalle->subtotal }}</td>
                     </tr>
+
+                    <?php
+                        $subtotal = $detalle->subtotal
+                    ?>
                 @endforeach
             </tbody>
-            <tfooter>
-                <tr>
-                    <td class="p-3 border border-gray-800">Total</td>
-                    <td class="p-3 border border-gray-800">{{ $factura->total }}</td>
-                </tr>
-            </tfooter>
         </table>
     </div>
+
+    <hr>
+
+    <div class="grid grid-cols-2">
+        <div class="grid grid-cols-1">
+            <label for="">subtotal</label>
+            <label for="">iva</label>
+        </div>
+        <div class="grid grid-cols-1">
+            <label for="">{{ $subtotal }}</label>
+            <label for="">subtotal * iva</label>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="grid grid-cols-2">
+        <div class="">
+            <label for="">Total de la factura</label>
+        </div>
+        <div class="">{{ $factura->total }}</div>
+    </div>
+
 @endsection
