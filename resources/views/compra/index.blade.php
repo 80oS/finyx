@@ -16,7 +16,7 @@
         </div>
         <div class="flex items-end justify-end">
             <a href="{{ route('compra.create') }}" 
-            class="bg-green-700 hover:bg-green-900 text-white rounded-sm px-5 py-1 text-right transition-all w-20"
+            class="bg-blue-700 hover:bg-blue-900 text-white rounded-sm px-5 py-1 text-right transition-all w-20"
             >crear</a>
         </div>
     </div>
