@@ -42,11 +42,13 @@
             <i class="fa-solid fa-cart-shopping"></i>
             <span x-show="sidebarOpen" x-transition>productos</span>
         </a>
+
         <a href="{{ route('categoria.index') }}" 
         class="mb-2 flex items-center gap-3 rounded-lg capitalize bg-aluminio px-3 py-3 hover:bg-oscuro transition-all">
             <i class="fa-solid fa-layer-group"></i>
             <span x-show="sidebarOpen" x-transition>categorias</span>
         </a>
+
         <a href="{{ route('proveedores.index') }}" 
         class="mb-2 flex items-center gap-3 rounded-lg capitalize bg-aluminio px-3 py-3 hover:bg-oscuro transition-all">
             <i class="fa-solid fa-truck"></i>
@@ -62,6 +64,16 @@
         class="mb-2 flex items-center gap-3 rounded-lg capitalize bg-aluminio px-3 py-3 hover:bg-oscuro transition-all">
             <i class="fa-solid fa-bag-shopping pr-3"></i>
             <span x-show="sidebarOpen" x-transition>Compra</span>
+        </a>
+
+        <a href="{{ route('venta.index') }}" 
+        class="mb-2 flex items-center gap-3 rounded-lg capitalize 
+        bg-indigo-500/20 px-3 py-3 hover:bg-indigo-200/30 transition-all
+        {{ request()->routeIs('venta.index') 
+        ? 'bg-indigo-600 hover:bg-indigo-700 text-white hover:text-white' 
+        : 'text-gray-800 bg-indigo-500/20 hover:bg-indigo-200/30 hover:text-gray-800' }}">
+            <i class="fa-solid fa-coins"></i>
+            <span x-show="sidebarOpen" x-transition>Ventas</span>
         </a>
 
     </nav>

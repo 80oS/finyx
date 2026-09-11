@@ -47,7 +47,8 @@
                         <td class="px-6 py-4 border border-gray-800 text-center">
                             <a href="{{ route('cliente.edit', $cliente->id) }}"
                                 class="bg-sky-500 hover:bg-sky-700 rounded-sm px-5 py-1">
-                                Editar</a>
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
                         </td>
                         <td class="px-6 py-4 border border-gray-800 text-center">
                             <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
@@ -57,7 +58,7 @@
                                 <button type="submit"
                                     class="bg-red-500 hover:bg-red-700 text-white rounded-sm px-5 py-1 cursor-pointer"
                                     onclick="return confirm('Seguro que quiere eliminar este cliente')">
-                                    Eliminar
+                                    <i class="fa-solid fa-trash-can"></i>
                                 </button>
                             </form>
                         </td>

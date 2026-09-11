@@ -15,4 +15,9 @@ class cliente extends Model
         'direccion',
         'correo',
     ];
+
+    public function factura()
+    {
+        return $this->hasMany(factura::class);
+    }
 }

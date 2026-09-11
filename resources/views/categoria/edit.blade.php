@@ -27,6 +27,14 @@
                     name="descripcion" value="{{ $categoria->descripcion }}">
                 </div>
 
+                <div class="mb-5">
+                    <label for="" class="block text-sm font-medium text-slate-800 mb-1.5">estado</label>
+                    <select name="estado" id="" class="w-full px-3.5 py-2.5 bg-slate-300 border border-slate-300 rounded-lg text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
+                        <option value="1" {{ $categoria->estado == 1 ? 'selected' : '' }}>activo</option>
+                        <option value="0" {{ $categoria->estado == 0 ? 'selected' : '' }}>inactivo</option>
+                    </select>
+                </div>
+
                 <div class="flex items-center justify-end gap-3 pt-4 border-t border-slate-500">
                     <button type="submit" class="bg-emerald-700 hover:bg-emerald-900 text-white rounded-sm px-4 py-2.5 text-right transition-all cursor-pointer"
                     >Guardar</button>
