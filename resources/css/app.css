@@ -6,7 +6,88 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+
+
+    /* Fondo general*/
+        --color-crema-suave: #F7F4EE;
     
+    /*Superficie de tarjetas/tabla*/
+    /*Fondo tabla — tbody (fila base)*/
+        --color-blanco-calido: #FFFDF9;
+    
+    /*Acento principal (menú activo, botón crear)*/
+        --color-verde-salvia: #6B8F71;
+        --color-verde-salvia-claro: #465D4A;
+        --color-sidebar-item-rest: #EDE7DA;
+        --color-sidebar-item-hover: #E6DECD;
+
+    /* Texto principal */
+        --color-gris-calido-oscuro: #3A362F;
+        --color-gris-calido-claro: #736B5E;
+    
+    /* Estados, desabilitar */
+        --color-terracota-suave: #C97B63;
+        --color-terracota-oscuro: #9C4D35;
+    
+    /*editar*/
+        --color-azul-grisaceo: #819BB8;
+        --color-azul-grisaceo-oscuro: #54697D;
+
+    /* Fondo Nav (barra superior) */
+        --color-blanco-santorini: #F1ECE2;
+    
+    /*Fondo Sidebar*/
+        --color-porcelana-fina: #EDE7DA;
+    
+    /*Fondo tabla — thead*/
+        --color-lino-natural: #E4DCC8;
+    
+    /* Texto thead */
+        --color-gris-marron-calido: #5C5646;
+    
+    /*Fondo tabla — fila alterna guiar la vista sin líneas duras*/
+        --color-crema-clarisimo: #F7F2E7;
+    
+    /*Texto primario (dominante)*/
+        --color-gris-grafito: #3A362F;
+    
+    /*Texto recesivo (secundario)*/
+        --color-estalactita-cueva: #8C8574;
+
+    /* Borde inferior del Nav */
+        --color-linea-nav: #E0D8C7;
+    
+    /*Borde derecho del Sidebar*/
+        --color-linea-sidebar: #DFD6C2;
+    
+    /*Borde exterior de la tabla*/
+        --color-linea-exterior-tabla: #DCD2BC;
+    
+    /*Borde inferior del thead*/
+        --color-linea-thead: #CDBF9F;
+    
+    /*Borde entre filas (tbody)*/
+        --color-linea-tr-tbody: #EDE6D6;
+
+    /*Borde de inputs/botones (reposo)*/
+        --color-linea-input: #D8CDB4;
+    
+    /*Borde de foco (inputs, accesibilidad)*/
+        --color-linea-foco: #6B8F71;
+    
+    /* success */
+        --color-alert-success: #E9EFE4;
+        --color-border-alert-success: #6B8F71;
+        --color-text-alert-success: #3F5C43;
+    
+    /* error */
+        --color-alert-error: #F4E7E2;
+        --color-border-alert-error: #C97B63;
+        --color-text-alert-error: #8A4E3D;
+    
+    /* ver detalle factura */
+        --color-ambar-claro: #AA8955;
+        --color-ambar-oscuro: #5C4A2E;
 }
 
 
