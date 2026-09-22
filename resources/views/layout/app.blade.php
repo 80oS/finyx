@@ -9,7 +9,7 @@
     <title>@yield('titulo')</title>
     @stack('style')
 </head>
-<body class="bg-plata -#E5E4E2">
+<body class="bg-crema-suave">
     <div
         x-data="{
             sidebarOpen: true

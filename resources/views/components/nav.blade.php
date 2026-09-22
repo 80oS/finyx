@@ -1,6 +1,6 @@
 <header
     class="sticky top-0 z-30 flex h-18 items-center justify-between border-b 
-        border-neutral-400 bg-rey #9BAEEE;
+        border-linea-nav bg-blanco-santorini
         px-6 backdrop-blur">
 
     <div class="flex items-center gap-4">
@@ -9,9 +9,9 @@
         <button
             @click="sidebarOpen = !sidebarOpen"
             class="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-300
-                    text-white bg-duke -#00009C;
-                    hover:text-white cursor-pointer">
-            ☰
+                    text-gris-calido-oscuro bg-gray-400
+                    hover:text-white cursor-pointer transition-all">
+            <i class="fa-solid fa-bars"></i>
         </button>
     </div>
 
@@ -20,25 +20,25 @@
     <div class="flex items-center gap-4">
 
         <a
-            class="flex h-10 w-10 items-center justify-center rounded-sm hover:text-gray-600 
-            cursor-pointer transition-all text-2xl">
+            class="flex h-10 w-10 items-center justify-center rounded-sm hover:text-gris-calido-claro 
+            cursor-pointer transition-all text-2xl text-gris-calido-oscuro">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </a>
 
         <div class="flex items-center gap-3">
 
             <div
-                class="flex h-10 w-10 items-center justify-center rounded-full bg-duke -#00009C text-white font-bold">
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-verde-salvia">
                 U
             </div>
 
             <div class="hidden md:block">
 
-                <p class="text-sm font-[Montserrat] font-semibold  text-noche">
+                <p class="text-sm font-semibold text-gris-calido-oscuro">
                     Usuario
                 </p>
 
-                <p class="text-xs text-noche">
+                <p class="text-xs text-gris-calido-oscuro">
                     Administrador
                 </p>
 
