@@ -8,6 +8,7 @@
     @vite(['resources/css/app.css'])
     <title>@yield('titulo')</title>
     @stack('style')
+    @livewireStyles
 </head>
 <body class="bg-crema-suave">
     <div
@@ -28,10 +29,11 @@
             {{-- Contenido --}}
             <main class="px-4 py-2">
                 @yield('content')
-                @vite(['resources/js/app.js'])
-                @stack('script')
             </main>
         </div>
     </div>
+    @vite(['resources/js/app.js'])
+    @stack('script')
+    @livewireScripts
 </body>
 </html>

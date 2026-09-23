@@ -7,6 +7,7 @@ use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\VentasController;
 use App\Http\Controllers\ImpuestoController;
+use App\Livewire\FacturaProduct;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,3 +30,4 @@ Route::post('/productoChangeState/{id}', [ProductoController::class, 'changeStat
 Route::resource('/venta', VentasController::class);
 
 Route::resource('/impuesto', ImpuestoController::class);
+Route::get('/facturaProduct', FacturaProduct::class)->name('agregar.producto');
