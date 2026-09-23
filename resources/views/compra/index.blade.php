@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('titulo', 'Lista de Compras')
 
@@ -16,13 +16,13 @@
         </div>
         <div class="flex items-end justify-end">
             <a href="{{ route('compra.create') }}" 
-              class="bg-verde-salvia hover:bg-verde-salvia text-blanco-calido 
+            class="bg-verde-salvia hover:bg-verde-salvia text-blanco-calido 
                 rounded-sm px-5 py-1 text-right transition-all w-20"
             >crear</a>
         </div>
     </div>
 
-     <div class="overflow-x-auto rounded-md">
+    <div class="overflow-x-auto rounded-md">
         <table class="w-full text-left border-collapse border border-linea-exterior-tabla">
             <thead class="bg-lino-natural text-gris-marron-calido capitalize text-sm 
             text-center sticky border-b border-linea-thead">

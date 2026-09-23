@@ -1,28 +1,28 @@
 <?php
 namespace App\Repositories;
 
-use App\Models\compra;
+use App\Models\Compra;
 
 class CompraRepository{
 
     public function index()
     {
-        return compra::with('proveedor')->get();
+        return Compra::with('proveedor')->get();
     }
 
     public function crear(array $datos)
     {
-        compra::create($datos);
+        Compra::create($datos);
     }
 
     public function buscarId(int $id)
     {
-        return compra::findOrFail($id);
+        return Compra::findOrFail($id);
     }
 
     public function update(int $id, array $datos)
     {
-        $compras = compra::findOrFail($id);
-        $compras->update($datos);
+        $Compras = Compra::findOrFail($id);
+        $Compras->update($datos);
     }
 }
