@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\VentasController;
+use App\Http\Controllers\ImpuestoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,3 +27,5 @@ Route::resource('/compra', CompraController::class);
 Route::post('/productoChangeState/{id}', [ProductoController::class, 'changeState'])->name('producto.changeState');
 
 Route::resource('/venta', VentasController::class);
+
+Route::resource('/impuesto', ImpuestoController::class);

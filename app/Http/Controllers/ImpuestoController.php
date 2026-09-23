@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 
 class ImpuestoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private ImpuestoService $impuesto_service;
+
+    public function __construct(ImpuestoService $impuesto_service)
+    {
+        $this->impuesto_service = $impuesto_service;
+    }
+
     public function index()
     {
-        //
+        $impuesto = $this->impuesto_service->index();
+        return view('impuesto.index', compact('impuesto'));
     }
 
     /**
