@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 100);
             $table->string('codigo',);
-            $table->string('barcode');
+            $table->string('barcode')->nullable();
             $table->decimal('precio_unitario', 10, 2);
             $table->integer('stock');
             $table->date('fecha_vencimiento')->nullable();

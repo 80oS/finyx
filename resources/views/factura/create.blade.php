@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('titulo', 'crear venta')
 
@@ -46,60 +46,17 @@
                             <h1 class="text-center text-gris-calido-oscuro capitalize">productos</h1>
 
                             <hr class="my-5 text-gris-calido-claro">
-                            <div class="overflow-x-auto rounded-md">
-                                <table class="w-full text-left border-collapse border border-linea-exterior-tabla">
-                                    <thead class="bg-lino-natural text-gris-marron-calido capitalize text-sm 
-                                            text-center sticky border-b border-linea-thead">
-                                        <tr>
-                                            <th class="px-3 py-3 font-medium">Codigo</th>
-                                            <th class="px-3 py-3 font-medium">Producto</th>
-                                            <th class="px-3 py-3 font-medium">precio unitario</th>
-                                            <th class="px-3 py-3 font-medium">cantidad</th>
-                                            <th class="px-3 py-3 font-medium">subtotal</th>
-                                        </tr>
-                                    </thead>
 
-                                    <tbody id="productos-container">
-                                        <tr class="bg-blanco-calido hover:bg-crema-clarisimo transition-all border 
-                            border-linea-tr-tbody text-center text-xs">
-                                            <td class="p-3">
-                                                <input type="text" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg 
-                                    text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco 
-                                    focus:border-linea-foco transition-all">
-                                            </td>
-                                            <td class="p-3">
-                                                <input type="text" name="productos[1][id_producto]" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg 
-                                    text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco 
-                                    focus:border-linea-foco transition-all">
-                                            </td>
-                                            <td class="p-3">
-                                                <input type="number" step="0.1" name="productos[1][precio_unitario]" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg 
-                                    text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco 
-                                    focus:border-linea-foco transition-all">
-                                            </td>
-                                            <td class="p-3">
-                                                <input type="number" name="productos[1][cantidad]" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg 
-                                    text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco 
-                                    focus:border-linea-foco transition-all">
-                                            </td>
-                                            <td class="p-3">
-                                                <input type="number" step="0.1" name="productos[1][subtotal]" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg 
-                                    text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco 
-                                    focus:border-linea-foco transition-all">
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <livewire:factura-product/>
+                            
+                            <div class="text-end grid grid-cols-2 gap-10 mt-2">
+                                <strong>Total:</strong>
 
-                                <div class="text-end grid grid-cols-2 gap-10 mt-5">
-                                    <strong>Total:</strong>
-
-                                    <span id="total">
-                                        <input type="text" name="total" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg 
-                                        text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco 
-                                        focus:border-linea-foco transition-all" readonly>
-                                    </span>
-                                </div>
+                                <span id="total">
+                                    <input type="text" name="total" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg 
+                                    text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco 
+                                    focus:border-linea-foco transition-all">
+                                </span>
                             </div>
                         </div>
                     </div>
