@@ -19,7 +19,6 @@ return new class extends Migration
             $table->decimal('precio_unitario', 10, 2);
             $table->integer('stock');
             $table->date('fecha_vencimiento')->nullable();
-            $table->string('ubicacion_real')->nullable();
             $table->boolean('estado');
             $table->unsignedBigInteger('id_categoria');
             $table->timestamps();
