@@ -28,4 +28,9 @@ class producto extends Model
     {
         return $this->hasMany(detalleFactura::class, 'id_producto');
     }
+
+    public function productoUbicacion()
+    {
+        return $this->hasMany(ProductoUbicacion::class);
+    }
 }
