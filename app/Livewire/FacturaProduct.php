@@ -7,12 +7,18 @@ use Livewire\Component;
 class FacturaProduct extends Component
 {
     public array $productos = [
-        ['codigo' => '', 'nombre' => '', 'precio_unitario' => 0, 'cantidad' => 1, 'subtotal' => 0]
+        ['id_producto' => '', 
+        'codigo' => '', 
+        'nombre' => '', 
+        'precio_unitario' => 0, 
+        'cantidad' => 1, 
+        'subtotal' => 0]
     ];
     
     public function agregarProducto(): void
     {
         $this->productos[] = [
+        'id_producto' => '',    
         'codigo' => '', 
         'nombre' => '', 
         'precio_unitario' => 0, 

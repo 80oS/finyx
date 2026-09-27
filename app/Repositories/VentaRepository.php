@@ -12,11 +12,17 @@ class VentaRepository{
 
     public function create(array $datos)
     {
+        $productos = $datos['productos'];
+
+        unset($datos['productos']);
+
         $factura = factura::create($datos);
-        
-        foreach($datos['productos'] as $dato_producto){
+
+        foreach ($productos as $dato_producto) {
             $factura->detalleFactura()->create($dato_producto);
         }
+
+        return $factura;
     }
 
     public function show(int $id)
