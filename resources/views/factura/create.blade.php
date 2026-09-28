@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="flex items-center justify-center">
-        <div class="w-full mt-4 max-w-5xl bg-blanco-calido border border-blanco-calido rounded-2xl shadow-lg shadow-gris-calido-claro p-8">
+        <div class="w-full mt-4 max-w-6xl bg-blanco-calido border border-blanco-calido rounded-2xl shadow-lg shadow-gris-calido-claro p-5">
             <div class="mb-6">
                 <h2 class="text-xl text-center font-semibold tracking-tight text-gris-calido-oscuro capitalize">
                     nueva venta
@@ -24,8 +24,8 @@
             <form action="{{ route('venta.store') }}" method="POST">
                 @csrf
 
-                <div class="grid grid-cols-3 gap-5">
-                    <div class=" col-span-2">
+                <div class="grid grid-cols-5 gap-8">
+                    <div class=" col-span-4">
                         <div class="mb-5">
                             <label for="id_cliente" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Cliente</label>
                             <select name="id_cliente" id="id_cliente" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
@@ -49,7 +49,7 @@
 
                             <livewire:factura-product/>
                             
-                            <div class="text-end grid grid-cols-2 gap-10 mt-2">
+                            <div class="text-end grid grid-cols-2 gap-10">
                                 <strong>Total:</strong>
 
                                 <span id="total">
@@ -90,10 +90,10 @@
                             </select>
                         </div>
 
-                        <div class="flex items-center justify-end gap-3 pt-4 border-t border-gris-calido-claro">
-                            <button type="submit" class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido rounded-sm px-4 py-2.5 text-right transition-all cursor-pointer"
+                        <div class="flex items-center justify-end gap-2 pt-4 border-t border-gris-calido-claro">
+                            <button type="submit" class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido rounded-sm px-2 py-2.5 text-right transition-all cursor-pointer"
                             >Guardar</button>
-                            <a href="{{ route('venta.index') }}" class="bg-gris-calido-claro hover:bg-gris-calido-oscuro text-blanco-calido rounded-sm px-5 py-2.5 text-right transition-all"
+                            <a href="{{ route('venta.index') }}" class="bg-gris-calido-claro hover:bg-gris-calido-oscuro text-blanco-calido rounded-sm px-2 py-2.5 text-right transition-all"
                             >Cancelar</a>
                         </div>
                     </div>
@@ -102,8 +102,3 @@
         </div>
     </div>
 @endsection
-
-@push('script')
-    @vite(['resources/js/factura.js'])
-
-@endpush

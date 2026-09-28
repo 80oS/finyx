@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('impuesto', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->date('fecha_inicio')->nullable();
-            $table->date('fecha_fin')->nullable();
             $table->decimal('porcentaje', 5, 2);
+            $table->boolean('estado');
             $table->timestamps();
         });
     }

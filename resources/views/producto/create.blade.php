@@ -53,10 +53,6 @@
                             <input type="date" name="fecha_vencimiento" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
                         </div>
                         <div class="mb-5">
-                            <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Ubicacion Real</label>
-                            <input type="text" name="ubicacion_real" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
-                        </div>
-                        <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Esado</label>
                             <select name="estado" id="estado" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
                                 <option value="1">disponible</option>

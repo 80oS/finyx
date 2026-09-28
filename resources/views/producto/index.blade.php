@@ -33,7 +33,6 @@
                     <th class="px-3 py-3 font-medium">precio unitario</th>
                     <th class="px-3 py-3 font-medium">stock</th>
                     <th class="px-3 py-3 font-medium">fecha de vencimiento</th>
-                    <th class="px-3 py-3 font-medium">ubicacion real</th>
                     <th class="px-3 py-3 font-medium">estado</th>
                     <th class="px-3 py-3 font-medium">categoria</th>
                     <th class="px-3 py-3 font-medium">Editar</th>
@@ -59,7 +58,6 @@
                         <td class="p-3">{{ $producto->precio_unitario }}</td>
                         <td class="p-3">{{ $producto->stock }}</td>
                         <td class="p-3">{{ $producto->fecha_vencimiento }}</td>
-                        <td class="p-3">{{ $producto->ubicacion_real }}</td>
                         <td class="p-3">{{ $producto->estado == 1 ? 'disponible' : 'agotado' }}</td>
                         <td class="p-3">{{ $producto->categoria->nombre }}</td>
                         <td class="p-3">

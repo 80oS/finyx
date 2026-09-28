@@ -15,7 +15,6 @@ class producto extends Model
         'precio_unitario',
         'stock',
         'fecha_vencimiento',
-        'ubicacion_real',
         'estado',
         'id_categoria'
     ];
@@ -28,5 +27,10 @@ class producto extends Model
     public function detalleFactura()
     {
         return $this->hasMany(detalleFactura::class, 'id_producto');
+    }
+
+    public function productoUbicacion()
+    {
+        return $this->hasMany(ProductoUbicacion::class);
     }
 }

@@ -38,7 +38,6 @@
         {{-- Dashboard --}}
         
         <a href="{{ route('producto.index') }}"
-        
         class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all 
         {{ request()->routeIs('producto.index') 
         ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
