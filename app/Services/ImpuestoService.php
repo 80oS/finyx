@@ -16,4 +16,9 @@ class ImpuestoService{
     {
         return $this->impuesto_repository->index();
     }
+
+    public function crear()
+    {
+         return $this->impuesto_repository->crear($datos);
+    }
 }

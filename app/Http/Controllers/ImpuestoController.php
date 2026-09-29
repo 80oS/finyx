@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\impuesto;
+use App\Services\ImpuestoService;
 use Illuminate\Http\Request;
+
 
 class ImpuestoController extends Controller
 {
@@ -25,8 +27,9 @@ class ImpuestoController extends Controller
      */
     public function create()
     {
-        //
+        return view('impuesto.create');
     }
+    
 
     /**
      * Store a newly created resource in storage.

@@ -19,6 +19,9 @@
                 rounded-sm px-5 py-1 text-right transition-all w-20"
             >crear</a>
         </div>
+
+        <a href="{{ route('impuesto.create') }}" class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido
+         rounded-sm px-5 py-1 text-right transition-all w-20"> IVA </a>
     </div>
 
     <div class="overflow-x-auto rounded-md">

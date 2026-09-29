@@ -9,4 +9,9 @@ class ImpuestoRepository{
     {
         return impuesto::all();
     }
+
+    public function crear(array $datos)
+    {
+        impuesto::create($datos);
+    }
 }
