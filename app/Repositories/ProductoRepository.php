@@ -1,34 +1,34 @@
 <?php
 namespace App\Repositories;
 
-use App\Models\producto;
+use App\Models\Producto;
 
 class ProductoRepository{
 
     public function index()
     {
-        return producto::with('categoria')->get();
+        return Producto::with('categoria')->get();
     }
 
     public function crear(array $datos)
     {
-        producto::create($datos);
+        Producto::create($datos);
     }
 
     public function buscarId(int $id)
     {
-        return producto::findOrFail($id);
+        return Producto::findOrFail($id);
     }
 
     public function actualizar(int $id, array $datos)
     {
-        $producto = producto::findOrFail($id);
+        $producto = Producto::findOrFail($id);
         $producto->update($datos);
     }
 
     public function changeState(int $id)
     {
-        $producto = producto::findOrFail($id);
+        $producto = Producto::findOrFail($id);
 
         if($producto->estado == 1){
             $producto->estado = 0;

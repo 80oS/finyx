@@ -16,8 +16,8 @@ class UbicacionController extends Controller
     }
     public function index()
     {
-        $this->ubicacion_service->index();
-        return view('ubicacion.index');
+        $ubicaciones = $this->ubicacion_service->index();
+        return view('ubicacion.index', compact('ubicaciones'));
     }
 
     public function create()

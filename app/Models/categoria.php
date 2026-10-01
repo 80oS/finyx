@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class categoria extends Model
 {
+    use HasFactory;
     protected $table = "categoria";
 
     protected $fillable = [
@@ -16,6 +18,6 @@ class categoria extends Model
 
     public function producto()
     {
-        return $this->hasMany(producto::class);
+        return $this->hasMany(Producto::class);
     }
 }

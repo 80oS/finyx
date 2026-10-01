@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum("estado", ["carrito", "pendiente", "pagado", "anulada"]);
             $table->string('observaciones')->nullable();
             $table->enum('metodo_pago', ["tarjeta", "transferencia", "efectivo"]);
-            $table->decimal("total", 10, 2);
+            $table->decimal("total", 20, 2);
             $table->timestamps();
 
             $table->foreign("id_cliente")->references("id")->on("cliente");

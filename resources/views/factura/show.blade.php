@@ -3,6 +3,11 @@
 @section('titulo', 'Detalle Factura')
 
 @section('content')
+    <div class="mb-3">
+        <a href="{{ route('venta.index') }}"
+        class=" bg-ambar-claro hover:bg-ambar-oscuro text-blanco-calido rounded-sm p-2"
+        >volver</a>
+    </div>
     <div class="grid grid-cols-2 gap-5">
         <div class="border border-gray-800 rounded-lg p-3">
             <div class="grid grid-cols-2">
@@ -61,7 +66,7 @@
                             </tr>
 
                             <?php
-                                $subtotal = $detalle->subtotal
+                                $subtotal = $factura->total
                             ?>
                         @endforeach
                     </tbody>
