@@ -17,8 +17,18 @@ class ImpuestoService{
         return $this->impuesto_repository->index();
     }
 
-    public function crear()
+    public function crear(array $datos)
     {
          return $this->impuesto_repository->crear($datos);
+    }
+
+     public function buscarId(int $id)
+    {
+        return $this->impuesto_repository->buscarId($id);
+    }
+
+    public function update(int $id, array $datos)
+    {
+        return $this->impuesto_repository->update($id, $datos);
     }
 }

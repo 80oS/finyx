@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\impuesto;
+use App\Http\Requests\ImpuestoStoreRequest;
+use App\Http\Requests\ImpuestoUpdateRequest;
 use App\Services\ImpuestoService;
-use Illuminate\Http\Request;
-
 
 class ImpuestoController extends Controller
 {
@@ -18,56 +17,49 @@ class ImpuestoController extends Controller
 
     public function index()
     {
-        $impuesto = $this->impuesto_service->index();
-        return view('impuesto.index', compact('impuesto'));
+          $facturas = $this->venta_service->index();
+
+        return view('factura.index', compact('facturas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('impuesto.create');
     }
-    
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(ImpuestoStoreRequest $request)
     {
-        //
+       $datos = $request->validate([
+        'nombre' => 'required|string|max:255',
+        'fecha_inicio' => 'required|date',
+        'fecha_fin' => 'nullable|date|after_or_equal:fecha_inicio',
+        'porcentaje' => 'required|numeric|min:0|max:50',
+    ]);
+
+    $this->impuesto_service->crear($datos);
+
+    return redirect()->route('venta.index')
+        ->with('success', 'Impuesto creado correctamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(impuesto $impuesto)
+    public function edit(int $id)
     {
-        //
+        $impuesto = $this->impuesto_service->buscarId($id);
+
+        return view('impuesto.edit', compact('impuesto'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(impuesto $impuesto)
+    public function update(int $id, ImpuestoUpdateRequest $request)
     {
-        //
+        $this->impuesto_service->update($id, $request->validated());
+
+        return redirect()
+            ->route('impuesto.index')
+            ->with('success', 'Impuesto actualizado exitosamente');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, impuesto $impuesto)
+    public function destroy(int $id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(impuesto $impuesto)
-    {
-        //
+       //
     }
 }

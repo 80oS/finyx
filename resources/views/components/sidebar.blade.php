@@ -90,6 +90,12 @@
             <span x-show="sidebarOpen" x-transition>Ventas</span>
         </a>
 
+        <a href="{{ route('impuesto.create') }}"
+            class="block ml-4 mt-1 px-3 py-1 text-xs rounded-lg
+                    text-gris-calido-oscuro hover:bg-sidebar-item-hover">
+                IVA
+            </a>
+
     </nav>
 
 </aside>
