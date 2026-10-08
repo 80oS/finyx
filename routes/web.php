@@ -45,3 +45,7 @@ Route::resource('/venta', VentasController::class);
 Route::get('/facturaProduct', FacturaProduct::class)->name('agregar.producto');
 
 Route::resource('/ubicacion', UbicacionController::class);
+
+Route::get('/modal', function(){
+    return view('livewire.counter');
+})->name('modal');

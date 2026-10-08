@@ -48,24 +48,15 @@
 
                     <div class="">
                         <div class="mb-5">
-                            <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">codigo factura</label>
-                            <input type="text" name="codigo" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg 
-                                        text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco 
-                                        focus:border-linea-foco transition-all">
-                        </div>
-                        <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">estado factura</label>
                             <select name="estado" id="" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
                                 <option value="pendiente">pendiente</option>
                                 <option value="pagado">pagado</option>
                             </select>
                         </div>
-                        <div class="mb-5">
-                            <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">observaciones</label>
-                            <input type="text" name="observaciones" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg 
-                                        text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco 
-                                        focus:border-linea-foco transition-all">
-                        </div>
+
+                        <livewire:modal/>
+
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">metodo de pago</label>
                             <select name="metodo_pago" id="" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">

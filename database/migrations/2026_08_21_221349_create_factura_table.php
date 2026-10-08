@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('factura', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo');
+            $table->string('codigo')->unique();
             $table->unsignedBigInteger('id_cliente');
             $table->enum("estado", ["carrito", "pendiente", "pagado", "anulada"]);
             $table->string('observaciones')->nullable();
