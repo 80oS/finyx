@@ -22,21 +22,21 @@
     </div>
 
     <div class="overflow-x-auto rounded-md">
-        <table class="w-full text-left border-collapse border border-linea-exterior-tabla">
+        <table class="w-full text-left border-collapse border border-linea-exterior-tabla" id="search-table">
             <thead class="bg-lino-natural text-gris-marron-calido capitalize text-sm 
             text-center sticky border-b border-linea-thead">
                 <tr>
-                    <th class="px-3 py-3 font-medium">id</th>
-                    <th class="px-3 py-3 font-medium">nombre</th>
-                    <th class="px-3 py-3 font-medium">codigo</th>
-                    <th class="px-3 py-3 font-medium">codigo de barras</th>
-                    <th class="px-3 py-3 font-medium">precio unitario</th>
-                    <th class="px-3 py-3 font-medium">stock</th>
-                    <th class="px-3 py-3 font-medium">fecha de vencimiento</th>
-                    <th class="px-3 py-3 font-medium">estado</th>
-                    <th class="px-3 py-3 font-medium">categoria</th>
-                    <th class="px-3 py-3 font-medium">Editar</th>
-                    <th class="px-3 py-3 font-medium">cambiar estado</th>
+                    <th class="px-2 py-1 font-medium">id</th>
+                    <th class="px-2 py-1 font-medium">nombre</th>
+                    <th class="px-2 py-1 font-medium">codigo</th>
+                    <th class="px-2 py-1 font-medium">codigo de barras</th>
+                    <th class="px-2 py-1 font-medium">precio unitario</th>
+                    <th class="px-2 py-1 font-medium">stock</th>
+                    <th class="px-2 py-1 font-medium">fecha de vencimiento</th>
+                    <th class="px-2 py-1 font-medium">estado</th>
+                    <th class="px-2 py-1 font-medium">categoria</th>
+                    <th class="px-2 py-1 font-medium">Editar</th>
+                    <th class="px-2 py-1 font-medium">cambiar estado</th>
                 </tr>
             </thead>
             <tbody>
@@ -78,7 +78,7 @@
                                 @else
                                     <button type="submit"
                                     class="bg-verde-salvia hover:bg-verde-salvia-claro 
-                                    text-blanco-calido rounded-sm px-1 py-1 transition-all cursor-pointer">
+                                    text-blanco-calido rounded-sm px-2 py-1 transition-all cursor-pointer">
                                         habilitar</button>
                                 @endif
                             </form>
@@ -87,7 +87,6 @@
                 @endforeach
             </tbody>
         </table>
-
     </div>
 
 @endsection

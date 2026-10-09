@@ -27,7 +27,7 @@ class VentaSeeder extends Seeder
         }
 
         $factura = factura::create([
-            'codigo' => fake()->unique()->numerify('FAC-######'),
+            'codigo' => fake()->unique()->numerify('FAC-002'),
             'id_cliente' => 1,
             'estado' => 'pagado',
             'observaciones' => 'Venta de prueba con 200 productos',

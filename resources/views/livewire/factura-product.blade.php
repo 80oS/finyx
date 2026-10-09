@@ -184,13 +184,3 @@
         </span>
     </div>
 </div>
-
-@script
-    <script>
-        $wire.on('focus-barcode', () => {
-            setTimeout(() => {
-                document.getElementById('barcode')?.focus();
-            }, 50);
-        });
-    </script>
-@endscript
