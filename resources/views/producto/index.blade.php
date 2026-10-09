@@ -22,29 +22,27 @@
     </div>
 
     <div class="overflow-x-auto rounded-md">
-        <table class="w-full text-left border-collapse border border-linea-exterior-tabla" id="search-table">
-            <thead class="bg-lino-natural text-gris-marron-calido capitalize text-sm 
-            text-center sticky border-b border-linea-thead">
+        <table class="datatable" id="tablaProductos">
+            <thead>
                 <tr>
-                    <th class="px-2 py-1 font-medium">id</th>
-                    <th class="px-2 py-1 font-medium">nombre</th>
-                    <th class="px-2 py-1 font-medium">codigo</th>
-                    <th class="px-2 py-1 font-medium">codigo de barras</th>
-                    <th class="px-2 py-1 font-medium">precio unitario</th>
-                    <th class="px-2 py-1 font-medium">stock</th>
-                    <th class="px-2 py-1 font-medium">fecha de vencimiento</th>
-                    <th class="px-2 py-1 font-medium">estado</th>
-                    <th class="px-2 py-1 font-medium">categoria</th>
-                    <th class="px-2 py-1 font-medium">Editar</th>
-                    <th class="px-2 py-1 font-medium">cambiar estado</th>
+                    <th>id</th>
+                    <th>nombre</th>
+                    <th>codigo</th>
+                    <th>codigo de barras</th>
+                    <th>precio unitario</th>
+                    <th>stock</th>
+                    <th>fecha de vencimiento</th>
+                    <th>estado</th>
+                    <th>categoria</th>
+                    <th>Editar</th>
+                    <th>cambiar estado</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($productos as $producto)
-                    <tr class="bg-blanco-calido hover:bg-crema-clarisimo transition-all border 
-                    border-linea-tr-tbody text-center text-xs">
-                        <td class="p-3">{{ $producto->id }}</td>
-                        <td class="p-3">
+                    <tr>
+                        <td>{{ $producto->id }}</td>
+                        <td>
                             <p class="text-gris-grafito">
                                 {{ $producto->nombre }}
                             </p>
@@ -53,21 +51,21 @@
                                 {{ $producto->categoria->nombre }}
                             </p>
                         </td>
-                        <td class="p-3">{{ $producto->codigo }}</td>
-                        <td class="p-3">{{ $producto->barcode }}</td>
-                        <td class="p-3">{{ $producto->precio_unitario }}</td>
-                        <td class="p-3">{{ $producto->stock }}</td>
-                        <td class="p-3">{{ $producto->fecha_vencimiento }}</td>
-                        <td class="p-3">{{ $producto->estado == 1 ? 'disponible' : 'agotado' }}</td>
-                        <td class="p-3">{{ $producto->categoria->nombre }}</td>
-                        <td class="p-3">
+                        <td>{{ $producto->codigo }}</td>
+                        <td>{{ $producto->barcode }}</td>
+                        <td>{{ $producto->precio_unitario }}</td>
+                        <td>{{ $producto->stock }}</td>
+                        <td>{{ $producto->fecha_vencimiento }}</td>
+                        <td>{{ $producto->estado == 1 ? 'disponible' : 'agotado' }}</td>
+                        <td>{{ $producto->categoria->nombre }}</td>
+                        <td>
                             <a href="{{ route('producto.edit', $producto->id) }}"
                                 class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
                                 text-base px-5 py-1 transition-all">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
                         </td>
-                        <td class="p-2">
+                        <td>
                             <form action="{{ route('producto.changeState', $producto->id) }}" method="POST">
                                 @csrf
                                 @if ($producto->estado == 1)
@@ -88,5 +86,4 @@
             </tbody>
         </table>
     </div>
-
 @endsection
