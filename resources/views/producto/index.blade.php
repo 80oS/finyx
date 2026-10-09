@@ -22,7 +22,7 @@
     </div>
 
     <div class="overflow-x-auto rounded-md">
-        <table class="w-full text-left border-collapse border border-linea-exterior-tabla">
+        <table class="w-full text-left border-collapse border border-linea-exterior-tabla" id="search-table">
             <thead class="bg-lino-natural text-gris-marron-calido capitalize text-sm 
             text-center sticky border-b border-linea-thead">
                 <tr>
