@@ -91,10 +91,13 @@
         </a>
 
         <a href="{{ route('impuesto.create') }}"
-            class="block ml-4 mt-1 px-3 py-1 text-xs rounded-lg
-                    text-gris-calido-oscuro hover:bg-sidebar-item-hover">
-                IVA
-            </a>
+            class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
+        {{ request()->routeIs('venta.index') 
+        ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
+        : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
+                <i class="fa-solid fa-coins"></i>
+            <span x-show="sidebarOpen" x-transition>IVA</span>
+        </a>
 
     </nav>
 
