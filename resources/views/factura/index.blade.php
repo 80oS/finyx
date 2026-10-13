@@ -24,7 +24,7 @@
     <div class="overflow-x-auto rounded-md">
         <table class="w-full text-left border-collapse border border-linea-exterior-tabla">
             <thead class="bg-lino-natural text-gris-marron-calido capitalize text-sm 
-            text-center sticky border-b border-linea-thead">
+            text-center sticky border-b border-linea-tr-tbody">
                 <tr>
                     <th class="px-3 py-3 font-medium">id</th>
                     <th class="px-3 py-3 font-medium">codigo</th>

@@ -10,14 +10,16 @@ class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
         $this->call(
+<<<<<<< HEAD
             [ ImpuestoSeeder::class]
         );
     
+=======
+            [ CategoriaSeeder::class, ProductoSeeder::class]
+        );
+>>>>>>> 202f6a0fed0ba17b53d2c85842b785f098e5f497
     }
 }

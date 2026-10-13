@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class detalleFactura extends Model
 {
+    use HasFactory;
+    
     protected $table = "detalle_factura";
 
     protected $fillable = [
@@ -18,7 +21,7 @@ class detalleFactura extends Model
 
     public function producto()
     {
-        return $this->belongsTo(producto::class, 'id_producto');
+        return $this->belongsTo(Producto::class, 'id_producto');
     }
 
     public function factura()

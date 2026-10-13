@@ -24,7 +24,6 @@ class VentaStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'codigo' => 'required',
             'id_cliente' => 'required|exists:cliente,id',
             'estado' => 'required|string',
             'observaciones' => 'nullable|string|max:100',
@@ -42,7 +41,6 @@ class VentaStoreRequest extends FormRequest
     public function messages(): array
     {
         return[
-            'codigo.required' => 'el codigo es requerido',
             'id_cliente.required' => 'el cliente es requerido',
             'estado.required' => 'el estado es requerido',
             'observaciones.max:100' => 'las observaciones no deben superar lo 100 caracteres',

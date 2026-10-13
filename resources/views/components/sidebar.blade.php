@@ -38,12 +38,21 @@
         {{-- Dashboard --}}
         
         <a href="{{ route('producto.index') }}"
-        class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all 
+        class="flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all 
         {{ request()->routeIs('producto.index') 
         ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
         : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
             <i class="fa-solid fa-cart-shopping"></i>
             <span x-show="sidebarOpen" x-transition>productos</span>
+        </a>
+
+        <a href="{{ route('ubicacion.index') }}" 
+        class="ml-5 flex items-center gap-2 rounded-lg capitalize px-3 py-3 transition-all text-sm
+            {{ request()->routeIs('ubicacion.index') 
+        ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
+        : 'text-gris-calido-claro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro'}}">
+            <i class="fa-solid fa-location-dot"></i>
+            <span x-show="sidebarOpen" x-transition>ubicacion</span>
         </a>
 
         <a href="{{ route('categoria.index') }}" 

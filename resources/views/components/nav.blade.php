@@ -19,11 +19,14 @@
     {{-- Usuario --}}
     <div class="flex items-center gap-4">
 
-        <a
-            class="flex h-10 w-10 items-center justify-center rounded-sm hover:text-gris-calido-claro 
-            cursor-pointer transition-all text-2xl text-gris-calido-oscuro">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        </a>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit"
+                class="flex h-10 w-10 items-center justify-center rounded-sm hover:text-gris-calido-claro 
+                cursor-pointer transition-all text-2xl text-gris-calido-oscuro">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+        </form>
 
         <div class="flex items-center gap-3">
 

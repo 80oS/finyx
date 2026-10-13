@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ProductoUbicacion extends Model
 {
+    use HasFactory;
+    
     protected $table = 'producto_ubicacion';
 
     protected $fillable = [
@@ -16,7 +19,7 @@ class ProductoUbicacion extends Model
 
     public function producto()
     {
-        return $this->belongsTo(producto::class, 'id_producto');
+        return $this->belongsTo(Producto::class, 'id_producto');
     }
 
     public function ubicacion()
