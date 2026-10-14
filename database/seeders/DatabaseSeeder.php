@@ -13,13 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(
-<<<<<<< HEAD
-            [ ImpuestoSeeder::class]
+            [ VentaSeeder::class]
         );
-    
-=======
-            [ CategoriaSeeder::class, ProductoSeeder::class]
-        );
->>>>>>> 202f6a0fed0ba17b53d2c85842b785f098e5f497
     }
 }

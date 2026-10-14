@@ -21,11 +21,9 @@ return new class extends Migration
             $table->date('fecha_vencimiento')->nullable();
             $table->boolean('estado');
             $table->unsignedBigInteger('id_categoria');
-            $table->unsignedBigInteger('id_impuesto');
             $table->timestamps();
 
             $table->foreign('id_categoria')->references('id')->on('categoria');
-            $table->foreign('id_impuesto')->references('id')->on('impuesto');
         });
     }
 
