@@ -4,9 +4,13 @@ namespace App\Livewire;
 
 use App\Models\Producto;
 use Livewire\Component;
+use Livewire\WithPagination;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class FacturaProduct extends Component
 {
+    use WithPagination;
+
     public string $barcode = '';
     public string $nombre= '';
     public string $cantidad = '1';
@@ -16,17 +20,25 @@ class FacturaProduct extends Component
     public array $productos = [];
     public array $sugerencias = [];
 
+    public int $porPagina = 5;
+    public int $paginaActual = 1;
+
     public function eliminarProducto(int $index): void
     {
         unset($this->productos[$index]);
         $this->productos = array_values($this->productos); // reindexar
-    }
 
+        $totalPaginas = max(
+            1,
+            (int) ceil(count($this->productos) / $this->porPagina)
+        );
 
-    public function total(): float
-    {
-        return round(collect($this->productos)->sum(
-            fn($p) => (float) $p['subtotal']), 2
+        $this->paginaActual = min($this->paginaActual, $totalPaginas);
+
+        $this->dispatch(
+            'factura-actualizada',
+            total: $this->total(),
+            cantidad: $this->contarProductos()
         );
     }
 
@@ -68,7 +80,7 @@ class FacturaProduct extends Component
         $this->sugerencias = Producto::query()
             ->where('nombre', 'like', '%' . $nombre . '%')
             ->where('estado', true)
-            ->limit(8)
+            ->limit(3)
             ->get([
                 'id',
                 'codigo',
@@ -186,6 +198,12 @@ class FacturaProduct extends Component
             ];
         }
 
+        $this->dispatch(
+            'factura-actualizada',
+            total: $this->total(),
+            cantidad: $this->contarProductos()
+        );
+
         // Limpiar formulario
         $this->limpiarProducto();
     }
@@ -208,6 +226,50 @@ class FacturaProduct extends Component
         $precio_unitario = (float) $this->productos[$index]['precio_unitario'];
 
         $this->productos[$index]['subtotal'] = round($cantidad * $precio_unitario, 2);
+    }
+
+    public function total(): float
+    {
+        return round(
+            collect($this->productos)->sum(
+                fn($p) => (float) $p['subtotal']
+            ),
+            2
+        );
+    }
+
+    public function contarProductos(): int
+    {
+        return count($this->productos);
+    }
+
+    public function cambiarPagina(int $pagina): void
+    {
+        $totalProductos = count($this->productos);
+        $totalPaginas = max(1, (int) ceil($totalProductos / $this->porPagina));
+
+        $this->paginaActual = max(1, min($pagina, $totalPaginas));
+    }
+
+    public function productosPaginados(): LengthAwarePaginator
+    {
+        $productos = collect($this->productos);
+
+        $total = $productos->count();
+
+        $elementos = $productos
+            ->slice(($this->paginaActual - 1) * $this->porPagina, $this->porPagina)->values();
+        
+        return new LengthAwarePaginator(
+            $elementos,
+            $total,
+            $this->porPagina,
+            $this->paginaActual,
+            [
+                'path' => request()->url(),
+                'pageName' => 'paginaProductos',
+            ]
+        );
     }
 
     public function render()

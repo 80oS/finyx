@@ -38,9 +38,9 @@ class VentasController extends Controller
 
     public function store(VentaStoreRequest $request)
     {
-        $this->venta_service->create($request->validated());
+        $venta = $this->venta_service->create($request->validated());
 
-        return redirect()->route('venta.index')->with('venta creada con exito');
+        return redirect()->route('venta.show', $venta['id'])->with('venta creada con exito');
     }
 
     public function show(int $id)

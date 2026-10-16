@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ordering: true,
             paging: true,
             info: true,
-            autoWidth: false,
+            autoWidth: true,
 
             language: {
                 emptyTable: "No hay registros disponibles",

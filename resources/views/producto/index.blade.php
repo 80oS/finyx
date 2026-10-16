@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="overflow-x-auto rounded-md">
+    <div class="dt-container">
         <table class="datatable" id="tablaProductos">
             <thead>
                 <tr>

@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="overflow-x-auto rounded-md">
+    <div class="rounded-md">
         <table class="w-full text-left border-collapse border border-linea-exterior-tabla">
             <thead class="bg-lino-natural text-gris-marron-calido capitalize text-sm 
             text-center sticky border-b border-linea-thead">
@@ -35,10 +35,10 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categorias as $categoria)
+                @foreach ($categorias as $index => $categoria)
                     <tr class="bg-blanco-calido hover:bg-crema-clarisimo transition-all border 
                     border-linea-tr-tbody text-center text-xs">
-                        <td class="p-3">{{ $categoria->id }}</td>
+                        <td class="p-3">{{ $index + 1 }}</td>
                         <td class="px-6 py-4">{{ $categoria->nombre }}</td>
                         <td class="px-6 py-4">{{ $categoria->descripcion }}</td>
                         <td class="px-6 py-4">{{ $categoria->estado == 1 ? 'activo' : 'inactivo' }}</td>

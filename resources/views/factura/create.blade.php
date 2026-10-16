@@ -5,10 +5,15 @@
 @section('content')
     <div class="flex items-center justify-center">
         <div class="w-full mt-4 max-w-6xl bg-blanco-calido border border-blanco-calido rounded-2xl shadow-lg shadow-gris-calido-claro p-5">
-            <div class="mb-6">
-                <h2 class="text-xl text-center font-semibold tracking-tight text-gris-calido-oscuro capitalize">
-                    nueva venta
-                </h2>
+            <div class="mb-6 border-b border-gris-suave/50 pb-5">
+                <div class="flex items-center justify-start gap-3">
+                    <div class="text-verde-salvia text-3xl bg-gray-300/50 rounded-sm p-2">
+                        <x-lucide-receipt class="w-8 h-8 text-verde-salvia"/>
+                    </div>
+                    <h1 class="text-xl font-semibold tracking-tight text-gris-calido-oscuro capitalize">
+                        nueva venta
+                    </h1>
+                </div>
             </div>
 
             @if($errors->any())
@@ -24,21 +29,21 @@
             <form action="{{ route('venta.store') }}" method="POST">
                 @csrf
 
-                <div class="grid grid-cols-5 gap-8">
-                    <div class=" col-span-4">
+                <div class="grid grid-cols-3 gap-8">
+                    <div class=" col-span-2">
                         <div class="mb-5">
-                            <label for="id_cliente" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Cliente</label>
-                            <select name="id_cliente" id="id_cliente" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
-                                @foreach ($clientes as $cliente)
-                                    <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
-                                @endforeach
-                            </select>
+                            <livewire:cliente-buscar/>
                         </div>
 
                         <div class="mb-5">
-                            <h1 class="text-center text-gris-calido-oscuro capitalize">productos</h1>
-
-                            <hr class="my-5 text-gris-calido-claro">
+                            <div>
+                                <h2 class="text-gris-calido-oscuro capitalize">
+                                    <b>agregar productos</b>
+                                </h2>
+                                <p class="text-gris-calido-claro">
+                                    Busca por nombre o escanea el codigo de barras.
+                                </p>
+                            </div>
 
                             <livewire:factura-product/>
                             
@@ -57,19 +62,16 @@
 
                         <livewire:modal/>
 
-                        <div class="mb-5">
-                            <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">metodo de pago</label>
-                            <select name="metodo_pago" id="" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
-                                <option value="transferencia">tarjeta</option>
-                                <option value="transferencia">transferencia</option>
-                                <option value="efectivo">efectivo</option>
-                            </select>
-                        </div>
+                        <livewire:resumen-factura/>
 
-                        <div class="flex items-center justify-end gap-2 pt-4 border-t border-gris-calido-claro">
-                            <button type="submit" class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido rounded-sm px-2 py-2.5 text-right transition-all cursor-pointer"
+                        <div class="flex flex-col gap-2 pt-4 border-t border-gris-suave/50">
+                            <button type="submit" 
+                                class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido 
+                                rounded-sm px-2 py-2.5 text-center transition-all cursor-pointer"
                             >Guardar</button>
-                            <a href="{{ route('venta.index') }}" class="bg-gris-calido-claro hover:bg-gris-calido-oscuro text-blanco-calido rounded-sm px-2 py-2.5 text-right transition-all"
+                            <a href="{{ route('venta.index') }}" class="bg-gris-calido-claro 
+                                hover:bg-gris-calido-oscuro text-blanco-calido rounded-sm px-2 py-2.5 text-center 
+                                transition-all"
                             >Cancelar</a>
                         </div>
                     </div>

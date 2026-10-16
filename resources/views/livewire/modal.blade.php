@@ -20,7 +20,7 @@
                     </button>
                 </div>
 
-                <hr class="text-gris-calido-claro">
+                <hr class="text-gris-suave/50">
 
                 <div class="mb-5 mt-5">
                     <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">observaciones</label>

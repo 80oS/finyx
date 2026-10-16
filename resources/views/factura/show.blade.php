@@ -4,9 +4,15 @@
 
 @section('content')
     <div class="mb-3">
-        <a href="{{ route('venta.index') }}"
-        class=" bg-ambar-claro hover:bg-ambar-oscuro text-blanco-calido rounded-sm p-2"
-        >volver</a>
+        <div class="">
+            <a href="{{ route('venta.index') }}"
+            class=" bg-ambar-claro hover:bg-ambar-oscuro text-blanco-calido rounded-sm p-2"
+            >volver</a>
+        </div>
+        <div class="">
+            <label for="">Facturacion</label>
+            <h1>Detalle de Factura</h1>
+        </div>
     </div>
     <div class="grid grid-cols-3 gap-5">
         <div class="border border-gray-800 rounded-lg p-2 col-span-2">
