@@ -22,7 +22,7 @@
     </div>
 
     <div class="dt-container">
-        <table class="datatable" id="tablaProductos">
+        <table class="datatable" id="tablePrins">
             <thead>
                 <tr>
                     <th>id</th>

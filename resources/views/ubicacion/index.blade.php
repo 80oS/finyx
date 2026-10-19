@@ -10,8 +10,15 @@
     @endif
 
     <div class="grid grid-cols-2 gap-5 mb-5">
-        <div class="text-2xl font-bold tracking-tight text-foreground text-gris-calido-oscuro">
-            Productos
+        <div class="flex items-center justify-start gap-3">
+            <div>
+                <i><x-lucide-warehouse class="w-8 h-8 text-verde-suave"/></i>
+            </div>
+            <div>
+                <h1 class="text-2xl font-bold tracking-tight text-foreground text-gris-calido-oscuro">
+                    Ubicaciones
+                </h1>
+            </div>
         </div>
         <div class="flex items-end justify-end">
             <a href="{{ route('ubicacion.create') }}" 
@@ -20,45 +27,44 @@
         </div>
     </div>
 
-    <div class="rounded-md">
-        <table class="w-full text-left border-collapse border border-linea-exterior-tabla">
-            <thead class="bg-lino-natural text-gris-marron-calido capitalize text-sm 
-            text-center sticky border-b border-linea-thead">
+    <div class="dt-container">
+        <table class="datatable" id="tablePrins">
+            <thead>
                 <tr>
-                    <th class="px-3 py-3 font-medium">#</th>
-                    <th class="px-3 py-3 font-medium">codigo</th>
-                    <th class="px-3 py-3 font-medium">ubicacion principal</th>
-                    <th class="px-3 py-3 font-medium">nombre</th>
-                    <th class="px-3 py-3 font-medium">tipo</th>
-                    <th class="px-3 py-3 font-medium">cantidad productos</th>
-                    <th class="px-3 py-3 font-medium">estado</th>
-                    <th class="px-3 py-3 font-medium">editar</th>
-                    <th class="px-3 py-3 font-medium">ver detalles</th>
-                    <th class="px-3 py-3 font-medium">cambiar estado</th>
+                    <th>#</th>
+                    <th>codigo</th>
+                    <th>ubicacion principal</th>
+                    <th>nombre</th>
+                    <th>tipo</th>
+                    <th>cantidad productos</th>
+                    <th>estado</th>
+                    <th>editar</th>
+                    <th>ver detalles</th>
+                    <th>cambiar estado</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($ubicaciones as $index => $ubicacion)
-                    <tr class="bg-blanco-calido hover:bg-crema-clarisimo transition-all border 
-                    border-linea-tr-tbody text-center text-xs">
-                    <td class="p-3">{{ $ubicacion->codigo }}</td>
-                    <td class="p-3">{{ $ubicacion->padre?->nombre ?? 'Sin ubicacion principal' }}</td>
-                    <td class="p-3">{{ $ubicacion->nombre }}</td>
-                    <td class="p-3">{{ $ubicacion->tipo }}</td>
-                    <td class="p-3">{{ $ubicacion->producto_ubicacion_count }}</td>
-                    <td class="p-3">{{ $ubicacion->estado }}</td>
-                    <td class="p-3">
+                    <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $ubicacion->codigo }}</td>
+                    <td>{{ $ubicacion->padre?->nombre ?? 'Sin ubicacion principal' }}</td>
+                    <td>{{ $ubicacion->nombre }}</td>
+                    <td>{{ $ubicacion->tipo }}</td>
+                    <td>{{ $ubicacion->producto_ubicacion_count }}</td>
+                    <td>{{ $ubicacion->estado }}</td>
+                    <td>
                         <a href="" class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
-                                text-base px-5 py-1 transition-all">
+                                text-base p-1 transition-all">
                             <i class="fa-regular fa-pen-to-square"></i>
                         </a>
                     </td>
-                    <td class="p-3">
+                    <td>
                         <a href="" class="text-ambar-claro hover:text-ambar-oscuro p-1 text-base">
                             <i class="fa-regular fa-eye"></i>
                         </a>
                     </td>
-                    <td class="p-3">
+                    <td>
                         <form action="">
                             @if ($ubicacion->estado == 'activo')
                                 <button type="submit"

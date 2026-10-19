@@ -16,6 +16,16 @@ class UbicacionService{
         return $this->ubicacion_repository->index();
     }
 
+    public function ubicacionPadre()
+    {
+        return $this->ubicacion_repository->ubicacionPadre();
+    }
+
+    public function store(array $datos)
+    {
+        return $this->ubicacion_repository->store($datos);
+    }
+
     public function show(int $id)
     {
         return $this->ubicacion_repository->show($id);

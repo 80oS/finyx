@@ -23,39 +23,37 @@
         </div>
     </div>
 
-    <div class="overflow-x-auto rounded-md">
-        <table class="w-full text-left border-collapse border border-linea-exterior-tabla">
-            <thead class="bg-lino-natural text-gris-marron-calido capitalize text-sm 
-            text-center sticky border-b border-linea-thead">
+    <div class="dt-container">
+        <table class="datatable" id="tablePrins">
+            <thead>
                 <tr>
-                    <th class="px-6 py-3 font-medium">Id</th>
-                    <th class="px-6 py-3 font-medium">Nombre</th>
-                    <th class="px-6 py-3 font-medium">Cedula</th>
-                    <th class="px-6 py-3 font-medium">Telefono</th>
-                    <th class="px-6 py-3 font-medium">Correo</th>
-                    <th class="px-6 py-3 font-medium">Dirección</th>
-                    <th class="px-6 py-3 font-medium">Editar</th>
-                    <th class="px-6 py-3 font-medium">Eliminar</th>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Cedula</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th>Dirección</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($cliente as $cliente)
-                    <tr class="bg-blanco-calido hover:bg-crema-clarisimo transition-all border 
-                    border-linea-tr-tbody text-center text-xs">
-                        <td class="p-3">{{ $cliente->id }}</td>
-                        <td class="px-6 py-4">{{ $cliente->nombre }}</td>
-                        <td class="px-6 py-4">{{ $cliente->cedula }}</td>
-                        <td class="px-6 py-4">{{ $cliente->telefono }}</td>
-                        <td class="px-6 py-4">{{ $cliente->correo }}</td>
-                        <td class="px-6 py-4">{{ $cliente->direccion }}</td>
-                        <td class="px-6 py-4">
+                    <tr>
+                        <td>{{ $cliente->id }}</td>
+                        <td>{{ $cliente->nombre }}</td>
+                        <td>{{ $cliente->cedula }}</td>
+                        <td>{{ $cliente->telefono }}</td>
+                        <td>{{ $cliente->correo }}</td>
+                        <td>{{ $cliente->direccion }}</td>
+                        <td>
                             <a href="{{ route('cliente.edit', $cliente->id) }}"
                                 class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
                                 text-base px-5 py-1 transition-all">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
                         </td>
-                        <td class="px-6 py-4">
+                        <td>
                             <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')

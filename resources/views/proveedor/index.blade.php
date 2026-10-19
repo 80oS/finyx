@@ -24,41 +24,39 @@
         </div>
     </div>
 
-    <div class="overflow-x-auto rounded-md">
-        <table class="w-full text-left border-collapse border border-linea-exterior-tabla">
-            <thead class="bg-lino-natural text-gris-marron-calido capitalize text-sm 
-            text-center sticky border-b border-linea-thead">
+    <div class="dt-container">
+        <table class="datatable" id="tablePrins">
+            <thead>
                 <tr>
-                    <th class="px-6 py-3 font-medium">Id</th>
-                    <th class="px-6 py-3 font-medium">Nit</th>
-                    <th class="px-6 py-3 font-medium">Cedula</th>
-                    <th class="px-6 py-3 font-medium">Nombre</th>
-                    <th class="px-6 py-3 font-medium">Telefono</th>
-                    <th class="px-6 py-3 font-medium">Dirección</th>
-                    <th class="px-6 py-3 font-medium">Correo</th>
-                    <th class="px-6 py-3 font-medium">Editar</th>
-                    <th class="px-6 py-3 font-medium">Eliminar</th>
+                    <th>Id</th>
+                    <th>Nit</th>
+                    <th>Cedula</th>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Dirección</th>
+                    <th>Correo</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($proveedores as $proveedor)
-                    <tr class="bg-blanco-calido hover:bg-crema-clarisimo transition-all border 
-                    border-linea-tr-tbody text-center text-xs">
-                        <td class="p-3">{{ $proveedor->id }}</td>
-                        <td class="p-3">{{ $proveedor->nit }}</td>
-                        <td class="p-3">{{ $proveedor->cedula }}</td>
-                        <td class="p-3">{{ $proveedor->nombre }}</td>
-                        <td class="p-3">{{ $proveedor->telefono }}</td>
-                        <td class="p-3">{{ $proveedor->direccion }}</td>
-                        <td class="p-3">{{ $proveedor->correo }}</td>
-                        <td class="p-3 text-center">
+                    <tr>
+                        <td>{{ $proveedor->id }}</td>
+                        <td>{{ $proveedor->nit }}</td>
+                        <td>{{ $proveedor->cedula }}</td>
+                        <td>{{ $proveedor->nombre }}</td>
+                        <td>{{ $proveedor->telefono }}</td>
+                        <td>{{ $proveedor->direccion }}</td>
+                        <td>{{ $proveedor->correo }}</td>
+                        <td>
                             <a href="{{ route('proveedores.edit', $proveedor->id) }}" 
                                 class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
                                 text-base px-5 py-1 transition-all">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
                         </td>
-                        <td class="p-3 text-center">
+                        <td>
                             <form action="{{ route('proveedores.destroy', $proveedor->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')

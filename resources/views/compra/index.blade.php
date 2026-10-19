@@ -22,30 +22,28 @@
         </div>
     </div>
 
-    <div class="overflow-x-auto rounded-md">
-        <table class="w-full text-left border-collapse border border-linea-exterior-tabla">
-            <thead class="bg-lino-natural text-gris-marron-calido capitalize text-sm 
-            text-center sticky border-b border-linea-thead">
+    <div class="dt-container">
+        <table class="datatable" id="tablePrins">
+            <thead>
                 <tr>
-                    <th class="px-6 py-3 font-medium">Id</th>
-                    <th class="px-6 py-3 font-medium">Proveedor</th>
-                    <th class="px-6 py-3 font-medium">Metodo pago</th>
-                    <th class="px-6 py-3 font-medium">Total</th>
-                    <th class="px-6 py-3 font-medium">Acciones</th>
+                    <th>Id</th>
+                    <th>Proveedor</th>
+                    <th>Metodo pago</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
                     
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-600 text-sm text-gray-900">
+            <tbody>
                 @foreach ($compras as $compra)
-                    <tr class="bg-blanco-calido hover:bg-crema-clarisimo transition-all border 
-                    border-linea-tr-tbody text-center text-xs">
-                        <td class="p-3">{{ $compra->id }}</td>
-                        <td class="p-3">{{ $compra->proveedor->nombre }}</td>
-                        <td class="p-3">{{ $compra->metodo_pago}}</td>
-                        <td class="p-3">{{ $compra->total }}</td>
-                        <td class="p-3">
+                    <tr>
+                        <td>{{ $compra->id }}</td>
+                        <td>{{ $compra->proveedor->nombre }}</td>
+                        <td>{{ $compra->metodo_pago}}</td>
+                        <td>{{ $compra->total }}</td>
+                        <td>
                             <a href="{{ route('compra.edit', $compra->id) }}"
-                               class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
+                                class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
                                 text-base px-5 py-1 transition-all">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>

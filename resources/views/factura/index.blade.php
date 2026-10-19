@@ -21,38 +21,36 @@
         </div>
     </div>
 
-    <div class="overflow-x-auto rounded-md">
-        <table class="w-full text-left border-collapse border border-linea-exterior-tabla">
-            <thead class="bg-lino-natural text-gris-marron-calido capitalize text-sm 
-            text-center sticky border-b border-linea-tr-tbody">
+    <div class="dt-container">
+        <table class="datatable" id="tablePrins">
+            <thead>
                 <tr>
-                    <th class="px-3 py-3 font-medium">id</th>
-                    <th class="px-3 py-3 font-medium">codigo</th>
-                    <th class="px-3 py-3 font-medium">cliente</th>
-                    <th class="px-3 py-3 font-medium">observaciones</th>
-                    <th class="px-3 py-3 font-medium">estado</th>
-                    <th class="px-3 py-3 font-medium">total</th>
-                    <th class="px-3 py-3 font-medium">editar</th>
-                    <th class="px-3 py-3 font-medium">ver detalle</th>
+                    <th>id</th>
+                    <th>codigo</th>
+                    <th>cliente</th>
+                    <th>observaciones</th>
+                    <th>estado</th>
+                    <th>total</th>
+                    <th>editar</th>
+                    <th>ver detalle</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($facturas as $factura)
-                    <tr class="bg-blanco-calido hover:bg-crema-clarisimo transition-all border 
-                    border-linea-tr-tbody text-center text-xs">
-                        <td class="p-3">{{ $factura->id }}</td>
-                        <td class="p-3">{{ $factura->codigo }}</td>
-                        <td class="p-3">{{ $factura->cliente->nombre }}</td>
-                        <td class="p-3">{{ $factura->observaciones }}</td>
-                        <td class="p-3">{{ $factura->estado }}</td>
-                        <td class="p-3">{{ $factura->total }}</td>
-                        <td class="p-3">
+                    <tr>
+                        <td>{{ $factura->id }}</td>
+                        <td>{{ $factura->codigo }}</td>
+                        <td>{{ $factura->cliente->nombre }}</td>
+                        <td>{{ $factura->observaciones }}</td>
+                        <td>{{ $factura->estado }}</td>
+                        <td>{{ $factura->total }}</td>
+                        <td>
                             <a href="" class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
                                 text-base px-5 py-1 transition-all">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
                         </td>
-                        <td class="p-3">
+                        <td>
                             <a href="{{ route('venta.show', $factura->id) }}" 
                                 class="text-ambar-claro hover:text-ambar-oscuro p-1 text-base">
                                 <i class="fa-regular fa-eye"></i>

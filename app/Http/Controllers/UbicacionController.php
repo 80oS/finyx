@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UbicacionStoreRequest;
 use App\Models\Ubicacion;
 use App\Services\UbicacionService;
 use Illuminate\Http\Request;
@@ -22,12 +23,16 @@ class UbicacionController extends Controller
 
     public function create()
     {
-        //
+        $ubicaciones = $this->ubicacion_service->ubicacionPadre();
+
+        return view('ubicacion.create', compact('ubicaciones'));
     }
 
-    public function store(Request $request)
+    public function store(UbicacionStoreRequest $request)
     {
-        //
+        $this->ubicacion_service->store($request->validated());
+
+        return redirect()->route('ubicacion.index')->with('success', 'ubicacion creada correctamente');
     }
 
     public function show(Ubicacion $ubicacion)

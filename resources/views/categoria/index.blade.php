@@ -21,35 +21,33 @@
         </div>
     </div>
 
-    <div class="rounded-md">
-        <table class="w-full text-left border-collapse border border-linea-exterior-tabla">
-            <thead class="bg-lino-natural text-gris-marron-calido capitalize text-sm 
-            text-center sticky border-b border-linea-thead">
+    <div class="dt-container">
+        <table class="datatable" id="tablePrins">
+            <thead>
                 <tr>
-                    <th class="px-6 py-3 font-medium">Id</th>
-                    <th class="px-6 py-3 font-medium">Nombre</th>
-                    <th class="px-6 py-3 font-medium">Descripcion</th>
-                    <th class="px-6 py-3 font-medium">Estado</th>
-                    <th class="px-6 py-3 font-medium">Editar</th>
-                    <th class="px-6 py-3 font-medium">Cambiar Estado</th>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Estado</th>
+                    <th>Editar</th>
+                    <th>Cambiar Estado</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($categorias as $index => $categoria)
-                    <tr class="bg-blanco-calido hover:bg-crema-clarisimo transition-all border 
-                    border-linea-tr-tbody text-center text-xs">
-                        <td class="p-3">{{ $index + 1 }}</td>
-                        <td class="px-6 py-4">{{ $categoria->nombre }}</td>
-                        <td class="px-6 py-4">{{ $categoria->descripcion }}</td>
-                        <td class="px-6 py-4">{{ $categoria->estado == 1 ? 'activo' : 'inactivo' }}</td>
-                        <td class="px-6 py-4">
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $categoria->nombre }}</td>
+                        <td>{{ $categoria->descripcion }}</td>
+                        <td>{{ $categoria->estado == 1 ? 'activo' : 'inactivo' }}</td>
+                        <td>
                             <a href="{{ route('categoria.edit', $categoria->id) }}"
                                 class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
                                 text-base transition-all">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
                         </td>
-                        <td class="px-6 py-4">
+                        <td>
                             <form action="{{ route('categoria.changeState', $categoria->id) }}" method="POST">
                                 @csrf
                                 @if ($categoria->estado == 1)

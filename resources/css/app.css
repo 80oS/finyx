@@ -93,6 +93,8 @@
         --color-ambar-claro: #AA8955;
         --color-ambar-oscuro: #5C4A2E;
         --color-ambar-suave: #D8C9B1;
+    /* iconos */
+        --color-azul-calido: #476DB8;
 }
 
 @layer components {
@@ -174,13 +176,13 @@
     }
 }
 
-#tablaProductos {
+#tablePrins {
     visibility: hidden;
     width: 100% !important;
 }
 
 /* Mostrar la tabla cuando DataTables termine */
-#tablaProductos.dt-inicializada {
+#tablePrins.dt-inicializada {
     visibility: visible;
 }
 
@@ -208,7 +210,7 @@
     outline: none;
 }
 
-.selctfactura + .ts-wrapper {
+.selectTom + .ts-wrapper {
     position: relative;
 }
 
