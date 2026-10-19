@@ -53,8 +53,10 @@
 
                     <div class="">
                         <div class="mb-5">
-                            <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">estado factura</label>
-                            <select name="estado" id="" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
+                                estado factura
+                            </label>
+                            <select name="estado">
                                 <option value="pendiente">pendiente</option>
                                 <option value="pagado">pagado</option>
                             </select>

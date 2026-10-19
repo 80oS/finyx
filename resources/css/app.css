@@ -91,6 +91,7 @@
     /* ver detalle factura */
         --color-ambar-claro: #AA8955;
         --color-ambar-oscuro: #5C4A2E;
+        --color-ambar-suave: #D8C9B1;
 }
 
 @layer components {
@@ -99,8 +100,12 @@
         @apply max-w-full rounded-2xl;
     }
 
-    .dt-container .dt-layout-row {
-        @apply flex flex-wrap items-center justify-between gap-4 py-3;
+    .dt-container .dt-layout-row:has(.dt-search) {
+        @apply flex flex-row-reverse items-center justify-between gap-4 py-3;
+    }
+
+    .dt-container .dt-layout-row:has(.dt-paging){
+        @apply flex flex-row items-center justify-between gap-4 py-3;
     }
 
     .dt-container .dt-search,
@@ -167,5 +172,7 @@
         @apply cursor-not-allowed opacity-40;
     }
 }
+
+
 
 

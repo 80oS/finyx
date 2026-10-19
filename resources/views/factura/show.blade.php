@@ -3,32 +3,36 @@
 @section('titulo', 'Detalle Factura')
 
 @section('content')
-    <div class="mb-3">
-        <div class="">
-            <a href="{{ route('venta.index') }}"
-            class=" bg-ambar-claro hover:bg-ambar-oscuro text-blanco-calido rounded-sm p-2"
-            >volver</a>
+    <div class="flex items-center gap-5 mb-5">
+        <div>
+            <a href="{{ route('venta.index') }}">
+                <x-lucide-chevron-left class="w-6 h-6 text-gris-calido-oscuro"/>
+            </a>
         </div>
-        <div class="">
-            <label for="">Facturacion</label>
-            <h1>Detalle de Factura</h1>
+        <div>
+            <label for="" class="uppercase text-gris-suave font-bold text-sm">Facturacion</label>
+            <h1 class="capitalize text-gris-calido-oscuro font-bold text-lg">Detalle de Factura</h1>
         </div>
     </div>
     <div class="grid grid-cols-3 gap-5">
-        <div class="border border-gray-800 rounded-lg p-2 col-span-2">
+        <div class="border border-blanco-calido rounded-lg p-2 
+                col-span-2 bg-blanco-calido shadow shadow-gris-calido-claro">
 
             <div class="grid grid-cols-2 mb-3">
-                <div class="">
-                    <h1>Factura de venta</h1>
-                    <p>Empresa</p>
+                <div class="flex gap-5">
+                    <div>
+                        <i><x-lucide-file-text class="w-10 h-10 text-ambar-claro bg-ambar-suave/50 p-2 rounded-lg"/></i>
+                    </div>
+                    <div>
+                        <h3 class="capitalize text-gris-suave text-sm">Factura de venta</h3>
+                        <p class="capitalize text-gris-calido-oscuro font-bold text-lg">Empresa</p>
+                    </div>
                 </div>
-                <div class="text-end">
-                    <h2>Numero de Factura</h2>
-                    {{ $factura->codigo }}
+                <div class="text-end border-b border-gris-suave">
+                    <h3 class="capitalize text-gris-suave text-sm">Numero de Factura</h3>
+                    <span class="text-gris-calido-oscuro txext-lg">{{ $factura->codigo }}</span>
                 </div>
             </div>
-
-            <hr>
 
             <div class="grid grid-cols-3 mb-3">
                 <div class="">
