@@ -13,10 +13,17 @@ return new class extends Migration
     {
         Schema::create('ubicacion', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('tipo');
-            $table->boolean('estado');
+            $table->string('codigo')->unique();
+            $table->string('nombre', 100);
+            $table->string('descripcion', 191)->nullable();
+            $table->string('tipo', 30);
+            $table->string('estado', 30)->default('activa');
+            $table->decimal('capacidad', 12, 2)->nullable();
+            $table->string('unidad_capacidad', 30)->nullable();
+            $table->unsignedBigInteger('id_ubicacion_padre')->nullable();
             $table->timestamps();
+
+            $table->foreign('id_ubicacion_padre')->references('id')->on('ubicacion')->restrictOnDelete();
         });
     }
 

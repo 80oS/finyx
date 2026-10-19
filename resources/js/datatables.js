@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        const contenedor = tabla.closest(".dt-container");
+
         new DataTable(tabla, {
             pageLength: 10,
             lengthMenu: [5, 10, 25, 50, 100],
@@ -14,7 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
             ordering: true,
             paging: true,
             info: true,
-            autoWidth: true,
+            autoWidth: false,
+            deferRender: true,
 
             language: {
                 emptyTable: "No hay registros disponibles",
@@ -32,6 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     next: "Siguiente",
                     previous: "Anterior",
                 },
+            },
+
+            initComplete: function () {
+                this.api().table().node().classList.add("dt-inicializada");
             },
         });
     });

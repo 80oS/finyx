@@ -15,5 +15,10 @@ class UbicacionService{
     {
         return $this->ubicacion_repository->index();
     }
+
+    public function show(int $id)
+    {
+        return $this->ubicacion_repository->show($id);
+    }
 }
 ?>

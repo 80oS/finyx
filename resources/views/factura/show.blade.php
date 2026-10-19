@@ -18,7 +18,7 @@
         <div class="border border-blanco-calido rounded-lg p-2 
                 col-span-2 bg-blanco-calido shadow shadow-gris-calido-claro">
 
-            <div class="grid grid-cols-2 mb-3">
+            <div class="grid grid-cols-2 mb-3 border-b border-gris-suave pb-5">
                 <div class="flex gap-5">
                     <div>
                         <i><x-lucide-file-text class="w-10 h-10 text-ambar-claro bg-ambar-suave/50 p-2 rounded-lg"/></i>
@@ -28,7 +28,7 @@
                         <p class="capitalize text-gris-calido-oscuro font-bold text-lg">Empresa</p>
                     </div>
                 </div>
-                <div class="text-end border-b border-gris-suave">
+                <div class="text-end">
                     <h3 class="capitalize text-gris-suave text-sm">Numero de Factura</h3>
                     <span class="text-gris-calido-oscuro txext-lg">{{ $factura->codigo }}</span>
                 </div>

@@ -1,12 +1,12 @@
-<div class="mb-5">
+<div class="mb-5" wire:ignore >
     <label for="metodo_pago" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">metodo de pago</label>
-    <select name="metodo_pago" id="metodo_pago" wire:model.live='metodoPago' 
+    <select name="metodo_pago" id="metodo_pago" wire:model.live='metodoPago'
     class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm
         text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco 
-        focus:border-linea-foco transition-all">
-        @foreach (['tarjeta', 'transferencia', 'efectivo'] as $metodo)
-            <option value="{{ $metodo }}">{{ ucfirst($metodo) }}</option>
-        @endforeach
+        focus:border-linea-foco tom-select">
+        <option value="tarjeta">tarjeta</option>
+        <option value="efectivo">efectivo</option>
+        <option value="transferencia">transferencia</option>
     </select>
     @if($metodoPago === 'efectivo')
         <div class="mt-1 w-full p-5 overflow-hidden rounded-lg border 

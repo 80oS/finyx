@@ -34,6 +34,15 @@ class Producto extends Model
 
     public function productoUbicacion()
     {
-        return $this->hasMany(ProductoUbicacion::class);
+        return $this->hasMany(ProductoUbicacion::class, 'id_producto');
+    }
+
+    public function ubicaciones()
+    {
+        return $this->belongsToMany(Ubicacion::class,
+            'producto_ubicacion',
+            'id_producto',
+            'id_ubicacion'
+        )->withPivot('cantidad')->withTimestamps();
     }
 }

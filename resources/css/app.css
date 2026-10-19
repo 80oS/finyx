@@ -20,6 +20,7 @@
         --color-verde-salvia-claro: #465D4A;
         --color-sidebar-item-rest: #EDE7DA;
         --color-sidebar-item-hover: #E6DECD;
+        --color-verde-suave: #77B683;
 
     /* Texto principal */
         --color-gris-calido-oscuro: #404040;
@@ -97,7 +98,7 @@
 @layer components {
     /* Controles generados por DataTables */
     .dt-container {
-        @apply max-w-full rounded-2xl;
+        @apply max-w-full rounded-2xl transition-none;
     }
 
     .dt-container .dt-layout-row:has(.dt-search) {
@@ -152,20 +153,20 @@
 
     /* Paginación */
     .dt-container .dt-paging {
-        @apply flex flex-wrap items-center gap-2;
+        @apply flex flex-row flex-wrap items-center gap-5;
     }
 
     .dt-container .dt-paging .dt-paging-button {
         @apply rounded-lg border border-gray-200 px-3 py-2
-            text-sm text-gray-700;
+            text-sm text-gray-700 ml-1;
     }
 
     .dt-container .dt-paging .dt-paging-button.current {
-        @apply border-blue-600 bg-blue-600 text-blanco-calido;
+        @apply border-verde-suave bg-verde-suave text-blanco-calido;
     }
 
     .dt-container .dt-paging .dt-paging-button:hover:not(.disabled) {
-        @apply bg-blue-800 text-blanco-calido;
+        @apply bg-verde-salvia text-blanco-calido;
     }
 
     .dt-container .dt-paging .dt-paging-button.disabled {
@@ -173,6 +174,58 @@
     }
 }
 
+#tablaProductos {
+    visibility: hidden;
+    width: 100% !important;
+}
+
+/* Mostrar la tabla cuando DataTables termine */
+#tablaProductos.dt-inicializada {
+    visibility: visible;
+}
+
+.ts-dropdown .option.active {
+    background-color: #88A58D;
+    color: #FFFDF9;
+}
+
+.ts-wrapper .ts-control {
+    border: 1px solid #d1d5db;
+    background: #FFFDF9;
+    box-shadow: none;
+    outline: none;
+}
+
+.ts-dropdown{
+    border-radius: 10px;
+}
+
+.ts-wrapper.focus .ts-control,
+.ts-wrapper .ts-control:focus,
+.ts-wrapper.focus .ts-control:focus-within {
+    border-color: #88A58D;
+    box-shadow: 0 0 0 1px #88A58D;
+    outline: none;
+}
+
+.selctfactura + .ts-wrapper {
+    position: relative;
+}
+
+.ts-wrapper.single .ts-control {
+    padding-right: 2rem;
+}
+
+.ts-wrapper.single .ts-control::after {
+    content: "";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 5px solid #6b7280;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+}
 
 
 
