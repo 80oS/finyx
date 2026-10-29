@@ -23,12 +23,13 @@ Route::post('/login/store', [AuthController::class, 'store'])->name('login.store
 Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
 
 // registro usuario
-
 Route::get('/register', [AuthController::class, 'registroCreate'])->name('registro.create');
 Route::post('/register/store', [AuthController::class, 'registroStore'])->name('register');
 
+// categoria
 Route::resource('/categoria', CategoriaController::class);
 Route::post('/categoriaChangeState/{id}', [CategoriaController::class, 'changeState'])->name('categoria.changeState');
+
 
 Route::resource('/proveedores', ProveedorController::class);
 
@@ -45,3 +46,5 @@ Route::resource('/venta', VentasController::class);
 Route::get('/facturaProduct', FacturaProduct::class)->name('agregar.producto');
 
 Route::resource('/ubicacion', UbicacionController::class);
+Route::post('ubcacionChangeState/{id}', [UbicacionController::class, 'changeState'])->name('ubicacion.changeState');
+Route::put('asignarProductosUbicacion/{id}/productos', [UbicacionController::class, 'asignarProductosUbicacion'])->name('ubicacion.asignarProducto');

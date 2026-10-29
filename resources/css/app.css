@@ -93,6 +93,7 @@
         --color-ambar-claro: #AA8955;
         --color-ambar-oscuro: #5C4A2E;
         --color-ambar-suave: #D8C9B1;
+
     /* iconos */
         --color-azul-calido: #476DB8;
 }
@@ -137,7 +138,7 @@
     }
 
     .dt-container table.dataTable thead th {
-        @apply px-2 py-1 font-medium;
+        @apply px-2 py-2 font-medium;
     }
 
     .dt-container table.dataTable tbody tr {
@@ -146,7 +147,7 @@
     }
 
     .dt-container table.dataTable tbody td {
-        @apply p-1;
+        @apply p-3;
     }
 
     .dt-container table.dataTable tbody tr:hover {
@@ -228,6 +229,7 @@
     border-right: 5px solid transparent;
     border-left: 5px solid transparent;
 }
+
 
 
 

@@ -12,7 +12,7 @@ class UbicacionUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,28 @@ class UbicacionUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'codigo' => 'required|string',
+            'nombre' => 'required|string',
+            'descripcion' => 'nullable|string',
+            'tipo' => 'required|string',
+            'estado' => 'required|string|in:activa,inactiva',
+            'capacidad' => 'nullable|numeric|gt:0',
+            'unidad_capacidad' => 'nullable|string',
+            'id_ubicacion_padre' => 'nullable|exists:ubicacion,id'
+        ];
+    }
+
+
+    public function messages()
+    {
+        return [
+            'codigo.required' => 'cogigo obligatorio único y máximo 30 caracteres',
+            'nombre.required' => 'nombre obligatorio, máximo 100 caracteres',
+            'tipo.required' => 'tipo de hubicacion obligatorio, con opciones predefinidas',
+            'estado,required' => 'el estado debe ser valor permitido, por ejemplo activa o inactiva',
+            'capacidad' => 'capacidad debe ser un valor positivo',
+            'unidad_capacidad' => 'unidad de la capacidad, coherente con la capacidad',
+            'id_ubicacion_padre' => 'ubicacion padre debe exiztir en las tabla de ubicaciones y no ser la misma a la creada'
         ];
     }
 }

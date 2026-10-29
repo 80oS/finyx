@@ -24,7 +24,81 @@ class UbicacionRepository{
 
     public function show(int $id)
     {
-        return Ubicacion::with(['padre', 'ProductoUbicacion.producto'])->findOrFail($id);
+        return Ubicacion::query()->where('id', $id)->with(['padre', 'ProductoUbicacion.producto'])
+            ->withCount(['ProductoUbicacion as productosDistintos'])
+            ->withSum('ProductoUbicacion as unidadesAlmacenadas', 'cantidad')->firstOrFail();
+    }
+
+    public function buscarId(int $id)
+    {
+        return Ubicacion::findOrFail($id);
+    }
+
+    public function excluirIdUbicacion(int $id)
+    {
+        $ubicacion = Ubicacion::findOrFail($id);
+
+        $idsExcluir = [$ubicacion->id];
+        $padres = [$ubicacion->id];
+
+        while (!empty($padres)) {
+            $hijos = Ubicacion::whereIn('id_ubicacion_padre', $padres)->pluck('id')->all();
+
+            $hijos = array_diff($hijos, $idsExcluir);
+
+            $idsExcluir = array_merge($idsExcluir, $hijos);
+            $padres = $hijos;
+        }
+
+        return Ubicacion::whereNotIn('id', $idsExcluir)->where('estado', 'activa')->orderBy('nombre')->get();
+    }
+
+    public function update(int $id, array $datos)
+    {
+        $ubicacion = Ubicacion::findOrFail($id);
+        $ubicacion->update($datos);
+    }
+
+    public function changeState(int $id)
+    {
+        $ubicacion = Ubicacion::findOrFail($id);
+        
+        if($ubicacion->estado == 'activa'){
+            $ubicacion->estado = 'inactiva';
+            $mensaje = 'ubicacion desabilitada con exito';
+        }else{
+            $ubicacion->estado = 'activa';
+            $mensaje = 'ubicacion habilitada con exito';
+        }
+
+        $ubicacion->save();
+
+        return $mensaje;
+    }
+
+    public function asignarProductosUbicacion(int $id, array $datos)
+    {
+        $productos = $datos['productos'];
+
+        unset($datos['productos']);
+
+        $ubicacion = Ubicacion::findOrFail($id);
+
+        foreach($productos as $datoProducto){
+            $ubica = $ubicacion->ProductoUbicacion()
+            ->where('id_producto', $datoProducto['id_producto'])->first();
+
+            if($ubica){
+                $ubica->cantidad += $datoProducto['cantidad'];
+                $ubica->save();
+            }else{
+                $ubicacion->ProductoUbicacion()->create([
+                    'id_producto' => $datoProducto['id_producto'],
+                    'cantidad' => $datoProducto['cantidad'],
+                ]);
+            }
+        }
+        return $ubicacion;
     }
 }
 ?>

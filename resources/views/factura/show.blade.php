@@ -6,7 +6,7 @@
     <div class="flex items-center gap-5 mb-5">
         <div>
             <a href="{{ route('venta.index') }}">
-                <x-lucide-chevron-left class="w-6 h-6 text-gris-calido-oscuro"/>
+                <x-lucide-chevron-left class="w-6 h-6 text-gris-calido-oscuro hover:text-gris-suave"/>
             </a>
         </div>
         <div>

@@ -16,15 +16,17 @@
                 </div>
             </div>
 
-            <form action="{{ route('ubicacion.store') }}" method="POST">
+            <form action="{{ route('ubicacion.update', $ubicacion->id) }}" method="POST">
                 @csrf
+                @method('PUT')
+                
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
                                 codigo
                             </label>
-                            <input type="text" name="codigo" 
+                            <input type="text" name="codigo" value="{{ $ubicacion->codigo }}" 
                             class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input 
                             rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 
                             focus:ring-linea-foco focus:border-linea-foco transition-all">
@@ -38,7 +40,8 @@
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
                                 nombre
                             </label>
-                            <input type="text" name="nombre" placeholder="Ej. Estantería A1" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            <input type="text" name="nombre" placeholder="Ej. Estantería A1" value="{{ $ubicacion->nombre }}"
+                            class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
                             @error('nombre')
                                 <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
                                     {{ $message }}
@@ -50,9 +53,15 @@
                                 ubicacion principal
                             </label>
                             <select type="text" name="id_ubicacion_padre" class="tom-select">
-                                <option value="" disabled>deja vacío si es una ubicación principal</option>
+                                <option
+                                    value=""
+                                    @selected(old('id_ubicacion_padre', $ubicacion->id_ubicacion_padre) == '')>
+                                    Sin ubicación padre (principal)
+                                </option>
                                 @foreach ($ubicaciones as $ubicacion)
-                                    <option value="{{ $ubicacion->id }}">{{ $ubicacion->nombre }}({{ $ubicacion->codigo }})</option>
+                                    <option value="{{ $ubicacion->id }}" {{ $ubicacion->id_ubicacion_padre == $ubicacion->id ? 'selected' : '' }}>
+                                        {{ $ubicacion->nombre }}({{ $ubicacion->codigo }})
+                                    </option>
                                 @endforeach
                             </select>
                             @error('id_ubicacion_padre')
@@ -84,7 +93,8 @@
                                 <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
                                     capacidad
                                 </label>
-                                <input type="text" name="capacidad" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                                <input type="text" name="capacidad" value="{{ $ubicacion->capacidad }}"
+                                class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
                                 @error('capacidad')
                                     <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
                                         {{ $message }}
@@ -95,7 +105,8 @@
                                 <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
                                     unidad
                                 </label>
-                                <input type="text" name="unidad_capacidad" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                                <input type="text" name="unidad_capacidad" value="{{ $ubicacion->unidad_capacidad }}"
+                                class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
                                 
                                 @error('unidad_capacidad')
                                 <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
@@ -108,7 +119,8 @@
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
                                 descripcion
                             </label>
-                            <input type="text" name="descripcion" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            <input type="text" name="descripcion" value="{{ $ubicacion->descripcion }}"
+                            class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">

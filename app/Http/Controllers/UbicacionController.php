@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AsignarProductoUbicacionRequest;
 use App\Http\Requests\UbicacionStoreRequest;
+use App\Http\Requests\UbicacionUpdateRequest;
 use App\Models\Ubicacion;
 use App\Services\UbicacionService;
 use Illuminate\Http\Request;
@@ -35,23 +37,39 @@ class UbicacionController extends Controller
         return redirect()->route('ubicacion.index')->with('success', 'ubicacion creada correctamente');
     }
 
-    public function show(Ubicacion $ubicacion)
+    public function show(int $id)
     {
-        //
+        $ubicacion = $this->ubicacion_service->show($id);
+
+        return view('ubicacion.show', compact('ubicacion'));
     }
 
-    public function edit(Ubicacion $ubicacion)
+    public function edit(int $id)
     {
-        //
+        $ubicacion = $this->ubicacion_service->buscarId($id);
+        $ubicaciones = $this->ubicacion_service->excluirIdUbicacion($id);
+
+        return view('ubicacion.edit', compact('ubicacion', 'ubicaciones'));
     }
 
-    public function update(Request $request, Ubicacion $ubicacion)
+    public function update(UbicacionUpdateRequest $request, int $id)
     {
-        //
+        $this->ubicacion_service->update($id, $request->validated());
+
+        return redirect()->route('ubicacion.index')->with('success', 'ubicacion actualizada con exito');
     }
 
-    public function destroy(Ubicacion $ubicacion)
+    public function changeState(int $id)
     {
-        //
+        $mensaje = $this->ubicacion_service->changeState($id);
+
+        return redirect()->route('ubicacion.index')->with('success', $mensaje);
+    }
+
+    public function asignarProductosUbicacion(int $id, AsignarProductoUbicacionRequest $request)
+    {
+        $ubicacion = $this->ubicacion_service->asignarProductosUbicacion($id, $request->validated());
+
+        return redirect()->route('ubicacion.show', $ubicacion->id)->with('success', 'productos asignados correctamnete');
     }
 }

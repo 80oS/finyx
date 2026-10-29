@@ -54,31 +54,31 @@
                     <td>{{ $ubicacion->producto_ubicacion_count }}</td>
                     <td>{{ $ubicacion->estado }}</td>
                     <td>
-                        <a href="" class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
+                        <a href="{{ route('ubicacion.edit', $ubicacion->id) }}" class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
                                 text-base p-1 transition-all">
                             <i class="fa-regular fa-pen-to-square"></i>
                         </a>
                     </td>
                     <td>
-                        <a href="" class="text-ambar-claro hover:text-ambar-oscuro p-1 text-base">
+                        <a href="{{ route('ubicacion.show', $ubicacion->id) }}" class="text-ambar-claro hover:text-ambar-oscuro p-1 text-base">
                             <i class="fa-regular fa-eye"></i>
                         </a>
                     </td>
                     <td>
-                        <form action="">
-                            @if ($ubicacion->estado == 'activo')
+                        <form action="{{ route('ubicacion.changeState', $ubicacion->id) }}" method="POST">
+                            @if ($ubicacion->estado == 'activa')
                                 <button type="submit"
                                     class="bg-terracota-suave hover:bg-terracota-oscuro 
-                                    text-blanco-calido rounded-sm px-2 py-1 transition-all 
-                                    cursor-pointer">
+                                    text-blanco-calido rounded-sm px-2 py-2 transition-all 
+                                    cursor-pointer text-base">
                                     desabilitar
                                 </button>
 
                             @else
                                 <button type="submit"
                                     class="bg-verde-salvia hover:bg-verde-salvia-claro 
-                                    text-blanco-calido rounded-sm px-2 py-1 transition-all 
-                                    cursor-pointer">
+                                    text-blanco-calido rounded-sm px-2 py-2 transition-all 
+                                    cursor-pointer text-base">
                                     habilitar
                                 </button>
                             @endif

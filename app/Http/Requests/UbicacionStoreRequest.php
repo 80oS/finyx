@@ -21,7 +21,7 @@ class UbicacionStoreRequest extends FormRequest
             'descripcion' => 'nullable|string',
             'tipo' => 'required|string',
             'estado' => 'required|string|in:activa,inactiva',
-            'capacidad' => 'nullable|decimal:1,12',
+            'capacidad' => 'nullable|numeric|gt:0',
             'unidad_capacidad' => 'nullable|string',
             'id_ubicacion_padre' => 'nullable|exists:ubicacion,id'
         ];

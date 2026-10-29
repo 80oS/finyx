@@ -1,9 +1,7 @@
-<div class="mb-5" wire:ignore >
+<div class="mb-5">
     <label for="metodo_pago" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">metodo de pago</label>
     <select name="metodo_pago" id="metodo_pago" wire:model.live='metodoPago'
-    class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm
-        text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco 
-        focus:border-linea-foco tom-select">
+    class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
         <option value="tarjeta">tarjeta</option>
         <option value="efectivo">efectivo</option>
         <option value="transferencia">transferencia</option>
