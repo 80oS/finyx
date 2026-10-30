@@ -20,6 +20,8 @@ class ProductoController extends Controller
         $this->categoria_service = $categoria_service;
     }
 
+    
+
     public function index()
     {
         $productos = $this->producto_service->index();
@@ -61,5 +63,5 @@ class ProductoController extends Controller
         $mensaje = $this->producto_service->changeState($id);
 
         return redirect()->route('producto.index')->with('success', $mensaje);
+    }    
     }
-}

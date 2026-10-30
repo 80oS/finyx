@@ -9,8 +9,8 @@ class AlertaStock extends Component
 {
     public int $pagina = 1;
 
-    protected int $primeraPagina = 5;
-    protected int $porPagina = 10;
+    protected int $primeraPagina = 3;
+    protected int $porPagina = 3;
 
     public function irA(int $pagina): void
     {
