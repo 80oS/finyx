@@ -56,7 +56,7 @@
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
                                 estado factura
                             </label>
-                            <select name="estado" class="tom-select selectTom">
+                            <select name="estado" class="tom-select selectTom selectSh">
                                 <option value="pendiente">pendiente</option>
                                 <option value="pagado">pagado</option>
                             </select>

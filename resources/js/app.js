@@ -1,5 +1,6 @@
 import "tailwindcss";
 import "./datatables";
+import "./susses";
 
 import TomSelect from "tom-select";
 import "tom-select/dist/css/tom-select.css";
@@ -13,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-new TomSelect(".selctfactura", {
+new TomSelect(".selectSh", {
     controlInput: null,
     create: false,
     maxItems: 1,

@@ -4,7 +4,7 @@
 
 @section('content')
     @if (session('success'))
-        <div class=" bg-alert-success border border-border-alert-success text-text-alert-success px-4 py-3 rounded mb-4">
+        <div id="success-message" class=" bg-alert-success border border-border-alert-success text-text-alert-success px-4 py-3 rounded mb-4">
             {{ session('success') }}
         </div>
     @endif
@@ -65,7 +65,7 @@
                         </a>
                     </td>
                     <td>
-                        <form action="{{ route('ubicacion.changeState', $ubicacion->id) }}" method="POST">
+                        <form action="{{ route('ubicacion.changeState', $ubicacion->id) }}" method="POST" wire:navigate>
                             @if ($ubicacion->estado == 'activa')
                                 <button type="submit"
                                     class="bg-terracota-suave hover:bg-terracota-oscuro 
