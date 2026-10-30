@@ -103,7 +103,8 @@
                 <button
                     wire:click="anterior"
                     @disabled($pagina <= 1)
-                    class="rounded-lg px-2 py-1.5 text-xs text-gris-grafito transition hover:bg-lavanda disabled:cursor-not-allowed disabled:opacity-40"
+                    class="rounded-lg px-2 py-1.5 text-xs text-gris-grafito transition 
+                    hover:bg-lavandai hover:text-blanco-calido disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
                     aria-label="Página anterior">
 
                     <i class="fa-solid fa-chevron-left"></i>
@@ -120,10 +121,10 @@
 
                     <button
                         wire:click="irA({{ $n }})"
-                        class="rounded-lg px-2.5 py-1.5 text-xs transition
+                        class="rounded-lg px-2.5 py-1.5 text-xs transition cursor-pointer
                             {{ $n === $pagina
                                 ? 'bg-lavanda font-bold text-white'
-                                : 'text-gris-grafito hover:bg-lavanda' }}">
+                                : 'text-gris-grafito hover:bg-lavandai hover:text-blanco-calido' }}">
 
                         {{ $n }}
 
@@ -134,7 +135,9 @@
                 <button
                     wire:click="siguiente"
                     @disabled($pagina >= $ultimaPagina)
-                    class="rounded-lg px-2 py-1.5 text-xs text-gris-grafito transition hover:bg-lavanda disabled:cursor-not-allowed disabled:opacity-40"
+                    class="rounded-lg px-2 py-1.5 text-xs text-gris-grafito hover:text-blanco-calido 
+                    transition hover:bg-lavandai disabled:cursor-not-allowed disabled:opacity-40 
+                    cursor-pointer"
                     aria-label="Página siguiente">
 
                     <i class="fa-solid fa-chevron-right"></i>

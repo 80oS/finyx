@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\producto;
+use App\Models\Producto;
 use Livewire\Component;
 
 class AlertaStock extends Component
@@ -29,7 +29,7 @@ class AlertaStock extends Component
 
     public function render()
     {
-        $consulta = producto::where('stock', '<=', 5)->orderBy('stock');
+        $consulta = Producto::where('stock', '<=', 5)->orderBy('stock');
 
         $total = (clone $consulta)->count();
 
@@ -50,7 +50,6 @@ class AlertaStock extends Component
             'productos'    => $consulta->offset($offset)->limit($limite)->get(),
             'total'        => $total,
             'ultimaPagina' => $ultimaPagina,
-             
         ]);
     }
 }

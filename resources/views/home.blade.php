@@ -85,7 +85,6 @@
 
         <div class="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3">
 
-           
             @php
                 $maxVenta = collect($ventasCategoria)->max('total_ventas') ?: 1;
             @endphp
@@ -130,7 +129,6 @@
             </div>
 
 
-           
             <div class="h-full w-full rounded-2xl border border-linea-exterior-tabla bg-blanco-calido p-4 shadow-sm">
 
                 <div class="flex items-center gap-3">
@@ -167,7 +165,6 @@
 
             </div>
 
-           
             <div class="h-full w-full rounded-2xl border border-linea-exterior-tabla bg-blanco-calido p-4 shadow-sm md:col-span-2 xl:col-span-1">
 
                 <div class="flex items-center gap-3 border-b border-linea-exterior-tabla pb-3">
@@ -223,7 +220,6 @@
     </div>
 
 
-   
     <div class="space-y-4">
 
         <div class="flex items-center gap-3">

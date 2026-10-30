@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\producto;
+use App\Models\Producto;
 use Livewire\Component;
 
 class ProductoPorVencer extends Component
@@ -30,7 +30,7 @@ class ProductoPorVencer extends Component
 
     public function render()
     {
-        $consulta = producto::whereNotNull('fecha_vencimiento')
+        $consulta = Producto::whereNotNull('fecha_vencimiento')
             ->whereDate('fecha_vencimiento', '<=', now()->addDays($this->diasAviso))
             ->orderBy('fecha_vencimiento')
             ->orderBy('id');

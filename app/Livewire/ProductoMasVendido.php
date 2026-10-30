@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\producto;
+use App\Models\Producto;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -31,7 +31,7 @@ class ProductoMasVendido extends Component
     public function render()
     {
         // Se cuenta aparte, sin la subconsulta ni el orden
-        $total = producto::count();
+        $total = Producto::count();
 
         $ultimaPagina = $total <= $this->primeraPagina
             ? 1
@@ -50,7 +50,7 @@ class ProductoMasVendido extends Component
             ->selectRaw('SUM(cantidad)')
             ->whereColumn('detalle_factura.id_producto', 'producto.id');
 
-        $masVendidos = producto::select('id', 'nombre', 'codigo')
+        $masVendidos = Producto::select('id', 'nombre', 'codigo')
             ->selectSub($totalVendido, 'total_vendido')
             ->orderByDesc('total_vendido')
             ->orderBy('id') // desempate: así los productos no se repiten entre páginas
