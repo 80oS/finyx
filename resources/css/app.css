@@ -18,6 +18,7 @@
     /*Acento principal (menú activo, botón crear)*/
         --color-verde-salvia: #6B8F71;
         --color-verde-salvia-claro: #465D4A;
+        --color-verde-salvia-oscuro: #465D4A;
         --color-sidebar-item-rest: #EDE7DA;
         --color-sidebar-item-hover: #E6DECD;
         --color-verde-suave: #77B683;
@@ -32,6 +33,7 @@
     /* Estados, desabilitar */
         --color-terracota-suave: #C97B63;
         --color-terracota-oscuro: #9C4D35;
+        --color-terracota: #F1C6C6;
     
     /*editar*/
         --color-azul-grisaceo: #819BB8;
@@ -96,6 +98,18 @@
 
     /* iconos */
         --color-azul-calido: #476DB8;
+
+    /* card total de productos */
+        --color-hagalo: #5DAB59;
+        --color-this: #F6F4EE;
+        --color-rosita: #F6E6EC;
+        --color-rositai: #A65372;
+        
+        --color-lavanda: #EEE7F6;
+        --color-lavandai: #79609B;
+
+        --color-menta: #E1F2E8;
+        --color-mentai: #397653;
 }
 
 @layer components {
