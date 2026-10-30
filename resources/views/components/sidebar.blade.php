@@ -96,6 +96,15 @@
             <span x-show="sidebarOpen" x-transition>Ventas</span>
         </a>
 
+        <a href="{{ route('impuesto.create') }}"
+            class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
+        {{ request()->routeIs('venta.index') 
+        ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
+        : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
+                <i class="fa-solid fa-coins"></i>
+            <span x-show="sidebarOpen" x-transition>IVA</span>
+        </a>
+
     </nav>
 
 </aside>

@@ -2,18 +2,22 @@
 namespace App\Services;
 
 use App\Repositories\ProductoRepository;
+use App\Repositories\HomeRepository;
 
 class ProductoService{
     private ProductoRepository $producto_repository;
+    private HomeRepository $homeRepository;
 
-    public function __construct(ProductoRepository $producto_repository)
+    public function __construct(ProductoRepository $producto_repository, HomeRepository $homeRepository)
     {
         $this->producto_repository = $producto_repository;
+        $this->homeRepository = $homeRepository;
     }
 
     public function index()
     {
         return $this->producto_repository->index();
+        
     }
 
     public function crear(array $datos)
@@ -35,5 +39,11 @@ class ProductoService{
     {
         return $this->producto_repository->changeState($id);
     }
-}
+
+    public function totalProductos(): int
+    {
+        return $this->homeRepository->totalProductos();
+    }
+        
+    }
 ?>
