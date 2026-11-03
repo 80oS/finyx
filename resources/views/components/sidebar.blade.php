@@ -14,12 +14,14 @@
             F
         </div>
 
-        <span
-            x-show="sidebarOpen"
-            x-transition
-            class="ml-3 text-xl font-bold text-gris-calido-oscuro">
-            FINYX
-        </span>
+        <a href="{{ route('home') }}">
+            <span
+                x-show="sidebarOpen"
+                x-transition
+                class="ml-3 text-xl font-bold text-gris-calido-oscuro">
+                FINYX
+            </span>
+        </a>
 
     </div>
 
@@ -98,7 +100,7 @@
 
         <a href="{{ route('impuesto.create') }}"
             class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
-        {{ request()->routeIs('venta.index') 
+        {{ request()->routeIs('impuesto.create') 
         ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
         : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
                 <i class="fa-solid fa-coins"></i>

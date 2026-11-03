@@ -2,7 +2,9 @@
 namespace App\Repositories;
 
 use App\Models\Producto;
+use App\Models\ProductoUbicacion;
 use App\Models\Ubicacion;
+use Illuminate\Database\Eloquent\Collection;
 
 class UbicacionRepository{
 
@@ -24,7 +26,7 @@ class UbicacionRepository{
 
     public function show(int $id)
     {
-        return Ubicacion::query()->where('id', $id)->with(['padre', 'ProductoUbicacion.producto'])
+        return Ubicacion::query()->where('id', $id)->with(['padre'])
             ->withCount(['ProductoUbicacion as productosDistintos'])
             ->withSum('ProductoUbicacion as unidadesAlmacenadas', 'cantidad')->firstOrFail();
     }
@@ -99,6 +101,46 @@ class UbicacionRepository{
             }
         }
         return $ubicacion;
+    }
+
+    public function obtenerAsignacionParaMover(int $idUbicacion): Collection
+    {
+        return ProductoUbicacion::query()->where('id_ubicacion', $idUbicacion)
+        ->with('producto')->orderBy('id_producto')->get();
+    }
+
+    public function bloquearAgignacion(int $idUbicacion, int $idProducto): ?ProductoUbicacion
+    {
+        return ProductoUbicacion::query()->where('id_ubicacion', $idUbicacion)
+        ->where('id_producto', $idProducto)->lockForUpdate()->first();
+    }
+
+    public function bloquearOCrearDestino(int $idUbicacion, int $idProducto): ProductoUbicacion
+    {
+        $asigacion = ProductoUbicacion::query()->where('id_ubicacion', $idUbicacion)
+        ->where('id_producto', $idProducto)->lockForUpdate()->first();
+
+        if($asigacion){
+            return $asigacion;
+        }
+
+        $asigacion = new ProductoUbicacion();
+
+        $asigacion->id_ubicacion = $idUbicacion;
+        $asigacion->id_producto = $idProducto;
+        $asigacion->cantidad = 0;
+
+        return $asigacion;
+    }
+
+    public function guardarAsignacion(ProductoUbicacion $asigacion): void
+    {
+        $asigacion->save();
+    }
+
+    public function eliminarAsignacion(ProductoUbicacion $asigacion): void
+    {
+        $asigacion->delete();
     }
 }
 ?>

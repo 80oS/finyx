@@ -43,7 +43,7 @@
         </div>
 
         @if ($porcentaje >= 100)
-            <p class="mt-3 text-sm font-medium text-red-600">
+            <p class="mt-3 text-sm font-medium text-terracota-oscuro">
                 La ubicación alcanzó o superó su capacidad máxima.
             </p>
         @endif

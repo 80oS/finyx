@@ -44,7 +44,7 @@
             </div>
 
             @if ($montoRecibido !== '' && (float) $montoRecibido < (float) $totalFactura)
-                <p class="text-sm text-red-600">
+                <p class="text-sm text-terracota-oscuro">
                     Faltan ${{ number_format($this->faltante, 0, ',', '.') }}
                     para completar el pago.
                 </p>

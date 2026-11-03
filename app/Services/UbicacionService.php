@@ -1,14 +1,18 @@
 <?php
 namespace App\Services;
 
+use App\Repositories\Interfaces\UbicacionRepositoryInterface;
 use App\Repositories\UbicacionRepository;
+use Illuminate\Validation\ValidationException;
 
 class UbicacionService{
     private UbicacionRepository $ubicacion_repository;
+    private UbicacionRepositoryInterface $ubicacion_repository_interface;
 
-    public function __construct(UbicacionRepository $ubicacion_repository)
+    public function __construct(UbicacionRepository $ubicacion_repository, UbicacionRepositoryInterface $ubicacion_repository_interface)
     {
         $this->ubicacion_repository = $ubicacion_repository;
+        $this->ubicacion_repository_interface = $ubicacion_repository_interface;
     }
 
     public function index()
@@ -54,6 +58,15 @@ class UbicacionService{
     public function asignarProductosUbicacion(int $id, array $datos)
     {
         return $this->ubicacion_repository->asignarProductosUbicacion($id, $datos);
+    }
+
+    public function moverProductos(int $idOrigen, int $idDestino, array $productos): void
+    {
+        if ($idOrigen == $idDestino){
+            throw ValidationException::withMessages([
+                'idDestino' => 'La ubicación de destino debe ser diferente de la de origen.'
+            ]);
+        }
     }
 }
 ?>

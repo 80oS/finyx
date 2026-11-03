@@ -27,9 +27,9 @@ class CalcularOcupacion extends Component
         $anchoBarra = $porcentaje !== null ? min(100, $porcentaje) : 0;
 
         $color = match (true) {
-            $porcentaje === null => 'bg-gray-400',
-            $porcentaje >= 90 => 'bg-red-500',
-            $porcentaje >= 70 => 'bg-yellow-500',
+            $porcentaje === null => 'bg-gris-calido-claro',
+            $porcentaje >= 90 => 'bg-terracota-suave',
+            $porcentaje >= 70 => 'bg-ambar-claro',
             default => 'bg-verde-salvia',
         };
 

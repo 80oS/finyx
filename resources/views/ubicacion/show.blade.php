@@ -23,7 +23,7 @@
     @endif
 
     <div class="flex items-center justify-center">
-        <div class="w-full max-w-3xl border border-blanco-calido 
+        <div class="w-full max-w-6xl border border-blanco-calido 
             shadow shadow-gris-suave bg-blanco-calido p-5 rounded-md">
             <div class="flex flex-row items-center justify-start gap-3">
                 <div>
@@ -79,21 +79,32 @@
                 </div>
             </div>
             <div class="flex flex-row items-center justify-between my-3">
-                <h2 class="caplitalize text-gris-calido-claro font-bold">productos almacenados</h2>
+                <div>
+                    <h2 class="caplitalize text-gris-calido-claro font-bold">productos almacenados</h2>
+                </div>
                 <livewire:asignar-productos-ubicacion :ubicacion-id="$ubicacion->id"/>
+                <button class="bg-azul-grisaceo hover:bg-azul-grisaceo-oscuro rounded p-2 
+                        capitalize text-blanco-calido cursor-pointer">
+                    mover productos
+                </button>
+                    
+                <button class="bg-ambar-claro hover:bg-azul-grisaceo-oscuro rounded p-2 
+                        capitalize text-blanco-calido cursor-pointer">
+                    ver ubicaciones hijas
+                </button>
             </div>
             <div class="rounded-md">
-                <table class="w-full border border-collapse border-linea-exterior-tabla">
-                    <thead class="text-gris-calido-oscuro border-b border-linea-thead">
+                <table class="datatable" id="tablePrins">
+                    <thead>
                         <tr>
-                            <th class="p-2">Nombre</th>
-                            <th class="p-2">Codigo</th>
-                            <th class="p-2">Unidades</th>
+                            <th>Nombre</th>
+                            <th>Codigo</th>
+                            <th>Unidades</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($ubicacion->ProductoUbicacion as $asigna)
-                            <tr class="text-gris-calido-oscuro border border-linea-tr-tbody text-center">
+                            <tr>
                                 <td>{{ $asigna->producto->nombre }}</td>
                                 <td>{{ $asigna->producto->codigo }}</td>
                                 <td>{{ $asigna->cantidad }}</td>

@@ -1,5 +1,5 @@
 <div>
-    <div class="mb-5">
+    <div>
         <button type="button" wire:click='abrirModal' 
         class="bg-verde-salvia rounded-sm p-2 text-blanco-calido hover:bg-verde-salvia-claro cursor-pointer">
             <div class="flex">
