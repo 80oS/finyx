@@ -48,5 +48,6 @@ Route::resource('/impuesto', ImpuestoController::class);
 Route::get('/facturaProduct', FacturaProduct::class)->name('agregar.producto');
 
 Route::resource('/ubicacion', UbicacionController::class);
-Route::post('ubcacionChangeState/{id}', [UbicacionController::class, 'changeState'])->name('ubicacion.changeState');
-Route::put('asignarProductosUbicacion/{id}/productos', [UbicacionController::class, 'asignarProductosUbicacion'])->name('ubicacion.asignarProducto');
+Route::post('/ubcacionChangeState/{id}', [UbicacionController::class, 'changeState'])->name('ubicacion.changeState');
+Route::put('/asignarProductosUbicacion/{id}/productos', [UbicacionController::class, 'asignarProductosUbicacion'])->name('ubicacion.asignarProducto');
+Route::post('/ubicacion/{id}/mover-productos', [UbicacionController::class, 'MoverProductosUbicacion'])->name('ubicacion.moverProductos');

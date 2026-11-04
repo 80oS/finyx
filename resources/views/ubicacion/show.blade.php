@@ -16,9 +16,20 @@
         </div>
     </div>
     @if (session('success'))
-        <div class=" bg-alert-success border border-border-alert-success 
+        <div class="bg-alert-success border border-border-alert-success 
         text-text-alert-success px-4 py-3 rounded mb-4">
             {{ session('success') }}
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="bg-alert-error border border-border-alert-error 
+        text-text-alert-error px-4 py-3 rounded mb-5">
+            <ul class="list-inside list-disc">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
     @endif
 
@@ -83,11 +94,8 @@
                     <h2 class="caplitalize text-gris-calido-claro font-bold">productos almacenados</h2>
                 </div>
                 <livewire:asignar-productos-ubicacion :ubicacion-id="$ubicacion->id"/>
-                <button class="bg-azul-grisaceo hover:bg-azul-grisaceo-oscuro rounded p-2 
-                        capitalize text-blanco-calido cursor-pointer">
-                    mover productos
-                </button>
-                    
+
+                <livewire:mover-productos-ubicacion :ubicacion-id="$ubicacion->id"/>
                 <button class="bg-ambar-claro hover:bg-azul-grisaceo-oscuro rounded p-2 
                         capitalize text-blanco-calido cursor-pointer">
                     ver ubicaciones hijas

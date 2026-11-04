@@ -214,8 +214,7 @@
                             @disabled(count($productosSeleccionados) === 0)
                             class="rounded-sm bg-verde-salvia px-3 py-2
                                     text-blanco-calido hover:bg-verde-salvia-claro
-                                    disabled:cursor-not-allowed disabled:opacity-50"
-                        >
+                                    disabled:cursor-not-allowed disabled:opacity-50">
                             Guardar asignaciones
                         </button>
                     </div>
