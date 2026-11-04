@@ -1,6 +1,7 @@
-<div class="w-full rounded-2xl border border-linea-exterior-tabla bg-blanco-calido p-4 shadow-sm">
+<div x-data="{ open: false }"
+     class="w-full rounded-2xl border border-linea-exterior-tabla bg-blanco-calido p-4 shadow-sm">
 
-    {{-- ENCABEZADO --}}
+   
     <div class="mb-3 flex items-center justify-between gap-3">
 
         <div class="min-w-0">
@@ -13,14 +14,60 @@
             </p>
         </div>
 
-        <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-this text-rositai">
-            <i class="fa-solid fa-arrow-trend-up text-sm"></i>
+        <div class="flex items-center gap-2">
+
+           
+            <button type="button" @click="open = !open"
+                    class="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-linea-exterior-tabla text-gris-grafito transition hover:bg-rositai hover:text-blanco-calido"
+                    :class="open ? 'bg-rositai text-blanco-calido' : ''"
+                    aria-label="Filtrar">
+                <i class="fa-solid fa-filter text-sm"></i>
+            </button>
+
+            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-this text-rositai">
+                <i class="fa-solid fa-arrow-trend-up text-sm"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div x-show="open" x-transition class="mb-3 rounded-xl border border-linea-exterior-tabla p-3">
+
+        <div class="flex flex-wrap items-end gap-3">
+
+            <div class="min-w-[120px] flex-1">
+                <label class="mb-1 block text-xs font-medium text-gris-grafito">Mes</label>
+                <select wire:model.live="mes"
+                        class="w-full rounded-lg border border-linea-exterior-tabla bg-blanco-calido p-2 text-xs text-gris-grafito">
+                    <option value="">Todos</option>
+                    @foreach(['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'] as $i => $nombre)
+                        <option value="{{ $i + 1 }}">{{ $nombre }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="w-28">
+                <label class="mb-1 block text-xs font-medium text-gris-grafito">Año</label>
+                <select wire:model.live="anio"
+                        class="w-full rounded-lg border border-linea-exterior-tabla bg-blanco-calido p-2 text-xs text-gris-grafito">
+                    <option value="">Todos</option>
+                    @foreach($anios as $a)
+                        <option value="{{ $a }}">{{ $a }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <button type="button" wire:click="limpiar"
+                    class="cursor-pointer pb-2 text-xs text-gris-grafito hover:underline">
+                Limpiar
+            </button>
+
         </div>
 
     </div>
 
 
-    {{-- LISTA DE PRODUCTOS --}}
     @if($masVendidos->count() > 0)
 
         <div class="space-y-2">
@@ -60,7 +107,7 @@
         </div>
 
 
-        {{-- PAGINACIÓN --}}
+
         @if($ultimaPagina > 1)
 
             @php
@@ -132,7 +179,7 @@
 
     @else
 
-        {{-- ESTADO SIN VENTAS --}}
+        
         <div class="rounded-xl border-rosita bg-rositai px-3 py-5 text-center">
 
             <i class="fa-solid fa-chart-simple mb-2 text-xl text-gris-grafito"></i>
