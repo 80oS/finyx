@@ -9,7 +9,7 @@ class AlertaStock extends Component
 {
     public int $pagina = 1;
 
-    public string $filtro = 'bajo';
+    public string $filtro = '';
     public ?int $valor = null;
 
     protected int $primeraPagina = 3;

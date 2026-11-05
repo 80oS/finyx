@@ -16,8 +16,8 @@
         <div class="flex items-center gap-2">
 
             <button type="button" @click="open = !open"
-                    class="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-linea-exterior-tabla text-gris-grafito transition hover:bg-mentai hover:text-blanco-calido"
-                    :class="open ? 'bg-mentai text-blanco-calido' : ''"
+                    class="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-linea-exterior-blanco transition hover:bg-mentai hover:text-blanco-calido"
+                    :class="open ? 'bg-menta text-blanco-calido' : 'bg-mentaf text-white'"
                     aria-label="Filtrar">
                 <i class="fa-solid fa-filter text-sm"></i>
             </button>
@@ -38,8 +38,7 @@
                 <label class="mb-1 block text-xs font-medium text-gris-grafito">Filtrar por</label>
                 <select wire:model.live="filtro"
                         class="w-full rounded-lg border border-linea-exterior-tabla bg-blanco-calido p-2 text-xs text-gris-grafito">
-                    <option value="promedio">Menor al promedio</option>
-                    <option value="valor">Menor o igual a…</option>
+                    <option value="promedio">Stock menor e igual a 5</option>
                     <option value="agotados">Agotados</option>
                     <option value="todos">Todos</option>
                 </select>

@@ -49,48 +49,50 @@ class ProductoMasVendido extends Component
     }
 
     public function render()
-    {
-        $total = Producto::count();
+{
+    $anio = $this->anio ? (string) $this->anio : null;
+    $mes  = $this->mes ? str_pad($this->mes, 2, '0', STR_PAD_LEFT) : null;
 
-        $ultimaPagina = $total <= $this->primeraPagina
-            ? 1
-            : 1 + (int) ceil(($total - $this->primeraPagina) / $this->porPagina);
+    $vendidos = Producto::select('id', 'nombre', 'codigo')
+        ->selectRaw("(SELECT SUM(d.cantidad)
+                      FROM detalle_factura d
+                      JOIN factura f ON f.id = d.id_factura
+                      WHERE d.id_producto = producto.id
+                      AND (? IS NULL OR strftime('%Y', f.created_at) = ?)
+                      AND (? IS NULL OR strftime('%m', f.created_at) = ?)) AS total_vendido",
+            [$anio, $anio, $mes, $mes])
+        ->orderByDesc('total_vendido')
+        ->orderBy('id')
+        ->get()
+        ->filter(fn ($p) => $p->total_vendido > 0);
 
-        $this->pagina = min(max($this->pagina, 1), $ultimaPagina);
+    $total = $vendidos->count();
 
-        $offset = $this->pagina === 1
-            ? 0
-            : $this->primeraPagina + ($this->pagina - 2) * $this->porPagina;
+    $ultimaPagina = $total <= $this->primeraPagina
+        ? 1
+        : 1 + (int) ceil(($total - $this->primeraPagina) / $this->porPagina);
 
-        $limite = $this->pagina === 1 ? $this->primeraPagina : $this->porPagina;
+    $this->pagina = min(max($this->pagina, 1), $ultimaPagina);
 
-        // Subconsulta: unidades vendidas, filtrando por mes y/o año de la factura
-        $totalVendido = DB::table('detalle_factura')
-            ->join('factura', 'factura.id', '=', 'detalle_factura.id_factura')
-            ->selectRaw('SUM(detalle_factura.cantidad)')
-            ->whereColumn('detalle_factura.id_producto', 'producto.id')
-            ->when($this->anio, fn ($q) => $q->whereRaw("strftime('%Y', factura.created_at) = ?", [(string) $this->anio]))
-            ->when($this->mes, fn ($q) => $q->whereRaw("strftime('%m', factura.created_at) = ?", [str_pad($this->mes, 2, '0', STR_PAD_LEFT)]));
+    $offset = $this->pagina === 1
+        ? 0
+        : $this->primeraPagina + ($this->pagina - 2) * $this->porPagina;
 
-        $masVendidos = Producto::select('id', 'nombre', 'codigo')
-            ->selectSub($totalVendido, 'total_vendido')
-            ->orderByDesc('total_vendido')
-            ->orderBy('id')
-            ->offset($offset)
-            ->limit($limite)
-            ->get();
+    $limite = $this->pagina === 1 ? $this->primeraPagina : $this->porPagina;
 
-        $anios = DB::table('factura')
-            ->selectRaw("DISTINCT strftime('%Y', created_at) AS anio")
-            ->orderByDesc('anio')
-            ->pluck('anio');
+    $masVendidos = $vendidos->slice($offset, $limite)->values();
 
-        return view('livewire.producto-mas-vendido', [
-            'masVendidos'  => $masVendidos,
-            'total'        => $total,
-            'ultimaPagina' => $ultimaPagina,
-            'desde'        => $offset + 1,
-            'anios'        => $anios,
-        ]);
-    }
+    $anios = DB::table('factura')
+        ->selectRaw("DISTINCT strftime('%Y', created_at) AS anio")
+        ->orderByDesc('anio')
+        ->pluck('anio');
+
+    return view('livewire.producto-mas-vendido', [
+        'masVendidos'  => $masVendidos,
+        'total'        => $total,
+        'ultimaPagina' => $ultimaPagina,
+        'desde'        => $offset + 1,
+        'anios'        => $anios,
+    ]);
+}
 }

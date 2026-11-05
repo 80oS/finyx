@@ -104,12 +104,14 @@
         --color-this: #F6F4EE;
         --color-rosita: #e1d2d8;
         --color-rositai: #A65372;
+        --color-rositaf: #D0B9C2;
         
         --color-lavanda: #cecbd2;
         --color-lavandai: #79609B;
 
-        --color-menta: #bbc9c0;
-        --color-mentai: #397653;
+        --color-menta: #A4D8BA;
+        --color-mentai: #429658;
+        --color-mentaf: #8DCEA8;
 }
 
 @layer components {

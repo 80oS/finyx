@@ -15,15 +15,12 @@
         </div>
 
         <div class="flex items-center gap-2">
-
-           
             <button type="button" @click="open = !open"
-                    class="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-linea-exterior-tabla text-gris-grafito transition hover:bg-rositai hover:text-blanco-calido"
-                    :class="open ? 'bg-rositai text-blanco-calido' : ''"
+                    class="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-linea-exterior-tabla transition hover:bg-rositai hover:text-blanco-calido"
+                    :class="open ? 'bg-rosita text-blanco-calido' : 'bg-rositaf text-white'"
                     aria-label="Filtrar">
                 <i class="fa-solid fa-filter text-sm"></i>
             </button>
-
             <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-this text-rositai">
                 <i class="fa-solid fa-arrow-trend-up text-sm"></i>
             </div>
@@ -180,7 +177,7 @@
     @else
 
         
-        <div class="rounded-xl border-rosita bg-rositai px-3 py-5 text-center">
+        <div class="rounded-xl border-rosita bg-rosita px-3 py-5 text-center">
 
             <i class="fa-solid fa-chart-simple mb-2 text-xl text-gris-grafito"></i>
 
