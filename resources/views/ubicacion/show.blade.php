@@ -94,25 +94,27 @@
                     <h2 class="caplitalize text-gris-calido-claro font-bold">productos almacenados</h2>
                 </div>
                 <livewire:asignar-productos-ubicacion :ubicacion-id="$ubicacion->id"/>
-
+                
                 <livewire:mover-productos-ubicacion :ubicacion-id="$ubicacion->id"/>
-                <button class="bg-ambar-claro hover:bg-azul-grisaceo-oscuro rounded p-2 
-                        capitalize text-blanco-calido cursor-pointer">
-                    ver ubicaciones hijas
-                </button>
+                
+                @if ($ubicacion->hijo->isNotEmpty())
+                    <livewire:modal-ubicaciones-hijas :ubicacion-id="$ubicacion->id"/>                    
+                @endif
             </div>
             <div class="rounded-md">
                 <table class="datatable" id="tablePrins">
                     <thead>
                         <tr>
+                            <th>index</th>
                             <th>Nombre</th>
                             <th>Codigo</th>
                             <th>Unidades</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($ubicacion->ProductoUbicacion as $asigna)
+                        @foreach ($ubicacion->ProductoUbicacion as $index => $asigna)
                             <tr>
+                                <td>{{ $index + 1 }}</td>
                                 <td>{{ $asigna->producto->nombre }}</td>
                                 <td>{{ $asigna->producto->codigo }}</td>
                                 <td>{{ $asigna->cantidad }}</td>

@@ -25,9 +25,8 @@
                     <button
                         type="button"
                         wire:click="cerrarModal"
-                        class="text-xl text-gris-calido-claro hover:text-gris-suave cursor-pointer"
-                    >
-                        &times;
+                        class="cursor-pointer">
+                        <x-lucide-x class="h-5 w-5 text-gris-calido-claro hover:text-terracota-oscuro" />
                     </button>
                 </div>
 

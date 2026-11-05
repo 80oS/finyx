@@ -26,7 +26,7 @@ class UbicacionRepository{
 
     public function show(int $id)
     {
-        return Ubicacion::query()->where('id', $id)->with(['padre'])
+        return Ubicacion::query()->where('id', $id)->with(['padre', 'hijo'])
             ->withCount(['ProductoUbicacion as productosDistintos'])
             ->withSum('ProductoUbicacion as unidadesAlmacenadas', 'cantidad')->firstOrFail();
     }
