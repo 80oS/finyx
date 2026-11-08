@@ -43,9 +43,11 @@ Route::resource('/compra', CompraController::class);
 Route::post('/productoChangeState/{id}', [ProductoController::class, 'changeState'])->name('producto.changeState');
 
 Route::resource('/venta', VentasController::class);
+Route::get('/facturaProduct', FacturaProduct::class)->name('agregar.producto');
 
 Route::resource('/impuesto', ImpuestoController::class);
-Route::get('/facturaProduct', FacturaProduct::class)->name('agregar.producto');
+Route::post('/impuesto/changeState/{id}', [ImpuestoController::class, 'changeState'])->name('impuesto.changeState');
+
 
 Route::resource('/ubicacion', UbicacionController::class);
 Route::post('/ubcacionChangeState/{id}', [UbicacionController::class, 'changeState'])->name('ubicacion.changeState');

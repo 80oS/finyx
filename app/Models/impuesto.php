@@ -10,8 +10,17 @@ class impuesto extends Model
     
     protected $fillable = [
         'nombre',
+        'codigo',
+        'porcentaje',
+        'tipo_calculo',
+        'tipo_impuesto',
+        'estado',
         'fecha_inicio',
         'fecha_fin',
-        'porcentaje'
     ];
+
+    public function productoImpuesto()
+    {
+        return $this->hasMany(ProductoImpuesto::class, 'id_impuesto');
+    }
 }

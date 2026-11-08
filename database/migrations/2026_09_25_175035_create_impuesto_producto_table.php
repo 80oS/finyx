@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_producto');
             $table->unsignedBigInteger('id_impuesto');
-            $table->date('fecha_inicio')->nullable();
-            $table->date('fecha_fin')->nullable();
             $table->timestamps();
 
             $table->foreign('id_producto')->references('id')->on('producto');

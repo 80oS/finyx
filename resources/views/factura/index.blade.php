@@ -43,7 +43,7 @@
                         <td>{{ $factura->cliente->nombre }}</td>
                         <td>{{ $factura->observaciones }}</td>
                         <td>{{ $factura->estado }}</td>
-                        <td>{{ $factura->total }}</td>
+                        <td>{{ number_format($factura->total, 0, ',', '.') }}</td>
                         <td>
                             <a href="" class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
                                 text-base px-5 py-1 transition-all">

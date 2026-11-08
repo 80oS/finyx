@@ -15,9 +15,13 @@ class ImpuestoUpdateRequest extends FormRequest
     {
         return [
             'nombre' => 'required|string|max:255',
+            'codigo' => 'required|string',
+            'tipo_calculo' => 'required|string',
+            'tipo_impuesto' => 'nullable|string',
+            'estado' => 'required|boolean',
             'fecha_inicio' => 'required|date',
-            'fecha_fin' => 'nullable',
-            'porcentaje' => 'required|numeric|min:0|max:100',
+            'fecha_fin' => 'nullable|date|after:fecha_inicio',
+            'porcentaje' => 'required|numeric|min:0',
         ];
     }
 
@@ -25,19 +29,16 @@ class ImpuestoUpdateRequest extends FormRequest
     {
         return [
             'nombre.required' => 'El nombre del impuesto es requerido.',
-            'nombre.string' => 'El nombre del impuesto debe ser texto.',
-            'nombre.max' => 'El nombre del impuesto no puede superar los 255 caracteres.',
 
             'fecha_inicio.required' => 'La fecha de inicio es requerida.',
-            'fecha_inicio.date' => 'La fecha de inicio no es válida.',
 
-            'fecha_fin.date' => 'La fecha de fin no es válida.',
-            'fecha_fin.after_or_equal' => 'La fecha de fin debe ser igual o posterior a la fecha de inicio.',
+            'fecha_fin.gt' => 'La fecha de fin debe ser posterior a la fecha de inicio.',
 
             'porcentaje.required' => 'El porcentaje es requerido.',
-            'porcentaje.numeric' => 'El porcentaje debe ser un número.',
-            'porcentaje.min' => 'El porcentaje no puede ser negativo.',
-            'porcentaje.max' => 'El porcentaje no puede ser mayor al 100%.',
+            'porcentaje.min' => 'La tarifa no puede ser negativo.',
+
+            'tipo_calculo.required' => 'El tipo de calculo es requereido',
+            'estado.required' => 'el estado es requerido',
         ];
     }
 }

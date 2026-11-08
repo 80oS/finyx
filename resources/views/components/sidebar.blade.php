@@ -37,7 +37,9 @@
         {{-- Dashboard --}}
 
         <div x-data="{abierto: false}"
-            @mouseenter="abierto = true"
+            @mouseenter="abierto = true" 
+            @mouseleave="abierto = false"
+            @mouseout="abierto = true"
             class="relative">
 
             <button
@@ -90,19 +92,21 @@
                     <span>categorias</span>
                 </a>
 
-                <a href="{{ route('impuesto.create') }}"
+                <a href="{{ route('impuesto.index') }}"
                     class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
-                {{ request()->routeIs('impuesto.create') 
+                {{ request()->routeIs('impuesto.index') 
                 ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
                 : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
-                        <i class="fa-solid fa-coins"></i>
-                    <span>IVA</span>
+                    <i> <x-lucide-badge-percent class="h-6 w-6 text-gris-calido-oscuro"/> </i>
+                    <span>Impuestos</span>
                 </a>
             </div>
         </div>
 
         <div x-data="{abierto: false}"
-            @mouseenter="abierto = true"
+            @mouseenter="abierto = true" 
+            @mouseleave="abierto = false"
+            @mouseout="abierto = true"
             class="relative">
 
             <button
@@ -149,7 +153,9 @@
         </div>
 
         <div x-data="{abierto: false}"
-            @mouseenter="abierto = true"
+            @mouseenter="abierto = true" 
+            @mouseleave="abierto = false"
+            @mouseout="abierto = true"
             class="relative">
 
             <button

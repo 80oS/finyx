@@ -17,9 +17,9 @@ class ImpuestoController extends Controller
 
     public function index()
     {
-          $facturas = $this->venta_service->index();
+        $impuestos = $this->impuesto_service->index();
 
-        return view('factura.index', compact('facturas'));
+        return view('impuesto.index', compact('impuestos'));
     }
 
     public function create()
@@ -29,17 +29,9 @@ class ImpuestoController extends Controller
 
     public function store(ImpuestoStoreRequest $request)
     {
-       $datos = $request->validate([
-        'nombre' => 'required|string|max:255',
-        'fecha_inicio' => 'required|date',
-        'fecha_fin' => 'nullable|date|after_or_equal:fecha_inicio',
-        'porcentaje' => 'required|numeric|min:0|max:50',
-    ]);
+        $this->impuesto_service->crear($request->validated());
 
-    $this->impuesto_service->crear($datos);
-
-    return redirect()->route('venta.index')
-        ->with('success', 'Impuesto creado correctamente.');
+        return redirect()->route('impuesto.index')->with('success', 'impuesto creado correctamente');
     }
 
     public function edit(int $id)
@@ -53,13 +45,13 @@ class ImpuestoController extends Controller
     {
         $this->impuesto_service->update($id, $request->validated());
 
-        return redirect()
-            ->route('impuesto.index')
-            ->with('success', 'Impuesto actualizado exitosamente');
+        return redirect()->route('impuesto.index')->with('success', 'impuesto actualizado con exito');
     }
 
-    public function destroy(int $id)
+    public function changeState(int $id)
     {
-       //
+        $mensaje = $this->impuesto_service->changeState($id);
+
+        return redirect()->route('impuesto.index')->with('success', $mensaje);
     }
 }

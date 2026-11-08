@@ -15,9 +15,9 @@ class ImpuestoRepository{
         Impuesto::create($datos);
     }
 
-     public function buscarId(int $id)
+    public function buscarId(int $id)
     {
-         return Impuesto::findOrFail($id);
+        return Impuesto::findOrFail($id);
     }
 
     public function update(int $id, array $datos)
@@ -28,6 +28,21 @@ class ImpuestoRepository{
         return $impuesto;
     }
 
-    
+    public function changeState(int $id)
+    {
+        $impuesto = impuesto::findOrFail($id);
+
+        if($impuesto['estado'] == 1){
+            $impuesto['estado'] = 0;
+            $mensaje = 'impuesto inhabilitado correctamente';
+        }else{
+            $impuesto['estado'] = 1;
+            $mensaje = 'impuesto habilitado correctamente';
+        }
+
+        $impuesto->save();
+
+        return $mensaje;
+    }
 
 }
