@@ -53,8 +53,8 @@
                 </div>
             </div>
 
-            <div class="">
-                <table class="w-full text-left border-collapse border border-gris-calido-oscuro">
+            <div class="dt-container">
+                <table class="datatable">
                     <thead class="">
                         <tr>
                             <th class="px-3">Producto</th>
@@ -71,7 +71,7 @@
                                 <td class="p-2">{{ $detalle->producto->codigo }}</td>
                                 <td class="p-2">{{ $detalle->precio_unitario }}</td>
                                 <td class="p-2">{{ $detalle->cantidad }}</td>
-                                <td class="p-2">{{ $detalle->subtotal }}</td>
+                                <td class="p-2">{{ number_format($detalle->subtotal, 2, ',', '.') }}</td>
                             </tr>
 
                             <?php
@@ -88,7 +88,7 @@
                     <label for="">iva</label>
                 </div>
                 <div class="grid grid-cols-1">
-                    <label for="">{{ $subtotal }}</label>
+                    <label for="">{{ number_format($subtotal, 2, ',', '.') }}</label>
                     <label for="">subtotal * iva</label>
                 </div>
             </div>
@@ -99,13 +99,14 @@
                 <div class="">
                     <label for="">Total de la factura</label>
                 </div>
-                <div class="">{{ $factura->total }}</div>
+                <div class="">{{ number_format($factura->total, 2, ',', '.') }}</div>
             </div>
         </div>
 
-        <div class="">
+        <div class="border border-blanco-calido rounded-lg p-2 
+            bg-blanco-calido shadow shadow-gris-calido-claro max-h-80">
             <div class="border border-gray-800 rounded-lg p-2 mb-5">
-                <h1 class="text-center">Acciones Rapidas</h1>
+                <h2 class="">Acciones Rapidas</h2>
                 <div class="flex items-center justify-center gap-5 mt-5">
                     <a href="" class="text-xl text-azul-grisaceo hover:bg-azul-grisaceo-oscuro border
                     border-azul-grisaceo-oscuro rounded-sm p-2 hover:text-blanco-calido">
@@ -116,6 +117,31 @@
                         <i class="fa-regular fa-paper-plane"></i>
                     </a>
                 </div>
+            </div>
+
+            <div>
+                <h2 class="text-gris-calido-claro font-bold">Estado</h2>
+                @if ($factura->estado == 'pagado')
+                    <div>
+                        <div class="flex gap-4">
+                            <i> <x-lucide-check class="h-8 w-8 text-verde-salvia bg-verde-suave/50 rounded-full"/> </i>
+                            <p>Pago confirmado</p>
+                        </div>
+                        <p class="text-gris-calido-claro">
+                            {{ $factura->metodo_pago }} - {{ $factura->created_at->format('Y-m-d') }}
+                        </p>
+                    </div>
+                @else
+                    <div>
+                        <div class="flex gap-4">
+                            <i> <x-lucide-x class="h-8 w-8 text-terracota-suave bg-terracota-suave/50 rounded-full"/> </i>
+                            <p>Pago no confirmado</p>
+                        </div>
+                        <p class="text-gris-calido-claro">
+                            {{ $factura->metodo_pago }} - {{ $factura->created_at }}
+                        </p>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

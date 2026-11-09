@@ -30,7 +30,7 @@ Route::post('/register/store', [AuthController::class, 'registroStore'])->name('
 // categoria
 Route::resource('/categoria', CategoriaController::class);
 Route::post('/categoriaChangeState/{id}', [CategoriaController::class, 'changeState'])->name('categoria.changeState');
-
+Route::get('/categorias/{categoria}/productos',[CategoriaController::class, 'productos'])->name('categorias.productos');
 
 Route::resource('/proveedores', ProveedorController::class);
 
@@ -47,7 +47,7 @@ Route::get('/facturaProduct', FacturaProduct::class)->name('agregar.producto');
 
 Route::resource('/impuesto', ImpuestoController::class);
 Route::post('/impuesto/changeState/{id}', [ImpuestoController::class, 'changeState'])->name('impuesto.changeState');
-
+Route::post('/impuesto/AsignarImpuestoProducto/{id}', [ImpuestoController::class, 'asignarImpuestoProducto'])->name('impuesto.producto');
 
 Route::resource('/ubicacion', UbicacionController::class);
 Route::post('/ubcacionChangeState/{id}', [UbicacionController::class, 'changeState'])->name('ubicacion.changeState');

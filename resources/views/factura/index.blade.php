@@ -25,31 +25,24 @@
         <table class="datatable" id="tablePrins">
             <thead>
                 <tr>
-                    <th>id</th>
+                    <th>index</th>
                     <th>codigo</th>
                     <th>cliente</th>
                     <th>observaciones</th>
                     <th>estado</th>
                     <th>total</th>
-                    <th>editar</th>
                     <th>ver detalle</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($facturas as $factura)
+                @foreach ($facturas as $index => $factura)
                     <tr>
-                        <td>{{ $factura->id }}</td>
+                        <td>{{ $index + 1 }}</td>
                         <td>{{ $factura->codigo }}</td>
                         <td>{{ $factura->cliente->nombre }}</td>
                         <td>{{ $factura->observaciones }}</td>
                         <td>{{ $factura->estado }}</td>
                         <td>{{ number_format($factura->total, 0, ',', '.') }}</td>
-                        <td>
-                            <a href="" class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
-                                text-base px-5 py-1 transition-all">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
-                        </td>
                         <td>
                             <a href="{{ route('venta.show', $factura->id) }}" 
                                 class="text-ambar-claro hover:text-ambar-oscuro p-1 text-base">

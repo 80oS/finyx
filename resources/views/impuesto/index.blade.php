@@ -30,6 +30,7 @@
                     <th>Estado</th>
                     <th>Editar</th>
                     <th>Cambiar Estado</th>
+                    <th>Asignar productos</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,6 +62,14 @@
                                     </button>
                                 @endif
                             </form>
+                        </td>
+                        <td>
+                            <a href="{{ route('impuesto.show', $impuesto->id) }}" 
+                                class="text-center text-azul-grisaceo 
+                                hover:text-azul-grisaceo-oscuro text-base">
+                                
+                                <i class="fa-solid fa-link"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach

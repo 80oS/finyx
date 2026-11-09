@@ -36,4 +36,14 @@ class ImpuestoService{
     {
         return $this->impuesto_repository->changeState($id);
     }
+
+    public function impuestoProducto(int $id)
+    {
+        return $this->impuesto_repository->impuestoProducto($id);
+    }
+
+    public function asignarImpuestoProducto(int $id, array $datos)
+    {
+        return $this->impuesto_repository->asignarImpuestoProducto($id, $datos);
+    }
 }

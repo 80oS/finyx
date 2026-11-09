@@ -48,7 +48,7 @@ class Producto extends Model
 
     public function productoImpuesto()
     {
-        return $this->hasMany(productoImpuesto::class, 'id_producto');
+        return $this->hasMany(ProductoImpuesto::class, 'id_producto');
     } 
 
 }

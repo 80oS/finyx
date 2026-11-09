@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Models\categoria;
 use App\Repositories\CategoriaRepository;
 
 class CategoriaService{
@@ -15,6 +16,11 @@ class CategoriaService{
     public function index()
     {
         return $this->categoria_repository->index();
+    }
+
+    public function producto(categoria $categoria)
+    {
+        return $this->categoria_repository->productos($categoria);
     }
 
     public function crear(array $datos)
