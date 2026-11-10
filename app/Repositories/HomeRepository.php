@@ -42,10 +42,10 @@ class HomeRepository
     {
         return DB::select("
             SELECT
-              categoria.nombre,
-              (SELECT COALESCE(SUM(detalle_factura.subtotal), 0)
-                 FROM detalle_factura
-                 JOIN producto ON producto.id = detalle_factura.id_producto
+            categoria.nombre,
+            (SELECT COALESCE(SUM(detalle_factura.subtotal), 0)
+                FROM detalle_factura
+                JOIN producto ON producto.id = detalle_factura.id_producto
                 WHERE producto.id_categoria = categoria.id) AS total_ventas
             FROM categoria
         ");
@@ -78,16 +78,19 @@ class HomeRepository
 
         public function ventasHoy(): float
     {
-        $r = DB::select("
+        $r = DB::selectOne("
             SELECT COALESCE(
-            (SELECT SUM(total)
-                FROM factura
-                WHERE estado = 'pagado'
-                AND date(created_at) = date('now', 'localtime')),
-            0) AS total_hoy
+                (
+                    SELECT SUM(total)
+                    FROM factura
+                    WHERE estado = 'pagado'
+                    AND DATE(created_at) = CURDATE()
+                ),
+                0
+            ) AS total_hoy
         ");
 
-        return (float) $r[0]->total_hoy;
+        return (float) $r->total_hoy;
     }
 
     public function ventasPorDia(): array

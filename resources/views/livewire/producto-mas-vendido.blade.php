@@ -33,7 +33,7 @@
 
         <div class="flex flex-wrap items-end gap-3">
 
-            <div class="min-w-[120px] flex-1">
+            <div class="min-w-30 flex-1">
                 <label class="mb-1 block text-xs font-medium text-gris-grafito">Mes</label>
                 <select wire:model.live="mes"
                         class="w-full rounded-lg border border-linea-exterior-tabla bg-blanco-calido p-2 text-xs text-gris-grafito">
