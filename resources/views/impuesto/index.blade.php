@@ -4,7 +4,7 @@
 
 @section('content')
     @if (session('success'))
-        <div class=" bg-alert-success border border-border-alert-success text-text-alert-success px-4 py-3 rounded mb-4">
+        <div id="success-message" class=" bg-alert-success border border-border-alert-success text-text-alert-success px-4 py-3 rounded mb-4">
             {{ session('success') }}
         </div>
     @endif
@@ -31,6 +31,7 @@
                     <th>Editar</th>
                     <th>Cambiar Estado</th>
                     <th>Asignar productos</th>
+                    <th>Ver detalles</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,6 +70,11 @@
                                 hover:text-azul-grisaceo-oscuro text-base">
                                 
                                 <i class="fa-solid fa-link"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ route('impuesto.detalle') }}" class="text-ambar-claro hover:text-ambar-oscuro p-1 text-base">
+                                <i class="fa-regular fa-eye"></i>
                             </a>
                         </td>
                     </tr>
