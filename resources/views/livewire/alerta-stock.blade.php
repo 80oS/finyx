@@ -1,7 +1,6 @@
+<div x-data="{ open: false }"
+     class="w-full rounded-2xl border border-linea-exterior-tabla bg-blanco-calido p-4 shadow-sm">
 
-<div class="w-full rounded-2xl border border-linea-exterior-tabla bg-blanco-calido p-4 shadow-sm">
-
-    
     <div class="mb-3 flex items-center justify-between gap-3">
 
         <div class="min-w-0">
@@ -14,12 +13,53 @@
             </p>
         </div>
 
-        <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-this text-mentai">
-            <i class="fa-solid fa-triangle-exclamation text-sm"></i>
+        <div class="flex items-center gap-2">
+
+            <button type="button" @click="open = !open"
+                    class="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-linea-exterior-blanco transition hover:bg-mentai hover:text-blanco-calido"
+                    :class="open ? 'bg-menta text-blanco-calido' : 'bg-mentaf text-white'"
+                    aria-label="Filtrar">
+                <i class="fa-solid fa-filter text-sm"></i>
+            </button>
+
+            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-this text-mentai">
+                <i class="fa-solid fa-triangle-exclamation text-sm"></i>
+            </div>
+
         </div>
 
     </div>
 
+    <div x-show="open" x-transition class="mb-3 rounded-xl border border-linea-exterior-tabla p-3">
+
+        <div class="flex flex-wrap items-end gap-3">
+
+            <div class="min-w-[150px] flex-1">
+                <label class="mb-1 block text-xs font-medium text-gris-grafito">Filtrar por</label>
+                <select wire:model.live="filtro"
+                        class="w-full rounded-lg border border-linea-exterior-tabla bg-blanco-calido p-2 text-xs text-gris-grafito">
+                    <option value="promedio">Stock menor e igual a 5</option>
+                    <option value="agotados">Agotados</option>
+                    <option value="todos">Todos</option>
+                </select>
+            </div>
+
+            @if($filtro === 'valor')
+                <div class="w-24">
+                    <label class="mb-1 block text-xs font-medium text-gris-grafito">Stock</label>
+                    <input type="number" min="0"
+                           wire:model.live.debounce.400ms="valor"
+                           placeholder="Ej: 10"
+                           class="w-full rounded-lg border border-linea-exterior-tabla bg-blanco-calido p-2 text-xs text-gris-grafito">
+                </div>
+            @endif
+
+            <button type="button" wire:click="$set('filtro', 'promedio')"
+                    class="cursor-pointer pb-2 text-xs text-gris-grafito hover:underline">
+                Limpiar
+            </button>
+        </div>
+    </div>
 
     @if($productos->count() > 0)
 

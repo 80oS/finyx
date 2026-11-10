@@ -11,16 +11,23 @@
     @endif
 
     <div class="grid grid-cols-2 gap-5 mb-5">
-        <div class="text-2xl font-bold tracking-tight text-foreground text-gray-800">
-            Compras
-        </div>
-        <div class="flex items-end justify-end">
-            <a href="{{ route('compra.create') }}" 
-            class="bg-verde-salvia hover:bg-verde-salvia text-blanco-calido 
-                rounded-sm px-5 py-1 text-right transition-all w-20"
-            >crear</a>
-        </div>
+    <div class="text-2xl font-bold tracking-tight text-foreground text-gray-800">
+        Compras
     </div>
+    <div class="flex items-end justify-end gap-2">
+        <a href="{{ route('compras.historial') }}"
+            class="bg-verde-salvia hover:bg-verde-salvia text-blanco-calido
+                rounded-sm px-5 py-1 text-center transition-all">
+            <i class="fa-solid fa-clock-rotate-left"></i> Historial
+        </a>
+
+        <a href="{{ route('compra.create') }}"
+            class="bg-verde-salvia hover:bg-verde-salvia text-blanco-calido
+                rounded-sm px-5 py-1 text-right transition-all w-20">
+            crear
+        </a>
+    </div>
+</div>
 
     <div class="dt-container">
         <table class="datatable" id="tablePrins">

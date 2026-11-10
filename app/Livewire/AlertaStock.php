@@ -9,8 +9,21 @@ class AlertaStock extends Component
 {
     public int $pagina = 1;
 
+    public string $filtro = '';
+    public ?int $valor = null;
+
     protected int $primeraPagina = 3;
     protected int $porPagina = 3;
+
+    public function updatedFiltro(): void
+    {
+        $this->pagina = 1;
+    }
+
+    public function updatedValor(): void
+    {
+        $this->pagina = 1;
+    }
 
     public function irA(int $pagina): void
     {
@@ -29,7 +42,17 @@ class AlertaStock extends Component
 
     public function render()
     {
-        $consulta = Producto::where('stock', '<=', 5)->orderBy('stock');
+        $consulta = Producto::query();
+
+        match ($this->filtro) {
+            'promedio' => $consulta->where('stock', '<', Producto::selectRaw('AVG(stock)')),
+            'valor'    => $consulta->where('stock', '<=', $this->valor ?? 0),
+            'agotados' => $consulta->where('stock', 0),
+            'todos'    => null,
+            default    => $consulta->where('stock', '<=', 5), // 'bajo'
+        };
+
+        $consulta->orderBy('stock');
 
         $total = (clone $consulta)->count();
 
