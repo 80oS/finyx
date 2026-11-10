@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AsignarProductoUbicacionRequest;
+use App\Http\Requests\MoverProductosUbicacionRequest;
 use App\Http\Requests\UbicacionStoreRequest;
 use App\Http\Requests\UbicacionUpdateRequest;
 use App\Models\Ubicacion;
@@ -71,5 +72,31 @@ class UbicacionController extends Controller
         $ubicacion = $this->ubicacion_service->asignarProductosUbicacion($id, $request->validated());
 
         return redirect()->route('ubicacion.show', $ubicacion->id)->with('success', 'productos asignados correctamnete');
+    }
+
+    public function MoverProductosUbicacion(MoverProductosUbicacionRequest $request, int $id)
+    {
+        $ubicacion = $this->ubicacion_service->buscarId($id);
+        $datos = $request->validated();
+
+        $productos = collect($datos['productos'])
+            ->filter(fn ($producto) => (int) $producto['seleccionado'] === 1)
+            ->map( fn ($producto) => [
+                'id_producto' => (int) $producto['id_producto'],
+                'cantidad' => (int) $producto['cantidad'],
+            ])->values()->all();
+        
+        try {
+            $this->ubicacion_service->moverProductos(
+            (int) $ubicacion->getKey(),
+            (int) $datos['id_destino'],
+            $productos);
+        } catch (\DomainException $e) {
+            return back()
+                ->withErrors(['productos' => $e->getMessage()])
+                ->withInput();
+        }
+
+        return redirect()->route('ubicacion.show', $ubicacion->getKey())->with('success', 'Los productos se trasladaron correctamente.');
     }
 }

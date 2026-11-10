@@ -10,6 +10,17 @@ class CategoriaRepository{
         return categoria::all();
     }
 
+    public function productos(categoria $categoria)
+    {        
+        return $categoria->producto()
+            ->select('id', 'nombre')
+            ->get()
+            ->map(fn($producto) => [
+                'id' => $producto->id,
+                'nombre' => $producto->nombre,
+            ]);
+    }
+
     public function crear(array $datos)
     {
         categoria::create($datos);

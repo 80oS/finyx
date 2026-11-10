@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('impuesto', function (Blueprint $table) {
             $table->id();
-            $table->String('nombre');
+            $table->string('nombre');
+            $table->string('codigo')->unique();
+            $table->decimal('porcentaje', 5, 2);
+            $table->string('tipo_calculo');
+            $table->string('tipo_impuesto')->nullable();
+            $table->boolean('estado');
             $table->date('fecha_inicio');
             $table->date('fecha_fin')->nullable();
-            $table->decimal('porcentaje', 5,2);
+
             $table->timestamps();
         });
     }

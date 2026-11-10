@@ -22,6 +22,11 @@ class CategoriaController extends Controller
         return view('categoria.index', compact('categorias'));
     }
 
+    public function productos(categoria $categoria)
+    {
+        return $this->categoria_service->producto($categoria);
+    }
+
     public function create()
     {
         return view('categoria.create');

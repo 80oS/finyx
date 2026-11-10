@@ -45,4 +45,10 @@ class Producto extends Model
             'id_ubicacion'
         )->withPivot('cantidad')->withTimestamps();
     }
+
+    public function productoImpuesto()
+    {
+        return $this->hasMany(ProductoImpuesto::class, 'id_producto');
+    } 
+
 }

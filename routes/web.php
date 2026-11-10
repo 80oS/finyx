@@ -31,7 +31,7 @@ Route::post('/register/store', [AuthController::class, 'registroStore'])->name('
 // categoria
 Route::resource('/categoria', CategoriaController::class);
 Route::post('/categoriaChangeState/{id}', [CategoriaController::class, 'changeState'])->name('categoria.changeState');
-
+Route::get('/categorias/{categoria}/productos',[CategoriaController::class, 'productos'])->name('categorias.productos');
 
 Route::resource('/proveedores', ProveedorController::class);
 
@@ -44,12 +44,18 @@ Route::resource('/compra', CompraController::class);
 Route::post('/productoChangeState/{id}', [ProductoController::class, 'changeState'])->name('producto.changeState');
 
 Route::resource('/venta', VentasController::class);
+Route::get('/facturaProduct', FacturaProduct::class)->name('agregar.producto');
 
 Route::resource('/impuesto', ImpuestoController::class);
-Route::get('/facturaProduct', FacturaProduct::class)->name('agregar.producto');
+Route::post('/impuesto/changeState/{id}', [ImpuestoController::class, 'changeState'])->name('impuesto.changeState');
+Route::post('/impuesto/AsignarImpuestoProducto/{id}', [ImpuestoController::class, 'asignarImpuestoProducto'])->name('impuesto.producto');
+Route::get('/impuesto/detalle/{id}', [ImpuestoController::class, 'detalleImpuesto'])->name('impuesto.detalle');
 
 Route::resource('/ubicacion', UbicacionController::class);
 Route::post('ubcacionChangeState/{id}', [UbicacionController::class, 'changeState'])->name('ubicacion.changeState');
 Route::put('asignarProductosUbicacion/{id}/productos', [UbicacionController::class, 'asignarProductosUbicacion'])->name('ubicacion.asignarProducto');
 
 Route::get('/compras/historial', HistorialCompras::class)->name('compras.historial');
+Route::post('/ubcacionChangeState/{id}', [UbicacionController::class, 'changeState'])->name('ubicacion.changeState');
+Route::put('/asignarProductosUbicacion/{id}/productos', [UbicacionController::class, 'asignarProductosUbicacion'])->name('ubicacion.asignarProducto');
+Route::post('/ubicacion/{id}/mover-productos', [UbicacionController::class, 'MoverProductosUbicacion'])->name('ubicacion.moverProductos');

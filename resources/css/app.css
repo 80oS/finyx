@@ -194,6 +194,10 @@
     }
 }
 
+[x-cloak] {
+    display: none !important;
+}
+
 #tablePrins {
     visibility: hidden;
     width: 100% !important;
