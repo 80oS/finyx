@@ -46,4 +46,9 @@ class ImpuestoService{
     {
         return $this->impuesto_repository->asignarImpuestoProducto($id, $datos);
     }
+
+    public function detalleImpuesto(int $id)
+    {
+        return $this->impuesto_repository->detalleImpuesto($id);
+    }
 }

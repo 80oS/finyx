@@ -3,16 +3,16 @@
 @section('titulo', 'Asignar impuesto productos')
 
 @section('content')
+    @if($errors->any())
+            <div class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif  
     <div class="flex items-center justify-center">
-        @if($errors->any())
-                <div class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
         <div class="w-full max-w-4xl border border-blanco-calido shadow shadow-gris-calido-claro
             rounded-lg p-3">
             <div class="text-start">
@@ -35,7 +35,7 @@
                     <div class="flex items-center gap-4">
                         <button
                             type="button"
-                            @click="cambiarModo('categoria')"
+                            @click="modo = 'categoria'"
                             :class="modo === 'categoria'
                                 ? 'bg-azul-grisaceo-oscuro text-white'
                                 : 'bg-azul-grisaceo text-white'"
@@ -46,7 +46,7 @@
 
                         <button
                             type="button"
-                            @click="cambiarModo('producto')"
+                            @click="modo = 'producto'"
                             :class="modo === 'producto'
                                 ? 'bg-azul-grisaceo-oscuro text-white'
                                 : 'bg-azul-grisaceo text-white'"
@@ -58,7 +58,7 @@
 
                     {{-- Selector de categoría --}}
                     <div x-show="modo === 'categoria'">
-                        <livewire:productos-categoria />
+                        <livewire:productos-categoria :impuesto-id="$impuesto->id"/>
                     </div>
 
                     {{-- Selector de producto --}}
@@ -67,8 +67,11 @@
                             Seleccionar Producto
                         </label>
 
-                        <select name="productos[0][id_producto]"
-                                :required="modo === 'producto'" class="tom-select">
+                        <select
+                            name="productos[0][id_producto]"
+                            :required="modo === 'producto'"
+                            :disabled="modo !== 'producto'"
+                            class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro focus:outline-none focus:ring-2 focus:ring-linea-foco transition-all">
                             <option value="">Seleccionar producto</option>
 
                             @foreach ($productos as $producto)
@@ -77,6 +80,11 @@
                                 </option>
                             @endforeach
                         </select>
+                        @error('productos.*.id_producto')
+                            <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
 
                 </div>

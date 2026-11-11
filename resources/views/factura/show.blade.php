@@ -88,12 +88,12 @@
                     <label for="">iva</label>
                 </div>
                 <div class="grid grid-cols-1">
-                    <label for="">{{ number_format($subtotal, 2, ',', '.') }}</label>
-                    <label for="">subtotal * iva</label>
+                    <label for=""> ${{ number_format($totales['subtotal'], 2, ',', '.') }}</label>
+                    <label for="">${{ number_format($totales['total_impuestos'], 2, ',', '.') }}</label>
                 </div>
             </div>
 
-            <hr>
+            <hr>    
 
             <div class="grid grid-cols-2">
                 <div class="">

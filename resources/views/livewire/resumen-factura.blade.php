@@ -12,13 +12,32 @@
             </span>
         </div>
 
-        <div class="grid grid-cols-2">
-            <strong class="text-start text-xl">Total:</strong>
+        <div class="grid grid-cols-1">
 
-            <span id="total" class="text-end text-lg">
-                ${{ number_format($total, 2, ',', '.') }}
-                <input type="hidden" name="total" value="{{ $total }}">
-            </span>
+            <div class="grid grid-cols-2">
+                <strong class="text-start text-xl">Subtotal</strong>
+
+                <span class="text-end text-lg">
+                    ${{ number_format($subtotal, 2, ',', '.') }}
+                </span>
+            </div>
+
+            <div class="grid grid-cols-2">
+                <strong class="text-start text-xl">Impuestos</strong>
+
+                <span class="text-end text-lg">
+                    ${{ number_format($totalImpuestos, 2, ',', '.') }}
+                </span>
+            </div>
+
+            <div class="grid grid-cols-2">
+                <strong class="text-start text-xl">Total a Pagar:</strong>
+
+                <span id="total" class="text-end text-lg">
+                    ${{ number_format($total, 2, ',', '.') }}
+                    <input type="hidden" name="total" value="{{ $total }}">
+                </span>
+            </div>
         </div>
     </div>
 </div>

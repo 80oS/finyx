@@ -45,7 +45,9 @@ class VentasController extends Controller
 
     public function show(int $id)
     {
-        $factura = $this->venta_service->show($id);
-        return view('factura.show', compact('factura'));
+        $resultado = $this->venta_service->show($id);
+        $factura = $resultado['factura'];
+        $totales = $resultado['totales'];
+        return view('factura.show', compact('factura', 'totales'));
     }
 }

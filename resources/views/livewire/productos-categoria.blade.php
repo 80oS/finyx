@@ -18,17 +18,14 @@
 
         @if ($productos->isNotEmpty())
 
-            <div class="space-y-2">
-
-                @foreach ($productos as $index => $producto)
-                    <div wire:key="producto-{{ $producto->id }}">
-                        <input type="hidden"
-                            value="{{ $producto->id }}"
-                            class="rounded" name="productos[{{ $index }}][id_producto]">
-                    </div>
-                @endforeach
-
-            </div>
+            @foreach ($productos as $index => $producto)
+                <input
+                    type="hidden"
+                    name="productos[{{ $index }}][id_producto]"
+                    value="{{ $producto->id }}"
+                    wire:key="producto-impuesto-{{ $producto->id }}"
+                >
+            @endforeach
 
             <p class="mt-3 text-sm text-gray-500">
                 Productos seleccionados: {{ count($productos) }}
@@ -45,4 +42,9 @@
             Selecciona una categoría para consultar sus productos.
         </p>
     @endif
+    @error('productos.*.id_producto')
+        <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+            {{ $message }}
+        </p>
+    @enderror
 </div>

@@ -46,8 +46,6 @@
                             </div>
 
                             <livewire:factura-product/>
-                            
-                            
                         </div>
                     </div>
 
