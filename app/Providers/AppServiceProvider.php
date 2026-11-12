@@ -2,24 +2,30 @@
 
 namespace App\Providers;
 
+use App\Repositories\RolRepository;
+use App\Services\RolService;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
-        //
+        $this->app->bind(
+            RolRepository::class,
+            RolService::class
+        );
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
+        Gate::before(function ($user, $ability){
+            return $user->hasRole('Desarrollador')
+                ? true 
+                : false;
+        });
+        
         Schema::defaultStringLength(191);
     }
 }
