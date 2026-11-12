@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\CompraService;
 use App\Models\Proveedor;
+use App\Models\Producto;
+use Illuminate\Http\Request;
 use App\Http\Requests\CompraStoreRequest;
 use App\Http\Requests\CompraUpdateRequest;
 
@@ -28,20 +30,38 @@ class CompraController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+ public function create()
     {
         $proveedores = Proveedor::all();
+        $productos   = Producto::orderBy('nombre')->get();
 
-        return view('compra.create', compact('proveedores'));
+        return view('compra.create', compact('proveedores', 'productos'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CompraStoreRequest $request)
+   public function store(Request $request)
 {
-    $this->compra_service->crear($request->validated());
-    return redirect()->route('compra.index') ->with('success', 'Compra creada correctamente');
+    $request->validate([
+        'id_proveedor' => 'required|exists:proveedor,id',
+        'metodo_pago'  => 'required|in:efectivo,tarjeta,transferencia',
+        'id_producto'  => 'required|exists:producto,id',
+        'cantidad'     => 'required|integer|min:1',
+        'precio'       => 'required|numeric|min:0',
+    ]);
+
+    $this->compra_service->registrar(
+        (int) $request->id_proveedor,
+        $request->metodo_pago,
+        [[
+            'id_producto' => (int) $request->id_producto,
+            'cantidad'    => (int) $request->cantidad,
+            'precio'      => (float) $request->precio,
+        ]]
+    );
+
+    return redirect()->route('compra.index');
 }
 
     /**

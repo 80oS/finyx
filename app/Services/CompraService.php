@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Repositories\CompraRepository;
+use Illuminate\Support\Facades\DB;
 
 class CompraService{
 
@@ -34,5 +35,27 @@ class CompraService{
         return $this->compra_repository->update($id, $datos);
     }
 
+       public function registrar(int $idProveedor, string $metodoPago, array $items)
+    {
+        DB::transaction(function () use ($idProveedor, $metodoPago, $items) {
 
+            $compra = $this->compra_repository->crear([
+                'id_proveedor' => $idProveedor,
+                'metodo_pago'  => $metodoPago,
+                'total'        => collect($items)->sum(fn ($i) => $i['cantidad'] * $i['precio']),
+            ]);
+
+            foreach ($items as $item) {
+                $this->compra_repository->crearDetalle([
+                    'id_compra'       => $compra->id,
+                    'id_producto'     => $item['id_producto'],
+                    'cantidad'        => $item['cantidad'],
+                    'precio_unitario' => $item['precio'],
+                    'subtotal'        => $item['cantidad'] * $item['precio'],
+                ]);
+
+                $this->compra_repository->aumentarStock($item['id_producto'], $item['cantidad']);
+            }
+        });
+    }
 }

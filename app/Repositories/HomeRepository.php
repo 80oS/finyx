@@ -8,9 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class HomeRepository
 {
-    public function index(): int
+   public function index(): int
     {
-        return producto::count();
+        return Producto::count();
+    }
+    
+    public function totalUnidades(): int
+    {
+        return Producto::sum('stock');
     }
 
     public function stockMinimo(): Collection

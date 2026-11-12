@@ -7,7 +7,7 @@
         <div class="w-full max-w-xl bg-blanco-calido border border-blanco-calido rounded-2xl shadow-lg shadow-gris-calido-claro p-8">
             <div class="mb-5">
                 <h2 class="text-xl font-semibold tracking-tight text-gris-calido-oscuro capitalize text-center">
-                    nuevo producto
+                    Editar producto
                 </h2>
             </div>
 
