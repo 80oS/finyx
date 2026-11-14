@@ -108,10 +108,13 @@
             <div class="border border-gray-800 rounded-lg p-2 mb-5">
                 <h2 class="">Acciones Rapidas</h2>
                 <div class="flex items-center justify-center gap-5 mt-5">
-                    <a href="" class="text-xl text-azul-grisaceo hover:bg-azul-grisaceo-oscuro border
-                    border-azul-grisaceo-oscuro rounded-sm p-2 hover:text-blanco-calido">
+                    <button type="button"
+                        onclick="window.print()"
+                        class="rounded-lg bg-azul-grisaceo px-4 py-2 text-blanco-calido
+                            hover:bg-azul-grisaceo-oscuro">
                         <i class="fa-solid fa-print"></i>
-                    </a>
+                        Imprimir factura
+                    </button>
                     <a href="" class="text-xl text-verde-salvia hover:bg-verde-salvia-claro border
                     border-verde-salvia-claro rounded-sm p-2 hover:text-blanco-calido">
                         <i class="fa-regular fa-paper-plane"></i>
