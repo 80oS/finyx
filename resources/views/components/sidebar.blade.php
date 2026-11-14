@@ -71,7 +71,7 @@
                 ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
                 : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    <span>listado de productos</span>
+                    <span> productos</span>
                 </a>
 
                 <a href="{{ route('ubicacion.index') }}" 
@@ -138,7 +138,7 @@
                 ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
                 : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
                     <i class="fa-solid fa-truck"></i>
-                    <span>Lista de proveedores</span>
+                    <span>Proveedores</span>
                 </a>
 
                 <a href="{{ route('compra.index') }}" 
