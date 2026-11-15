@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\producto;
+use App\Models\Producto;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -10,13 +10,18 @@ class HomeRepository
 {
     public function index(): int
     {
-        return producto::count();
+        return Producto::count();
+    }
+    
+    public function totalUnidades(): int
+    {
+        return Producto::sum('stock');
     }
 
     public function stockMinimo(): Collection
     {
-        return producto::select('nombre', 'codigo', 'stock')
-            ->where('stock', '<', producto::selectRaw('AVG(stock)'))
+        return Producto::select('nombre', 'codigo', 'stock')
+            ->where('stock', '<', Producto::selectRaw('AVG(stock)'))
             ->get();
     }
 
@@ -26,7 +31,7 @@ class HomeRepository
             ->selectRaw('SUM(cantidad)')
             ->whereColumn('detalle_factura.id_producto', 'producto.id');
 
-        return producto::select('nombre', 'codigo')
+        return Producto::select('nombre', 'codigo')
             ->selectSub($totalVendido, 'total_vendido')
             ->orderByDesc('total_vendido')
             ->limit(5)
