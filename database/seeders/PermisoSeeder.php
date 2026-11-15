@@ -35,6 +35,11 @@ class PermisoSeeder extends Seeder
             'compra.crear',
             'compra.historial',
 
+            'cliente.ver',
+            'cliente.crear',
+            'cliente.editar',
+            'cliente.eliminar',
+
             'ubicacion.ver',
             'ubicacion.crear',
             'ubicacion.editar',
@@ -44,7 +49,6 @@ class PermisoSeeder extends Seeder
 
             'facturas.ver',
             'facturas.crear',
-            'facturas.show',
 
             'impuesto.ver',
             'impuesto.crear',

@@ -9,7 +9,6 @@ use App\Http\Controllers\CompraController;
 use App\Http\Controllers\UbicacionController;
 use App\Http\Controllers\VentasController;
 use App\Http\Controllers\ImpuestoController;
-use App\Livewire\FacturaProduct;
 use App\Livewire\HistorialCompras;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolController;
@@ -65,30 +64,64 @@ Route::middleware(['auth'])->group(function () {
         ->middlewareFor(['edit', 'update'], 'permission:proveedor.editar');
 
     //Compra
-    Route::resource('/compra', CompraController::class);
-    Route::get('/compras/historial', HistorialCompras::class)->name('compras.historial');
+    Route::resource('/compra', CompraController::class)->except('destroy')
+        ->middlewareFor(['index'], 'permission:compra.ver')
+        ->middlewareFor(['create', 'store'], 'permission:compra.crear');
+    Route::get('/compras/historial', HistorialCompras::class)
+        ->middleware('permission:compra.historial')
+        ->name('compras.historial');
 
     //cliente
-    Route::resource('/cliente', ClienteController::class);
+    Route::resource('/cliente', ClienteController::class)->except('show')
+        ->middlewareFor(['index'], 'permission:cliente.ver')
+        ->middlewareFor(['create', 'store'], 'permission:cliente.crear')
+        ->middlewareFor(['edit', 'update'], 'permission:cliente.editar')
+        ->middlewareFor(['destroy'], 'permission:cliente.eliminar');
 
     //ubicacion
-    Route::resource('/ubicacion', UbicacionController::class);
-    Route::post('/ubcacionChangeState/{id}', [UbicacionController::class, 'changeState'])->name('ubicacion.changeState');
-    Route::put('/asignarProductosUbicacion/{id}/productos', [UbicacionController::class, 'asignarProductosUbicacion'])->name('ubicacion.asignarProducto');
-    Route::post('/ubicacion/{id}/mover-productos', [UbicacionController::class, 'MoverProductosUbicacion'])->name('ubicacion.moverProductos');
+    Route::resource('/ubicacion', UbicacionController::class)->except('destroy')
+        ->middlewareFor(['index'], 'permission:ubicacion.ver')
+        ->middlewareFor(['create', 'store'], 'permission:ubicacion.crear')
+        ->middlewareFor(['edit', 'update'], 'permission:ubicacion.editar');
+
+    Route::post('/ubcacionChangeState/{id}', [UbicacionController::class, 'changeState'])
+        ->middleware('permission:ubicacion.changeState')
+        ->name('ubicacion.changeState');
+    Route::put('/asignarProductosUbicacion/{id}/productos', [UbicacionController::class, 'asignarProductosUbicacion'])
+        ->middleware('permission:ubicacion.asignar-productos')
+        ->name('ubicacion.asignarProducto');
+    Route::post('/ubicacion/{id}/mover-productos', [UbicacionController::class, 'MoverProductosUbicacion'])
+        ->middleware('permission:ubicacion.mover-productos')
+        ->name('ubicacion.moverProductos');
 
     //venta
-    Route::resource('/venta', VentasController::class);
+    Route::resource('/venta', VentasController::class)->except('destroy')
+        ->middlewareFor(['index', 'show'], 'permission:facturas.ver')
+        ->middlewareFor(['create', 'store'], 'permission:facturas.crear');
 
     //impuesto
-    Route::resource('/impuesto', ImpuestoController::class);
-    Route::post('/impuesto/changeState/{id}', [ImpuestoController::class, 'changeState'])->name('impuesto.changeState');
-    Route::post('/impuesto/AsignarImpuestoProducto/{id}', [ImpuestoController::class, 'asignarImpuestoProducto'])->name('impuesto.producto');
-    Route::get('/impuesto/detalle/{id}', [ImpuestoController::class, 'detalleImpuesto'])->name('impuesto.detalle');
+    Route::resource('/impuesto', ImpuestoController::class)->except('destroy')
+        ->middlewareFor(['index'], 'permission:impuesto.ver')
+        ->middlewareFor(['create', 'store'], 'permission:impuesto.crear')
+        ->middlewareFor(['edit', 'update'], 'permission:impuesto.editar')
+        ->middlewareFor(['show'], 'permission:impuesto.show');
+    Route::post('/impuesto/changeState/{id}', [ImpuestoController::class, 'changeState'])
+        ->middleware('permission:impuesto.changeState')
+        ->name('impuesto.changeState');
+    Route::post('/impuesto/AsignarImpuestoProducto/{id}', [ImpuestoController::class, 'asignarImpuestoProducto'])
+        ->middleware('permission:impuesto.producto')
+        ->name('impuesto.producto');
+    Route::get('/impuesto/detalle/{id}', [ImpuestoController::class, 'detalleImpuesto'])
+        ->middleware('permission:impuesto.detalle')
+        ->name('impuesto.detalle');
 
     //registro
-    Route::get('/register', [AuthController::class, 'registroCreate'])->name('registro.create');
-    Route::post('/register/store', [AuthController::class, 'registroStore'])->name('register');
+    Route::get('/register', [AuthController::class, 'registroCreate'])
+        ->middleware('permission:registro.ver')
+        ->name('registro.create');
+    Route::post('/register/store', [AuthController::class, 'registroStore'])
+        ->middleware('permission:registro.crear')
+        ->name('register');
 
     // Módulo de roles
     Route::prefix('roles')

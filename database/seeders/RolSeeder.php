@@ -13,7 +13,7 @@ class RolSeeder extends Seeder
         $roles = [
             'Desarrollador',
             'Administrador',
-            'Empleado',
+            'Cajero',
         ];
 
         foreach ($roles as $rol) {

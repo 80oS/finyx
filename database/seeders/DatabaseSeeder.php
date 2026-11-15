@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
                 VentaSeeder::class,
                 PermisoSeeder::class,
                 RolSeeder::class,
-                RolePermissionSeeder::class
+                RolePermissionSeeder::class,
+                UserSeeder::class,
+                UserRoleSeeder::class
             ]
         );
     }

@@ -20,8 +20,8 @@ class RolePermissionSeeder extends Seeder
             'web'
         );
 
-        $empleado = Role::findByName(
-            'Empleado',
+        $cajero = Role::findByName(
+            'Cajero',
             'web'
         );
 
@@ -59,7 +59,6 @@ class RolePermissionSeeder extends Seeder
 
             'facturas.ver',
             'facturas.crear',
-            'facturas.show',
 
             'impuesto.ver',
             'impuesto.crear',
@@ -76,8 +75,7 @@ class RolePermissionSeeder extends Seeder
         ]);
 
 
-        // Cajero.
-        $empleado->syncPermissions([
+        $cajero->syncPermissions([
             'producto.ver',
             'facturas.ver',
             'facturas.crear',
