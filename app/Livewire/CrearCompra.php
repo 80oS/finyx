@@ -8,8 +8,8 @@ use Livewire\Component;
 
 class CrearCompra extends Component
 {
-    public $id_proveedor;
-    public $id_producto;
+    public int $id_proveedor;
+    public int $id_producto;
     public $cantidad = 1;
     public $precio_unitario = 0;
 
@@ -33,7 +33,7 @@ class CrearCompra extends Component
         $this->reset(['id_producto', 'cantidad', 'precio_unitario']);
     }
 
-    public function quitarItem($index)
+    public function quitarItem(int $index)
     {
         unset($this->items[$index]);
         $this->items = array_values($this->items);

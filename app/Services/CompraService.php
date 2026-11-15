@@ -35,7 +35,7 @@ class CompraService{
         return $this->compra_repository->update($id, $datos);
     }
 
-       public function registrar(int $idProveedor, string $metodoPago, array $items)
+    public function registrar(int $idProveedor, string $metodoPago, array $items)
     {
         DB::transaction(function () use ($idProveedor, $metodoPago, $items) {
 

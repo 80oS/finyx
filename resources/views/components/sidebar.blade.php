@@ -37,8 +37,6 @@
         {{-- Dashboard --}}
 
         <div x-data="{abierto: false}"
-                @mouseenter="sidebarOpen && (abierto = true)"
-                @mouseleave="abierto = false"
             class="relative">
 
             <button
@@ -60,11 +58,7 @@
                 x-cloak
                 x-show="sidebarOpen && abierto"
                 x-transition:enter="transition ease-out duration-200"
-                x-transition:enter-start="opacity-0 -translate-y-1"
                 x-transition:enter-end="opacity-100 translate-y-0"
-                x-transition:leave="transition ease-in duration-150"
-                x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0"
                 class="ml-5 mt-1 border-l-2 border-ambar-claro pl-3">
 
                 <a href="{{ route('producto.index') }}"
@@ -106,8 +100,6 @@
         </div>
 
         <div x-data="{abierto: false}"
-            @mouseenter="sidebarOpen && (abierto = true)"
-            @mouseleave="abierto = false"
             class="relative">
 
             <button
@@ -130,11 +122,7 @@
                 x-cloak
                 x-show="sidebarOpen && abierto"
                 x-transition:enter="transition ease-out duration-200"
-                x-transition:enter-start="opacity-0 -translate-y-1"
                 x-transition:enter-end="opacity-100 translate-y-0"
-                x-transition:leave="transition ease-in duration-150"
-                x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0"
                 class="ml-5 mt-1 border-l-2 border-ambar-claro pl-3">
             
                 <a href="{{ route('proveedores.index') }}" 
@@ -158,8 +146,6 @@
         </div>
 
         <div x-data="{abierto: false}"
-            @mouseenter="sidebarOpen && (abierto = true)"
-            @mouseleave="abierto = false"
             class="relative">
 
             <button
@@ -182,11 +168,8 @@
                 x-cloak
                 x-show="sidebarOpen && abierto"
                 x-transition:enter="transition ease-out duration-200"
-                x-transition:enter-start="opacity-0 -translate-y-1"
+
                 x-transition:enter-end="opacity-100 translate-y-0"
-                x-transition:leave="transition ease-in duration-150"
-                x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0"
                 class="ml-5 mt-1 border-l-2 border-ambar-claro pl-3">
 
                 <a href="{{ route('cliente.index') }}" 
