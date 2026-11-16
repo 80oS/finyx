@@ -42,7 +42,7 @@
                 </p>
 
                 <p class="text-xs text-gris-calido-oscuro">
-                    Administrador
+                    {{ auth()->user()->name }}
                 </p>
 
             </div>

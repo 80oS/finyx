@@ -12,9 +12,6 @@
         <div class="col-span-14 pl-5">
             <h1>FINYX</h1>
         </div>
-        <div>
-            <a href="{{ route('registro.create') }}">Registro</a>
-        </div>
     </nav>
 
     @if (session('success'))

@@ -15,15 +15,8 @@ use Spatie\Permission\Traits\HasRoles;
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
-    use HasRoles;
+    use HasFactory, Notifiable, HasRoles;
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [

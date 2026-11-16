@@ -65,9 +65,7 @@ class PermisoSeeder extends Seeder
             'roles.asignar-permisos',
 
             'usuarios.ver',
-            'usuarios.crear',
             'usuarios.editar',
-            'usuarios.eliminar',
 
             'registro.ver',
             'registro.crear'

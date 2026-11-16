@@ -35,6 +35,6 @@
     @vite(['resources/js/app.js'])
     @stack('script')
     @livewireScripts
-    <script src="https://unpkg.com/lucide@latest"></script>;
+    {{-- <script src="https://unpkg.com/lucide@latest"></script>; --}}
 </body>
 </html>

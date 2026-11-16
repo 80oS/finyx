@@ -4,7 +4,7 @@ namespace App\Repositories;
 use Spatie\Permission\Models\Role;
 
 class RolRepository{
-    public function obtenerTodos()
+    public function index()
     {
         return Role::with('permissions')->orderBy('name')->get();
     }
@@ -20,21 +20,6 @@ class RolRepository{
             'name' => $datos['name'],
             'guard_name' => 'web'
         ]);
-    }
-
-    public function update(int $id, array $datos)
-    {
-        $role = Role::findOrFail($id);
-        $role->update([
-            'name' => $datos['name']
-        ]);
-
-        return $role;
-    }
-
-    public function eliminar(int $id)
-    {
-        return Role::destroy($id);
     }
 
     public function asignarPermisos(int $id, array $permisos)

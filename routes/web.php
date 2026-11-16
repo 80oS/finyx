@@ -11,7 +11,10 @@ use App\Http\Controllers\VentasController;
 use App\Http\Controllers\ImpuestoController;
 use App\Livewire\HistorialCompras;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\UserController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 // ======================================================
@@ -123,32 +126,20 @@ Route::middleware(['auth'])->group(function () {
         ->middleware('permission:registro.crear')
         ->name('register');
 
-    // Módulo de roles
-    Route::prefix('roles')
-        ->name('roles.')
-        ->middleware('permission:roles.ver')
-        ->group(function () {
+    // User
+    Route::get('/user/index', [UserController::class, 'index'])
+        ->middleware('permission:usuarios.ver')
+        ->name('user.index');
 
-            Route::get('/', [RolController::class, 'index'])
-                ->name('index');
-
-            Route::post('/', [RolController::class, 'store'])
-                ->middleware('permission:roles.crear')
-                ->name('store');
-
-            Route::put('/{rol}', [RolController::class, 'update'])
-                ->middleware('permission:roles.editar')
-                ->name('update');
-
-            Route::delete('/{rol}', [RolController::class, 'destroy'])
-                ->middleware('permission:roles.eliminar')
-                ->name('destroy');
-
-            Route::put('/{rol}/permisos', [
-                RolController::class,
-                'asignarPermisos'
-            ])
-                ->middleware('permission:roles.asignar-permisos')
-                ->name('asignar-permisos');
-        });
+    Route::get('/user/{id}', [UserController::class, 'edit'])
+        ->middleware('permission:usuarios.editar')
+        ->name('user.edit');
+    Route::post('user/role/{id}', [UserController::class, 'asignarRole'])
+        ->middleware('permission:usuarios.editar')
+        ->name('user.role');
+    
+    //roles
 });
+
+Route::resource('/rol', RolController::class);
+Route::post('/rol/permiso/{id}', [RolController::class, 'asignarPermisos'])->name('role.permiso');

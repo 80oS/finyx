@@ -11,6 +11,16 @@ class UserService{
         $this->user_repository = $user_repository;
     }
 
+    public function index()
+    {
+        return $this->user_repository->index();
+    }
+
+    public  function buscarId(int $id)
+    {
+        return $this->user_repository->buscarId($id);
+    }
+
     public function asignarRol(int $id, string $rol)
     {
         return $this->user_repository->asignarRol($id, $rol);
