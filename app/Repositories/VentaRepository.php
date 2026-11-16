@@ -16,7 +16,7 @@ class VentaRepository{
 
         unset($datos['productos']);
 
-        $factura = factura::create($datos);
+        $factura = Factura::create($datos);
 
         foreach ($productos as $dato_producto) {
             $factura->detalleFactura()->create($dato_producto);
@@ -27,7 +27,7 @@ class VentaRepository{
 
     public function show(int $id)
     {
-        return factura::with(['cliente', 'detalleFactura.producto' ])->where('id', $id)->firstOrFail();
+        return factura::with(['cliente', 'detalleFactura.producto' ])->findOrFail($id);
     }
 }
 ?>

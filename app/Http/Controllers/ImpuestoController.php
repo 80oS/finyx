@@ -74,4 +74,11 @@ class ImpuestoController extends Controller
 
         return redirect()->route('impuesto.index')->with('success', 'los productos se asignaron al impuesto correctamente');
     }
+
+    public function detalleImpuesto(int $id)
+    {
+        $impuesto = $this->impuesto_service->detalleImpuesto($id);
+
+        return view('impuesto.detalle', compact('impuesto'));
+    }
 }

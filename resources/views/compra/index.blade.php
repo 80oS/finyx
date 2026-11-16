@@ -16,13 +16,13 @@
     </div>
     <div class="flex items-end justify-end gap-2">
         <a href="{{ route('compras.historial') }}"
-           class="bg-verde-salvia hover:bg-verde-salvia text-blanco-calido
+            class="bg-verde-salvia hover:bg-verde-salvia text-blanco-calido
                 rounded-sm px-5 py-1 text-center transition-all">
             <i class="fa-solid fa-clock-rotate-left"></i> Historial
         </a>
 
         <a href="{{ route('compra.create') }}"
-           class="bg-verde-salvia hover:bg-verde-salvia text-blanco-calido
+            class="bg-verde-salvia hover:bg-verde-salvia text-blanco-calido
                 rounded-sm px-5 py-1 text-right transition-all w-20">
             crear
         </a>

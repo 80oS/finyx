@@ -37,6 +37,8 @@ class FacturaProduct extends Component
 
         $this->dispatch(
             'factura-actualizada',
+            totalImpuestos: $this->totalImpuestos(),
+            subtotal: $this->subtotal(),
             total: $this->total(),
             cantidad: $this->contarProductos()
         );
@@ -191,15 +193,18 @@ class FacturaProduct extends Component
                 'nombre' => $producto->nombre,
                 'precio_unitario' => $producto->precio_unitario,
                 'cantidad' => $cantidad,
-                'subtotal' => round(
-                    $cantidad * $producto->precio_unitario,
-                    2
-                ),
+                'subtotal' => 0,
+                'total' => 0,
             ];
         }
 
+        $index = array_key_last($this->productos);
+        $this->actualizarTotalesProducto($index);
+
         $this->dispatch(
             'factura-actualizada',
+            subtotal: $this->subtotal(),
+            totalImpuestos: $this->totalImpuestos(),
             total: $this->total(),
             cantidad: $this->contarProductos()
         );
@@ -222,17 +227,14 @@ class FacturaProduct extends Component
 
     public function calcularSubtotal(int $index): void
     {
-        $cantidad = (float) $this->productos[$index]['cantidad'];
-        $precio_unitario = (float) $this->productos[$index]['precio_unitario'];
-
-        $this->productos[$index]['subtotal'] = round($cantidad * $precio_unitario, 2);
+        $this->actualizarTotalesProducto($index);
     }
 
     public function total(): float
     {
         return round(
             collect($this->productos)->sum(
-                fn($p) => (float) $p['subtotal']
+                fn($p) => (float) $p['total']
             ),
             2
         );
@@ -270,6 +272,41 @@ class FacturaProduct extends Component
                 'pageName' => 'paginaProductos',
             ]
         );
+    }
+
+    public function subtotal(): float
+    {
+        return round(
+            collect($this->productos)->sum(
+                fn($p) => (float) $p['subtotal']
+            ),
+            2
+        );
+    }
+
+    public function totalImpuestos(): float
+    {
+        return round(
+            collect($this->productos)->sum(
+                fn($p) => (float) $p['total'] - (float) $p['subtotal']
+            ),
+            2
+        );
+    }
+
+    private function actualizarTotalesProducto(int $index): void
+    {
+        $producto = Producto::findOrFail(
+            $this->productos[$index]['id_producto']
+        );
+
+        $cantidad = (float) $this->productos[$index]['cantidad'];
+
+        $resultado = app(\App\Services\CalculoImpuestosService::class)
+            ->calcularProducto($producto, $cantidad);
+
+        $this->productos[$index]['subtotal'] = $resultado['subtotal'];
+        $this->productos[$index]['total'] = $resultado['total'];
     }
 
     public function render()

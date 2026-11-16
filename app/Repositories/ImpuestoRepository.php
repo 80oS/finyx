@@ -69,15 +69,20 @@ class ImpuestoRepository{
         foreach($productos as $datoProducto){
             $impuesto->productoImpuesto()->create([
                 'id_producto' => $datoProducto['id_producto'],
-                'tarifa_aplicada' => $impuesto->porcentaje,
-                'fecha_inicio' => $impuesto->fecha_inicio,
-                'fecha_fin' => $impuesto->fecha_fin,
+                'tarifa_aplicada' => $datos['tarifa_aplicada'],
+                'fecha_inicio' => $datos['fecha_inicio'],
+                'fecha_fin' => $datos['fecha_fin'],
                 'estado' => $datos['estado']
             ]);
         }
 
         return $impuesto;
 
+    }
+
+    public function detalleImpuesto(int $id)
+    {
+        return impuesto::query()->where('id', $id)->with(['productoImpuesto.producto'])->first();
     }
 
 }
