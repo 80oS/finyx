@@ -22,47 +22,6 @@
                     <div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
-                                codigo
-                            </label>
-                            <input type="text" name="codigo" 
-                            class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input 
-                            rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 
-                            focus:ring-linea-foco focus:border-linea-foco transition-all">
-                            @error('codigo')
-                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
-                                    {{ $message }}
-                                </p>
-                            @enderror
-                        </div>
-                        <div class="mb-5">
-                            <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
-                                nombre
-                            </label>
-                            <input type="text" name="nombre" placeholder="Ej. Estantería A1" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
-                            @error('nombre')
-                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
-                                    {{ $message }}
-                                </p>
-                            @enderror
-                        </div>
-                        <div class="mb-5">
-                            <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
-                                ubicacion principal
-                            </label>
-                            <select type="text" name="id_ubicacion_padre" class="tom-select">
-                                <option value="">deja vacío si es una ubicación principal</option>
-                                @foreach ($ubicaciones as $ubicacion)
-                                    <option value="{{ $ubicacion->id }}">{{ $ubicacion->nombre }}({{ $ubicacion->codigo }})</option>
-                                @endforeach
-                            </select>
-                            @error('id_ubicacion_padre')
-                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
-                                    {{ $message }}
-                                </p>
-                            @enderror
-                        </div>
-                        <div class="mb-5">
-                            <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
                                 tipo de ubicacion
                             </label>
                             <select type="text" name="tipo" class="tom-select selectSh">
@@ -77,15 +36,133 @@
                                 </p>
                             @enderror
                         </div>
+
+                        <div class="mb-5">
+                            <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
+                                nombre
+                            </label>
+                            <input type="text" name="nombre" placeholder="Ej. Estantería A1" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('nombre')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-5">
+                            <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
+                                codigo
+                            </label>
+                            <input type="text" name="codigo" 
+                            class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input 
+                            rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 
+                            focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('codigo')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+                        
+                        <div class="mb-5" x-data="{ tienePadre: false }">
+
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="block text-sm font-medium text-gris-calido-oscuro">
+                                ¿Pertenece a otra ubicación?
+                            </label>
+
+                            <span class="text-xs text-gris-calido-oscuro">
+                                Opcional
+                            </span>
+                        </div>
+
+                        <p class="text-sm text-gris-calido-oscuro mb-3">
+                            Activa esta opción si estás creando una ubicación
+                            dentro de otra existente.
+                        </p>
+
+                        <label class="flex items-center gap-3 cursor-pointer
+                                    rounded-lg border border-linea-sidebar p-3">
+
+                            <input
+                                type="checkbox"
+                                x-model="tienePadre"
+                                class="rounded text-ambar-claro focus:ring-ambar-claro"
+                            >
+
+                            <div>
+                                <span class="block text-sm font-medium">
+                                    Esta ubicación depende de otra
+                                </span>
+                                <span class="text-xs text-gris-calido-oscuro">
+                                    Por ejemplo, un estante dentro de una bodega.
+                                </span>
+                            </div>
+
+                        </label>
+
+                        <div x-show="tienePadre"
+                            x-transition
+                            x-cloak
+                            class="mt-4">
+
+                            <label for="id_ubicacion_padre"
+                                class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
+                                Selecciona la ubicación contenedora
+                            </label>
+
+                            <select
+                                id="id_ubicacion_padre"
+                                name="id_ubicacion_padre"
+                                class="tom-select"
+                                :required="tienePadre">
+
+                                <option value="">Seleccionar ubicación</option>
+
+                                @foreach ($ubicaciones as $ubicacion)
+                                    <option value="{{ $ubicacion->id }}">
+                                        {{ $ubicacion->nombre }} ({{ $ubicacion->codigo }})
+                                    </option>
+                                @endforeach
+
+                            </select>
+
+                            @error('id_ubicacion_padre')
+                                <p class="text-text-alert-error text-sm mt-2">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+
+                        </div>
+
+                            <input type="hidden"
+                                name="id_ubicacion_padre"
+                                value=""
+                                x-if="false">
+
+                        </div>
+
                     </div>
 
                     <div>
-                        <div class="flex flex-row items-center justify-center mb-5 gap-3">
+                        <div class="grid grid-cols-2 mb-5 gap-3">
                             <div>
-                                <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
-                                    capacidad
-                                </label>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gris-calido-oscuro">
+                                        Capacidad
+                                        <span class="text-xs font-normal text-gris-calido-oscuro">
+                                            (Opcional)
+                                        </span>
+                                    </label>
+                                </div>
                                 <input type="text" name="capacidad" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                                <p class="text-xs text-gris-calido-oscuro mt-1">
+                                        Define cuánto puede almacenar esta ubicación.
+                                    </p>
+                                <p class="text-xs text-gris-calido-oscuro mt-1">
+                                    Cantidad máxima que puede almacenar.
+                                </p>
+
                                 @error('capacidad')
                                     <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
                                         {{ $message }}
@@ -94,10 +171,12 @@
                             </div>
                             <div>
                                 <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
-                                    unidad
+                                    Unidad de medida
                                 </label>
                                 <input type="text" name="unidad_capacidad" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
-                                
+                                <p class="text-xs text-gris-calido-oscuro mt-1">
+                                    Cajas, unidades, litros, kg, etc.
+                                </p>
                                 @error('unidad_capacidad')
                                 <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
                                     {{ $message }}

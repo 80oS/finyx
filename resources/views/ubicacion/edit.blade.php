@@ -24,13 +24,15 @@
                     <div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
-                                codigo
+                                tipo de ubicacion
                             </label>
-                            <input type="text" name="codigo" value="{{ $ubicacion->codigo }}" 
-                            class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input 
-                            rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 
-                            focus:ring-linea-foco focus:border-linea-foco transition-all">
-                            @error('codigo')
+                            <select type="text" name="tipo" class="tom-select">
+                                <option value="estanteria">Estanteria</option>
+                                <option value="bodega">Bodega</option>
+                                <option value="nevera">nevera</option>
+                            </select>
+
+                            @error('tipo')
                                 <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
                                     {{ $message }}
                                 </p>
@@ -50,6 +52,21 @@
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
+                                codigo
+                            </label>
+                            <input type="text" name="codigo" value="{{ $ubicacion->codigo }}" 
+                            class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input 
+                            rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 
+                            focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('codigo')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+                        
+                        <div class="mb-5">
+                            <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
                                 ubicacion principal
                             </label>
                             <select type="text" name="id_ubicacion_padre" class="tom-select">
@@ -65,22 +82,6 @@
                                 @endforeach
                             </select>
                             @error('id_ubicacion_padre')
-                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
-                                    {{ $message }}
-                                </p>
-                            @enderror
-                        </div>
-                        <div class="mb-5">
-                            <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
-                                tipo de ubicacion
-                            </label>
-                            <select type="text" name="tipo" class="tom-select">
-                                <option value="estanteria">Estanteria</option>
-                                <option value="bodega">Bodega</option>
-                                <option value="nevera">nevera</option>
-                            </select>
-
-                            @error('tipo')
                                 <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
                                     {{ $message }}
                                 </p>

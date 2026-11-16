@@ -73,7 +73,7 @@
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route('impuesto.detalle') }}" class="text-ambar-claro hover:text-ambar-oscuro p-1 text-base">
+                            <a href="{{ route('impuesto.detalle', $impuesto->id) }}" class="text-ambar-claro hover:text-ambar-oscuro p-1 text-base">
                                 <i class="fa-regular fa-eye"></i>
                             </a>
                         </td>

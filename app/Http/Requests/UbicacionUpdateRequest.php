@@ -23,7 +23,7 @@ class UbicacionUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'codigo' => 'required|string',
+            'codigo' => 'required|string|distinct',
             'nombre' => 'required|string',
             'descripcion' => 'nullable|string',
             'tipo' => 'required|string',
@@ -39,6 +39,7 @@ class UbicacionUpdateRequest extends FormRequest
     {
         return [
             'codigo.required' => 'cogigo obligatorio único y máximo 30 caracteres',
+            'codigo.distinct' => 'El codigo debe ser unico, este codigo ya esta creado',
             'nombre.required' => 'nombre obligatorio, máximo 100 caracteres',
             'tipo.required' => 'tipo de hubicacion obligatorio, con opciones predefinidas',
             'estado,required' => 'el estado debe ser valor permitido, por ejemplo activa o inactiva',

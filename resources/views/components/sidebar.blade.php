@@ -37,9 +37,6 @@
         {{-- Dashboard --}}
 
         <div x-data="{abierto: false}"
-            @mouseenter="abierto = true" 
-            @mouseleave="abierto = false"
-            @mouseout="abierto = true"
             class="relative">
 
             <button
@@ -50,7 +47,7 @@
                         rounded-lg hover:bg-lino-natural transition-colors">
                 <span class="flex items-center gap-2">
                     <i> <x-lucide-boxes class="h-6 w-6 text-gris-calido-oscuro"/> </i>
-                    productos
+                    <span x-show="sidebarOpen" x-transition>productos</span>
                 </span>
                 <i
                     class="fa-solid fa-chevron-down text-xs transition-transform"
@@ -59,9 +56,8 @@
 
             <div 
                 x-cloak
-                x-show="abierto"
+                x-show="sidebarOpen && abierto"
                 x-transition:enter="transition ease-out duration-200"
-                x-transition:enter-start="opacity-0 -translate-y-1"
                 x-transition:enter-end="opacity-100 translate-y-0"
                 class="ml-5 mt-1 border-l-2 border-ambar-claro pl-3">
 
@@ -104,9 +100,6 @@
         </div>
 
         <div x-data="{abierto: false}"
-            @mouseenter="abierto = true" 
-            @mouseleave="abierto = false"
-            @mouseout="abierto = true"
             class="relative">
 
             <button
@@ -117,7 +110,8 @@
                         rounded-lg hover:bg-lino-natural transition-colors">
                 <span class="flex items-center gap-2">
                     <i> <x-lucide-van class="h-6 w-6 text-gris-calido-oscuro"/> </i>
-                    proveedores
+                    
+                    <span x-show="sidebarOpen" x-transition>proveedores</span>
                 </span>
                 <i
                     class="fa-solid fa-chevron-down text-xs transition-transform"
@@ -126,9 +120,8 @@
 
             <div 
                 x-cloak
-                x-show="abierto"
+                x-show="sidebarOpen && abierto"
                 x-transition:enter="transition ease-out duration-200"
-                x-transition:enter-start="opacity-0 -translate-y-1"
                 x-transition:enter-end="opacity-100 translate-y-0"
                 class="ml-5 mt-1 border-l-2 border-ambar-claro pl-3">
             
@@ -153,9 +146,6 @@
         </div>
 
         <div x-data="{abierto: false}"
-            @mouseenter="abierto = true" 
-            @mouseleave="abierto = false"
-            @mouseout="abierto = true"
             class="relative">
 
             <button
@@ -166,7 +156,8 @@
                         rounded-lg hover:bg-lino-natural transition-colors">
                 <span class="flex items-center gap-2">
                     <i> <x-lucide-receipt class="h-6 w-6 text-gris-calido-oscuro"/> </i>
-                    facturacion
+                    
+                    <span x-show="sidebarOpen" x-transition>facturacion</span>
                 </span>
                 <i
                     class="fa-solid fa-chevron-down text-xs transition-transform"
@@ -175,9 +166,9 @@
 
             <div 
                 x-cloak
-                x-show="abierto"
+                x-show="sidebarOpen && abierto"
                 x-transition:enter="transition ease-out duration-200"
-                x-transition:enter-start="opacity-0 -translate-y-1"
+
                 x-transition:enter-end="opacity-100 translate-y-0"
                 class="ml-5 mt-1 border-l-2 border-ambar-claro pl-3">
 
@@ -187,7 +178,7 @@
                 ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
                 : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
                     <i class="fa-solid fa-users pr-3"></i>
-                    <span>Cliente</span>
+                    <span >Cliente</span>
                 </a>
 
                 <a href="{{ route('venta.index') }}" 
@@ -196,7 +187,7 @@
                 ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
                 : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
                     <i class="fa-solid fa-coins"></i>
-                    <span>Ventas</span>
+                    <spa>Ventas</spa>
                 </a>
             </div>
         </div>

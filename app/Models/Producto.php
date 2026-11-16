@@ -49,6 +49,21 @@ class Producto extends Model
     public function productoImpuesto()
     {
         return $this->hasMany(ProductoImpuesto::class, 'id_producto');
-    } 
+    }
+
+    public function impuestos()
+    {
+        return $this->belongsToMany(
+            impuesto::class,
+            'impuesto_producto',
+            'id_producto',
+            'id_impuesto'
+        )->withPivot([
+            'tarifa_aplicada',
+            'fecha_inicio',
+            'fecha_fin',
+            'estado',
+        ])->withTimestamps();
+    }
 
 }
