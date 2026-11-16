@@ -6,8 +6,8 @@ use App\Models\DetalleCompra;
 use App\Models\Producto;
 use App\Models\Proveedor;
 
-class CompraRepository{
-
+class CompraRepository
+{
     public function index()
     {
         return Compra::with('proveedor')->get();
@@ -25,8 +25,14 @@ class CompraRepository{
 
     public function update(int $id, array $datos)
     {
-        $Compras = Compra::findOrFail($id);
-        $Compras->update($datos);
+        $compra = Compra::findOrFail($id);
+        $compra->update($datos);
+    }
+
+    public function eliminar(int $id): void
+    {
+        DetalleCompra::where('id_compra', $id)->delete();
+        Compra::findOrFail($id)->delete();
     }
 
     public function proveedores()
@@ -34,23 +40,21 @@ class CompraRepository{
         return Proveedor::all();
     }
 
-    public function productos()
-    {
-        return Producto::orderBy('nombre')->get();
-    }
-
-    public function nombreProducto(int $idProducto): ?string
-    {
-        return Producto::where('id', $idProducto)->value('nombre');
-    }
-
     public function crearDetalle(array $datos)
     {
         return DetalleCompra::create($datos);
     }
 
-    public function aumentarStock(int $idProducto, int $cantidad): void
+    public function aumentarStockPorNombre(string $nombre, int $cantidad): bool
     {
-        Producto::where('id', $idProducto)->increment('stock', $cantidad);
+        $producto = Producto::whereRaw('LOWER(nombre) = ?', [mb_strtolower(trim($nombre))])->first();
+
+        if (!$producto) {
+            return false;
+        }
+
+        $producto->increment('stock', $cantidad);
+
+        return true;
     }
 }
