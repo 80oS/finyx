@@ -95,7 +95,7 @@ class CompraService
                     'subtotal'        => $this->calcularLinea($item)['subtotal'],
                 ]);
 
-                $actualizado = $this->compra_repository->aumentarStockPorNombre($item['nombre'], (int) $item['cantidad']);
+                $actualizado = $this->compra_repository->aumentarStockPorNombre($item['nombre'], (int) $item['cantidad'],  (float) $item['precio']);
 
                 if (!$actualizado) {
                     $sinInventario[] = $item['nombre'];
