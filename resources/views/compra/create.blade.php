@@ -12,22 +12,11 @@
             </h2>
         </div>
 
-        @if($errors->any())
-            <div class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
         <form action="{{ route('compra.store') }}" method="POST">
             @csrf
 
             <div class="grid grid-cols-2">
 
-                {{-- Columna izquierda --}}
                 <div class="mr-5">
 
                     <div class="mb-5">
@@ -38,16 +27,13 @@
 
                         <select name="id_proveedor" id="id_proveedor"
                             class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
-
                             <option value="">Seleccione un proveedor</option>
-
                             @foreach ($proveedores as $proveedor)
                                 <option value="{{ $proveedor->id }}"
                                     {{ old('id_proveedor') == $proveedor->id ? 'selected' : '' }}>
                                     {{ $proveedor->nombre }}
                                 </option>
                             @endforeach
-
                         </select>
                     </div>
 

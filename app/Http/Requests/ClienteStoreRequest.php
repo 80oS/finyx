@@ -27,10 +27,11 @@ class ClienteStoreRequest extends FormRequest
         return [
             'nombre.required' => 'nombre del cliente es requerido',
             'cedula.required' => 'cedula del cliente es requerido',
-            'cedula.min:10' => 'el numero de cedula debe tener al menos 10 caracteres',
+            'cedula.min' => 'el numero de cedula debe tener al menos 10 caracteres',
             'telefono.required' => 'telefono del cliente es requerido',
-            'telefono.min:10' => 'el telefono debe tener al menos 10 caracteres',
+            'telefono.min' => 'el telefono debe tener al menos 10 caracteres',
             'correo.required' => 'correo del cliente es requerido',
+            'correo.email' => 'El correo debe tener un formato valido debe ser correo',
             'direccion.required' => 'direccion del cliente es requerido',
 
         ];

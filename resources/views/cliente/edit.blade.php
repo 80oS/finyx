@@ -11,16 +11,6 @@
                 </h2>
             </div>
 
-            @if($errors->any())
-                <div class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             <form action="{{ route('cliente.update', $cliente->id) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -31,18 +21,33 @@
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Nombre</label>
                             <input type="text" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all"
                             name="nombre" value="{{ $cliente->nombre }}">
+                            @error('nombre')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Cedula</label>
-                            <input type="text" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all"
+                            <input type="text" min="10" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all"
                             name="cedula" value="{{ $cliente->cedula }}">
+                            @error('cedula')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Telefono</label>
                             <input type="text" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all"
                             name="telefono" value="{{ $cliente->telefono }}">
+                            @error('telefono')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                     </div>
 
@@ -51,12 +56,22 @@
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Correo</label>
                             <input type="email" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all"
                             name="correo" value="{{ $cliente->correo }}">
+                            @error('correo')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Direccion</label>
                             <input type="text" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all"
                             name="direccion" value="{{ $cliente->direccion }}">
+                            @error('direccion')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="flex items-center justify-end gap-3 pt-4 border-t border-gris-calido-claro">

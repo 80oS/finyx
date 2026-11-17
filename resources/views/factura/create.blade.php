@@ -16,16 +16,6 @@
                 </div>
             </div>
 
-            @if($errors->any())
-                <div class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             <form action="{{ route('venta.store') }}" method="POST">
                 @csrf
 
@@ -33,6 +23,11 @@
                     <div class=" col-span-2">
                         <div class="mb-5">
                             <livewire:cliente-buscar/>
+                            @error('id_cliente')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="mb-5">
@@ -44,8 +39,12 @@
                                     Busca por nombre o escanea el codigo de barras.
                                 </p>
                             </div>
-
                             <livewire:factura-product/>
+                            @error('productos')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                     </div>
 
@@ -58,6 +57,11 @@
                                 <option value="pendiente">pendiente</option>
                                 <option value="pagado">pagado</option>
                             </select>
+                            @error('estado')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <livewire:modal/>

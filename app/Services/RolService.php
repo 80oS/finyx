@@ -2,7 +2,6 @@
 namespace App\Services;
 
 use App\Repositories\RolRepository;
-use Spatie\Permission\Models\Role;
 
 class RolService{
     private RolRepository $rol_repository;

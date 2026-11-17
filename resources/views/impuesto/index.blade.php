@@ -78,10 +78,14 @@
                         @endcan
                         @can('impuesto.show')
                             <td>
-                                <a href="{{ route('impuesto.show', $impuesto->id) }}" class="text-center text-azul-grisaceo 
-                                                            hover:text-azul-grisaceo-oscuro text-base">
-                                    <i class="fa-solid fa-link"></i>
-                                </a>
+                                @if ($impuesto->estado == 1)
+                                    <a href="{{ route('impuesto.show', $impuesto->id) }}" class="text-center text-azul-grisaceo 
+                                                                                                hover:text-azul-grisaceo-oscuro text-base">
+                                        <i class="fa-solid fa-link"></i>
+                                    </a>
+                                @else
+                                    <span>Impuesto inactivo</span>
+                                @endif
                             </td>
                         @endcan
                         @can('impuesto.detalle')

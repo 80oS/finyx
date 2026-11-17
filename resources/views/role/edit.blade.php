@@ -23,23 +23,46 @@
                         Permisos
                     </label>
                     <div class="overflow-y-scroll max-h-50 border border-gris-suave/50 p-3">
-                        <div class="flex flex-col gap-3">
-                            @forelse ($permisos as $permiso)
-                                <label for="">
-                                    <input type="checkbox" name="permisos[]" value="{{ $permiso->name }}" 
-                                    class="h-5 w-5 accent-verde-salvia-claro 
-                                    border-verde-salvia-claro rounded">
-                                    <span class="text-sm text-gris-calido-oscuro">
-                                        {{ $permiso->name }}
+                        <div class="flex flex-col gap-5">
+                        
+                            @forelse ($permisos as $modulo => $permisosModulo)
+                        
+                            <div class="rounded-xl border border-linea-input overflow-hidden">
+                        
+                                <div class="flex items-center justify-between bg-lino-natural px-4 py-3">
+                                    <h4 class="text-sm font-bold text-gris-calido-oscuro">
+                                        {{ $modulo }}
+                                    </h4>
+                        
+                                    <span class="rounded-full bg-verde-salvia/10 px-2.5 py-1
+                                                    text-xs font-semibold text-verde-salvia">
+                                        {{ $permisosModulo->count() }}
                                     </span>
-                                </label>
+                                </div>
+                        
+                                <div class="flex flex-col gap-3 bg-blanco-calido p-4">
+                                    @foreach ($permisosModulo as $permiso)
+                                    <label class="flex items-center gap-3 cursor-pointer
+                                                        rounded-lg px-2 py-1.5 hover:bg-lino-natural/60">
+                        
+                                        <input type="checkbox" name="permisos[]" value="{{ $permiso->name }}"
+                                            class="h-5 w-5 accent-verde-salvia-claro rounded">
+                        
+                                        <span class="text-sm text-gris-calido-oscuro">
+                                            {{ $permiso->name }}
+                                        </span>
+                                    </label>
+                                    @endforeach
+                                </div>
+                        
+                            </div>
+                        
                             @empty
-                                <label for="">
-                                    <span class="text-sm text-gris-calido-oscuro">
-                                        ya tiene todos los permisos asignados.
-                                    </span>
-                                </label>
+                            <p class="text-sm text-gris-calido-oscuro">
+                                Ya tiene todos los permisos asignados.
+                            </p>
                             @endforelse
+                        
                         </div>
                     </div>
                 </div>
