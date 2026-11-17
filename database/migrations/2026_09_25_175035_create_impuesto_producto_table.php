@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_producto');
             $table->unsignedBigInteger('id_impuesto');
-            $table->decimal('tarifa_aplicada', 10, 2);
+            $table->decimal('tarifa_aplicada', 12, 4);
             $table->date('fecha_inicio');
             $table->date('fecha_fin')->nullable();
             $table->boolean('estado');

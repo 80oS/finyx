@@ -20,11 +20,12 @@
                 </h1>
             </div>
         </div>
-        <div class="flex items-end justify-end">
-            <a href="{{ route('ubicacion.create') }}" 
-            class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido rounded-sm px-5 py-1 text-right transition-all w-20"
-            >crear</a>
-        </div>
+        @can('ubicacion.crear')
+            <div class="flex items-end justify-end">
+                <a href="{{ route('ubicacion.create') }}"
+                    class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido rounded-sm px-5 py-1 text-right transition-all w-20">crear</a>
+            </div>
+        @endcan
     </div>
 
     <div class="dt-container">
@@ -38,9 +39,15 @@
                     <th>tipo</th>
                     <th>cantidad productos</th>
                     <th>estado</th>
-                    <th>editar</th>
-                    <th>ver detalles</th>
-                    <th>cambiar estado</th>
+                    @can('ubicacion.editar')
+                        <th>editar</th>
+                    @endcan
+                    @can('ubicacion.ver')
+                        <th>ver detalles</th>
+                    @endcan
+                    @can('ubicacion.changeState')
+                        <th>cambiar estado</th>
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -53,37 +60,42 @@
                     <td>{{ $ubicacion->tipo }}</td>
                     <td>{{ $ubicacion->producto_ubicacion_count }}</td>
                     <td>{{ $ubicacion->estado }}</td>
-                    <td>
-                        <a href="{{ route('ubicacion.edit', $ubicacion->id) }}" class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
-                                text-base p-1 transition-all">
-                            <i class="fa-regular fa-pen-to-square"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{{ route('ubicacion.show', $ubicacion->id) }}" class="text-ambar-claro hover:text-ambar-oscuro p-1 text-base">
-                            <i class="fa-regular fa-eye"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <form action="{{ route('ubicacion.changeState', $ubicacion->id) }}" method="POST" wire:navigate>
-                            @if ($ubicacion->estado == 'activa')
-                                <button type="submit"
-                                    class="bg-terracota-suave hover:bg-terracota-oscuro 
-                                    text-blanco-calido rounded-sm px-2 py-2 transition-all 
-                                    cursor-pointer text-base">
+                    @can('ubicacion.editar')
+                        <td>
+                            <a href="{{ route('ubicacion.edit', $ubicacion->id) }}" class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
+                                                        text-base p-1 transition-all">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                        </td>
+                    @endcan
+                    @can('ubicacion.ver')
+                        <td>
+                            <a href="{{ route('ubicacion.show', $ubicacion->id) }}"
+                                class="text-ambar-claro hover:text-ambar-oscuro p-1 text-base">
+                                <i class="fa-regular fa-eye"></i>
+                            </a>
+                        </td>
+                    @endcan
+                    @can('ubicacion.changeState')
+                        <td>
+                            <form action="{{ route('ubicacion.changeState', $ubicacion->id) }}" method="POST" wire:navigate>
+                                @if ($ubicacion->estado == 'activa')
+                                <button type="submit" class="bg-terracota-suave hover:bg-terracota-oscuro 
+                                                            text-blanco-calido rounded-sm px-2 py-2 transition-all 
+                                                            cursor-pointer text-base">
                                     desabilitar
                                 </button>
-
-                            @else
-                                <button type="submit"
-                                    class="bg-verde-salvia hover:bg-verde-salvia-claro 
-                                    text-blanco-calido rounded-sm px-2 py-2 transition-all 
-                                    cursor-pointer text-base">
+                        
+                                @else
+                                <button type="submit" class="bg-verde-salvia hover:bg-verde-salvia-claro 
+                                                            text-blanco-calido rounded-sm px-2 py-2 transition-all 
+                                                            cursor-pointer text-base">
                                     habilitar
                                 </button>
-                            @endif
-                        </form>
-                    </td>
+                                @endif
+                            </form>
+                        </td>
+                    @endcan
                 </tr>
                 @endforeach
             </tbody>

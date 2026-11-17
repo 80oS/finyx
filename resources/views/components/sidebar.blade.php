@@ -61,41 +61,49 @@
                 x-transition:enter-end="opacity-100 translate-y-0"
                 class="ml-5 mt-1 border-l-2 border-ambar-claro pl-3">
 
-                <a href="{{ route('producto.index') }}"
-                class="flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all 
-                {{ request()->routeIs('producto.index') 
-                ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
-                : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span>listado de productos</span>
-                </a>
+                @can('producto.ver')
+                    <a href="{{ route('producto.index') }}"
+                    class="flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all 
+                    {{ request()->routeIs('producto.index') 
+                    ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
+                    : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span>productos</span>
+                    </a>
+                @endcan
 
-                <a href="{{ route('ubicacion.index') }}" 
-                class="flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
-                    {{ request()->routeIs('ubicacion.index') 
-                ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
-                : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro'}}">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>ubicaciones</span>
-                </a>
+                @can('ubicacion.ver')
+                    <a href="{{ route('ubicacion.index') }}" 
+                    class="flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
+                        {{ request()->routeIs('ubicacion.index') 
+                    ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
+                    : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro'}}">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>ubicaciones</span>
+                    </a>
+                @endcan
 
-                <a href="{{ route('categoria.index') }}" 
-                class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
-                {{ request()->routeIs('categoria.index') 
-                ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
-                : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
-                    <i class="fa-solid fa-layer-group"></i>
-                    <span>categorias</span>
-                </a>
-
-                <a href="{{ route('impuesto.index') }}"
+                @can('categoria.ver')
+                    <a href="{{ route('categoria.index') }}" 
                     class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
-                {{ request()->routeIs('impuesto.index') 
-                ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
-                : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
-                    <i> <x-lucide-badge-percent class="h-6 w-6 text-gris-calido-oscuro"/> </i>
-                    <span>Impuestos</span>
-                </a>
+                    {{ request()->routeIs('categoria.index') 
+                    ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
+                    : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>categorias</span>
+                    </a>
+                @endcan
+
+                @can('impuesto.ver')
+                    <a href="{{ route('impuesto.index') }}"
+                    class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
+                    {{ request()->routeIs('impuesto.index') 
+                    ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
+                    : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
+                        <i> <x-lucide-badge-percent class="h-6 w-6 text-gris-calido-oscuro"/> </i>
+                        <span>Impuestos</span>
+                    </a>
+                @endcan
             </div>
         </div>
 
@@ -125,23 +133,27 @@
                 x-transition:enter-end="opacity-100 translate-y-0"
                 class="ml-5 mt-1 border-l-2 border-ambar-claro pl-3">
             
-                <a href="{{ route('proveedores.index') }}" 
-                class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
-                {{ request()->routeIs('proveedores.index') 
-                ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
-                : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
-                    <i class="fa-solid fa-truck"></i>
-                    <span>Lista de proveedores</span>
-                </a>
+                @can('proveedor.ver')
+                    <a href="{{ route('proveedores.index') }}" 
+                    class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
+                    {{ request()->routeIs('proveedores.index') 
+                    ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
+                    : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
+                        <i class="fa-solid fa-truck"></i>
+                        <span>proveedores</span>
+                    </a>
+                @endcan
 
-                <a href="{{ route('compra.index') }}" 
-                class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
-                {{ request()->routeIs('compra.index') 
-                ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
-                : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
-                    <i class="fa-solid fa-bag-shopping pr-3"></i>
-                    <span>Compra</span>
-                </a>
+                @can('compra.ver')
+                    <a href="{{ route('compra.index') }}" 
+                    class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
+                    {{ request()->routeIs('compra.index') 
+                    ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
+                    : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
+                        <i class="fa-solid fa-bag-shopping pr-3"></i>
+                        <span>Compra</span>
+                    </a>
+                @endcan
             </div>
         </div>
 
@@ -172,24 +184,81 @@
                 x-transition:enter-end="opacity-100 translate-y-0"
                 class="ml-5 mt-1 border-l-2 border-ambar-claro pl-3">
 
-                <a href="{{ route('cliente.index') }}" 
-                class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
-                {{ request()->routeIs('cliente.index') 
-                ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
-                : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
-                    <i class="fa-solid fa-users pr-3"></i>
-                    <span >Cliente</span>
-                </a>
+                @can('cliente.ver')
+                    <a href="{{ route('cliente.index') }}" 
+                    class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
+                    {{ request()->routeIs('cliente.index') 
+                    ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
+                    : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
+                        <i class="fa-solid fa-users pr-3"></i>
+                        <span >Cliente</span>
+                    </a>
+                @endcan
 
-                <a href="{{ route('venta.index') }}" 
-                class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
-                {{ request()->routeIs('venta.index') 
-                ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
-                : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
-                    <i class="fa-solid fa-coins"></i>
-                    <spa>Ventas</spa>
-                </a>
+                @can('facturas.ver')
+                    <a href="{{ route('venta.index') }}" 
+                    class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
+                    {{ request()->routeIs('venta.index') 
+                    ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
+                    : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
+                        <i class="fa-solid fa-coins"></i>
+                        <spa>Ventas</spa>
+                    </a>
+                @endcan
             </div>
         </div>
+
+        @can('configuracion')
+            <div x-data="{abierto: false}"
+                class="relative">
+
+                <button
+                    type="button"
+                    @click="abierto = !abierto"
+                    :aria-expanded="abierto"
+                    class="flex items-center justify-between w-full p-3 text-gris-calido-oscuro
+                            rounded-lg hover:bg-lino-natural transition-colors">
+                    <span class="flex items-center gap-2">
+                        <i> <x-lucide-settings class="h-6 w-6 text-gris-calido-oscuro"/> </i>
+                        
+                        <span x-show="sidebarOpen" x-transition>Configuracion</span>
+                    </span>
+                    <i
+                        class="fa-solid fa-chevron-down text-xs transition-transform"
+                        :class="{ 'rotate-180': abierto }"></i>
+                </button>
+
+                <div 
+                    x-cloak
+                    x-show="sidebarOpen && abierto"
+                    x-transition:enter="transition ease-out duration-200"
+
+                    x-transition:enter-end="opacity-100 translate-y-0"
+                    class="ml-5 mt-1 border-l-2 border-ambar-claro pl-3">
+
+                    @can('usuarios.ver')
+                        <a href="{{ route('user.index') }}" 
+                        class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
+                        {{ request()->routeIs('user.index') 
+                        ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
+                        : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
+                            <i class="fa-solid fa-users pr-3"></i>
+                            <span >Usuarios</span>
+                        </a>
+                    @endcan
+
+                    @can('roles.ver')
+                        <a href="{{ route('rol.index') }}" 
+                        class="mb-2 flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all
+                        {{ request()->routeIs('rol.index') 
+                        ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
+                        : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
+                            <i> <x-lucide-user-round-shield class="h-6 w-6 text-gris-calido-oscuro"/> </i>
+                            <span >Roles</span>
+                        </a>
+                    @endcan
+                </div>
+            </div>
+        @endcan
     </nav>
 </aside>

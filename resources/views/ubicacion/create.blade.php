@@ -65,85 +65,67 @@
                         </div>
                         
                         <div class="mb-5" x-data="{ tienePadre: false }">
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="block text-sm font-medium text-gris-calido-oscuro">
+                                    ¿Pertenece a otra ubicación?
+                                </label>
 
-                        <div class="flex items-center justify-between mb-2">
-                            <label class="block text-sm font-medium text-gris-calido-oscuro">
-                                ¿Pertenece a otra ubicación?
-                            </label>
-
-                            <span class="text-xs text-gris-calido-oscuro">
-                                Opcional
-                            </span>
-                        </div>
-
-                        <p class="text-sm text-gris-calido-oscuro mb-3">
-                            Activa esta opción si estás creando una ubicación
-                            dentro de otra existente.
-                        </p>
-
-                        <label class="flex items-center gap-3 cursor-pointer
-                                    rounded-lg border border-linea-sidebar p-3">
-
-                            <input
-                                type="checkbox"
-                                x-model="tienePadre"
-                                class="rounded text-ambar-claro focus:ring-ambar-claro"
-                            >
-
-                            <div>
-                                <span class="block text-sm font-medium">
-                                    Esta ubicación depende de otra
-                                </span>
                                 <span class="text-xs text-gris-calido-oscuro">
-                                    Por ejemplo, un estante dentro de una bodega.
+                                    Opcional
                                 </span>
                             </div>
 
-                        </label>
+                            <p class="text-sm text-gris-calido-oscuro mb-3">
+                                Activa esta opción si estás creando una ubicación
+                                dentro de otra existente.
+                            </p>
 
-                        <div x-show="tienePadre"
-                            x-transition
-                            x-cloak
-                            class="mt-4">
+                            <label class="flex items-center gap-3 cursor-pointer
+                                        rounded-lg border border-linea-sidebar p-3">
 
-                            <label for="id_ubicacion_padre"
-                                class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
-                                Selecciona la ubicación contenedora
+                                <input
+                                    type="checkbox"
+                                    x-model="tienePadre"
+                                    class="rounded text-ambar-claro focus:ring-ambar-claro"
+                                >
+
+                                <div>
+                                    <span class="block text-sm font-medium">
+                                        Esta ubicación depende de otra
+                                    </span>
+                                    <span class="text-xs text-gris-calido-oscuro">
+                                        Por ejemplo, un estante dentro de una bodega.
+                                    </span>
+                                </div>
+
                             </label>
 
-                            <select
-                                id="id_ubicacion_padre"
-                                name="id_ubicacion_padre"
-                                class="tom-select"
-                                :required="tienePadre">
-
-                                <option value="">Seleccionar ubicación</option>
-
-                                @foreach ($ubicaciones as $ubicacion)
+                            <div x-show="tienePadre" x-transition x-cloak class="mt-4">
+                            
+                                <label for="id_ubicacion_padre" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
+                                    Selecciona la ubicación contenedora
+                                </label>
+                            
+                                <select id="id_ubicacion_padre" name="id_ubicacion_padre" :required="tienePadre"
+                                    class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm">
+                            
+                                    <option value="">Selecciona la ubicación principal</option>
+                            
+                                    @foreach ($ubicaciones as $ubicacion)
                                     <option value="{{ $ubicacion->id }}">
                                         {{ $ubicacion->nombre }} ({{ $ubicacion->codigo }})
                                     </option>
-                                @endforeach
-
-                            </select>
-
-                            @error('id_ubicacion_padre')
+                                    @endforeach
+                                </select>
+                            
+                                @error('id_ubicacion_padre')
                                 <p class="text-text-alert-error text-sm mt-2">
                                     {{ $message }}
                                 </p>
-                            @enderror
-
+                                @enderror
+                            </div>
                         </div>
-
-                            <input type="hidden"
-                                name="id_ubicacion_padre"
-                                value=""
-                                x-if="false">
-
-                        </div>
-
                     </div>
-
                     <div>
                         <div class="grid grid-cols-2 mb-5 gap-3">
                             <div>

@@ -13,12 +13,12 @@
         <div class="text-2xl font-bold tracking-tight text-foreground text-gray-800">
             Impuestos
         </div>
-        <div class="flex items-end justify-end">
-            <a href="{{ route('impuesto.create') }}" 
-            class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido 
-                rounded-sm px-5 py-1 text-right transition-all w-20"
-            >crear</a>
-        </div>
+        @can('impuesto.crear')
+            <div class="flex items-end justify-end">
+                <a href="{{ route('impuesto.create') }}" class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido 
+                            rounded-sm px-5 py-1 text-right transition-all w-20">crear</a>
+            </div>
+        @endcan
     </div>
 
     <div class="dt-container">
@@ -28,10 +28,18 @@
                     <th>Impuesto</th>
                     <th>Tarifa</th>
                     <th>Estado</th>
-                    <th>Editar</th>
-                    <th>Cambiar Estado</th>
-                    <th>Asignar productos</th>
-                    <th>Ver detalles</th>
+                    @can('impuesto.editar')
+                        <th>Editar</th>
+                    @endcan
+                    @can('impuesto.changeState')
+                        <th>Cambiar Estado</th>
+                    @endcan
+                    @can('impuesto.show')
+                        <th>Asignar productos</th>
+                    @endcan
+                    @can('impuesto.detalle')
+                        <th>Ver detalles</th>
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -40,43 +48,54 @@
                         <td>{{ $impuesto->nombre }}</td>
                         <td>{{ $impuesto->porcentaje }}</td>
                         <td>{{ $impuesto->estado ? 'activo' : 'inactivo' }}</td>
-                        <td>
-                            <a href="{{ route('impuesto.edit', $impuesto->id) }}" class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
-                                text-base px-5 py-1 transition-all">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <form action="{{ route('impuesto.changeState', $impuesto->id) }}" method="POST" wire:navigate>
-                                @csrf
-                                @if ($impuesto->estado == 1)
-                                    <button type="submit"
-                                        class="bg-terracota-suave hover:bg-terracota-oscuro 
-                                        text-blanco-calido rounded-sm px-2 py-1 transition-all cursor-pointer" wire:navigate>
+                        @can('impuesto.editar')
+                            <td>
+                                <a href="{{ route('impuesto.edit', $impuesto->id) }}" class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
+                                                            text-base px-5 py-1 transition-all">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </a>
+                            </td>
+                        @endcan
+                        @can('impuesto.changeState')
+                            <td>
+                                <form action="{{ route('impuesto.changeState', $impuesto->id) }}" method="POST" wire:navigate>
+                                    @csrf
+                                    @if ($impuesto->estado == 1)
+                                    <button type="submit" class="bg-terracota-suave hover:bg-terracota-oscuro 
+                                                                    text-blanco-calido rounded-sm px-2 py-1 transition-all cursor-pointer"
+                                        wire:navigate>
                                         desabilitar
                                     </button>
-                                @else
-                                    <button type="submit"
-                                        class="bg-verde-salvia hover:bg-verde-salvia-claro 
-                                        text-blanco-calido rounded-sm px-2 py-1 transition-all cursor-pointer" wire:navigate>
+                                    @else
+                                    <button type="submit" class="bg-verde-salvia hover:bg-verde-salvia-claro 
+                                                                    text-blanco-calido rounded-sm px-2 py-1 transition-all cursor-pointer"
+                                        wire:navigate>
                                         habilitar
                                     </button>
+                                    @endif
+                                </form>
+                            </td>
+                        @endcan
+                        @can('impuesto.show')
+                            <td>
+                                @if ($impuesto->estado == 1)
+                                    <a href="{{ route('impuesto.show', $impuesto->id) }}" class="text-center text-azul-grisaceo 
+                                                                                                hover:text-azul-grisaceo-oscuro text-base">
+                                        <i class="fa-solid fa-link"></i>
+                                    </a>
+                                @else
+                                    <span>Impuesto inactivo</span>
                                 @endif
-                            </form>
-                        </td>
-                        <td>
-                            <a href="{{ route('impuesto.show', $impuesto->id) }}" 
-                                class="text-center text-azul-grisaceo 
-                                hover:text-azul-grisaceo-oscuro text-base">
-                                
-                                <i class="fa-solid fa-link"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{{ route('impuesto.detalle', $impuesto->id) }}" class="text-ambar-claro hover:text-ambar-oscuro p-1 text-base">
-                                <i class="fa-regular fa-eye"></i>
-                            </a>
-                        </td>
+                            </td>
+                        @endcan
+                        @can('impuesto.detalle')
+                            <td>
+                                <a href="{{ route('impuesto.detalle', $impuesto->id) }}"
+                                    class="text-ambar-claro hover:text-ambar-oscuro p-1 text-base">
+                                    <i class="fa-regular fa-eye"></i>
+                                </a>
+                            </td>
+                        @endcan
                     </tr>
                 @endforeach
             </tbody>

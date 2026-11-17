@@ -20,12 +20,12 @@
                 rounded-sm px-5 py-1 text-center transition-all">
             <i class="fa-solid fa-clock-rotate-left"></i> Historial
         </a>
-
-        <a href="{{ route('compra.create') }}"
-            class="bg-verde-salvia hover:bg-verde-salvia text-blanco-calido
-                rounded-sm px-5 py-1 text-right transition-all w-20">
-            crear
-        </a>
+        @can('compra.crear')
+            <a href="{{ route('compra.create') }}" class="bg-verde-salvia hover:bg-verde-salvia text-blanco-calido
+                            rounded-sm px-5 py-1 text-right transition-all w-20">
+                crear
+            </a>
+        @endcan
     </div>
 </div>
 
@@ -37,8 +37,6 @@
                     <th>Proveedor</th>
                     <th>Metodo pago</th>
                     <th>Total</th>
-                    <th>Acciones</th>
-                    
                 </tr>
             </thead>
             <tbody>
@@ -47,15 +45,7 @@
                         <td>{{ $compra->id }}</td>
                         <td>{{ $compra->proveedor->nombre }}</td>
                         <td>{{ $compra->metodo_pago}}</td>
-                        <td>{{ $compra->total }}</td>
-                        <td>
-                            <a href="{{ route('compra.edit', $compra->id) }}"
-                                class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
-                                text-base px-5 py-1 transition-all">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
-                        </td>
-                        
+                        <td>{{ $compra->total }}</td>    
                     </tr>
                 @endforeach
             </tbody>

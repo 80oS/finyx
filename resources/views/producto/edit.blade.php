@@ -7,7 +7,7 @@
         <div class="w-full max-w-xl bg-blanco-calido border border-blanco-calido rounded-2xl shadow-lg shadow-gris-calido-claro p-8">
             <div class="mb-5">
                 <h2 class="text-xl font-semibold tracking-tight text-gris-calido-oscuro capitalize text-center">
-                    nuevo producto
+                    Editar producto
                 </h2>
             </div>
 
@@ -20,28 +20,58 @@
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Nombre</label>
                             <input type="text" name="nombre" value="{{ $producto->nombre }}" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('nombre')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Codigo</label>
                             <input type="text" name="codigo" value="{{ $producto->codigo }}" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('codigo')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Codigo de Barras</label>
                             <input type="text" name="barcode"value="{{ $producto->barcode }}" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('barcode')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Precio Unitario</label>
                             <input type="number" step="0.1" name="precio_unitario" value="{{ $producto->precio_unitario }}" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('precio_unitario')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">stock</label>
                             <input type="number" name="stock" value="{{ $producto->stock }}" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('stock')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                     </div>
                     <div class="">
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Fecha de Vencimiento</label>
                             <input type="date" name="fecha_vencimiento" value="{{ $producto->fecha_vencimiento }}" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('fecha_vencimiento')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Esado</label>
@@ -49,6 +79,11 @@
                                 <option value="1" {{ $producto->estado == 1 ? 'selected' : '' }}>disponible</option>
                                 <option value="0" {{ $producto->estado == 0 ? 'selected' : '' }}>agotado</option>
                             </select>
+                            @error('estado')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Categoria</label>
@@ -56,6 +91,11 @@
                                 @foreach ($categorias as $categoria)
                                     <option value="{{ $categoria->id }}" {{ $producto->id_categoria == $categoria->id ? 'selected' : '' }}>{{ $categoria->nombre }}</option>
                                 @endforeach
+                                @error('id_categoria')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                             </select>
                         </div>
                         <div class="flex items-center justify-end gap-3 pt-4 border-t border-gris-calido-claro">

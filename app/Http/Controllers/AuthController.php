@@ -42,6 +42,6 @@ class AuthController extends Controller
     {
         $this->auth_service->registro($request->validated());
 
-        return redirect()->route('login')->with('usuario creado correctamnete');
+        return redirect()->route('user.index')->with('usuario creado correctamnete');
     }
 }

@@ -22,7 +22,6 @@ class ProductoStoreRequest extends FormRequest
             'precio_unitario' => 'required',
             'stock' => 'required|integer',
             'fecha_vencimiento' => 'nullable|date',
-            'ubicacion_real' => 'nullable|string',
             'estado' => 'required|boolean',
             'id_categoria' => 'required|exists:categoria,id'
         ];

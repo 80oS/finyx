@@ -108,10 +108,11 @@
         
         --color-lavanda: #cecbd2;
         --color-lavandai: #79609B;
-
+    /* card diseño*/
         --color-menta: #A4D8BA;
         --color-mentai: #429658;
         --color-mentaf: #8DCEA8;
+
 }
 
 @layer components {
