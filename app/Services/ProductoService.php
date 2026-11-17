@@ -14,10 +14,9 @@ class ProductoService{
         $this->homeRepository = $homeRepository;
     }
 
-    public function index()
+   public function index($estado = null)
     {
-        return $this->producto_repository->index();
-        
+        return $this->producto_repository->index($estado);
     }
 
     public function crear(array $datos)

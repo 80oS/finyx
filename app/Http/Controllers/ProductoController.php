@@ -22,9 +22,10 @@ class ProductoController extends Controller
 
     
 
-    public function index()
+    public function index(Request $request)
     {
-        $productos = $this->producto_service->index();
+        $estado = $request->query('estado');
+        $productos = $this->producto_service->index($estado);
 
         return view('producto.index', compact('productos'));
     }

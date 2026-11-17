@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('titulo', 'home')
@@ -103,7 +104,7 @@
                 <p class="mt-2 text-xs text-gray-500">
                     Total del día
                 </p>
-            </div>
+         </div>
         </div>
 
     </div>
