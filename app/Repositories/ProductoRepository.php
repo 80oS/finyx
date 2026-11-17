@@ -5,9 +5,14 @@ use App\Models\Producto;
 
 class ProductoRepository{
 
-    public function index()
+   public function index($estado = null)
     {
-        return Producto::with('categoria')->get();
+        $query = Producto::with('categoria');
+        if ($estado !== null && $estado !== '') {
+            $query->where('estado', (int)$estado);
+        }
+
+        return $query->get();
     }
 
     public function crear(array $datos)
