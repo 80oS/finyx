@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
             [   CategoriaSeeder::class, 
                 ClienteSeeder::class, 
                 ProveedorSeeder::class,
-                ImpuestoSeeder::class,
                 PermisoSeeder::class,
                 RolSeeder::class,
                 RolePermissionSeeder::class,
