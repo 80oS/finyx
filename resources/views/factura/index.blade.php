@@ -13,12 +13,12 @@
         <div class="text-2xl font-bold tracking-tight text-foreground text-gray-800">
             Ventas
         </div>
-        <div class="flex items-end justify-end">
-            <a href="{{ route('venta.create') }}" 
-            class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido 
-                rounded-sm px-5 py-1 text-right transition-all w-20"
-            >crear</a>
-        </div>
+        @can('facturas.crear')
+            <div class="flex items-end justify-end">
+                <a href="{{ route('venta.create') }}" class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido 
+                            rounded-sm px-5 py-1 text-right transition-all w-20">crear</a>
+            </div>
+        @endcan
     </div>
 
     <div class="dt-container">

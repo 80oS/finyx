@@ -35,6 +35,7 @@
                     <th>usuario</th>
                     <th>rol</th>
                     <th>asignar rol</th>
+                    <th>anular rol</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,6 +59,23 @@
                                 text-base p-1 transition-all">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
+                        </td>
+                        <td>
+                            @foreach ($user->roles as $rol)
+                                <form action="{{ route('user.anular', 
+                                ['id' => $user->id, 
+                                'rolId' => $rol->id
+                                ]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit"
+                                        onclick="return confirm('¿Estás seguro de anular este rol?')"
+                                        class="cursor-pointer">
+                                        <x-lucide-trash class="h-6 w-6 text-terracota-suave hover:text-terracota-oscuro" />
+                                    </button>
+                                </form>
+                            @endforeach
                         </td>
                     </tr>
                 @endforeach

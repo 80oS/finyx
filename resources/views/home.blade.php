@@ -43,7 +43,7 @@
 
             <div class="mt-4 rounded-xl bg-this px-4 py-3">
                 <p class="text-3xl font-bold text-gris-grafito">
-                    {{ number_format($totalUnidades) }}
+                    {{ number_format($totalUnidades, 2, ',', '.') }}
                 </p>
                 <p class="mt-1 text-xs text-gray-500">
                     Unidades disponibles
@@ -67,9 +67,9 @@
                 </div>
             </div>
 
-            <div class="mt-4 rounded-xl bg-this px-4 py-3">
-                <p class="text-3xl font-bold text-gris-grafito">
-                    {{ number_format($totalProductos) }}
+            <div class="mt-4 rounded-xl bg-this px-4 py-3 min-w-0 overflow-hidden">
+                <p class="text-2xl sm:text-3xl font-bold text-gris-grafito truncate">
+                    {{ number_format($totalProductos, 2, ',', '.') }}
                 </p>
                 <p class="mt-1 text-xs text-gray-500">
                     Productos registrados
@@ -120,8 +120,8 @@
             </div>
 
             <div class="mt-4 rounded-xl bg-this px-4 py-3">
-                <p class="text-3xl font-bold text-gris-grafito">
-                    ${{ number_format($ventasHoy, 2) }}
+                <p class="text-2xl sm:text-3xl font-bold text-gris-grafito truncate">
+                    ${{ number_format($ventasHoy, 2, ',', '.') }}
                 </p>
                 <p class="mt-1 text-xs text-gray-500">
                     Total del día

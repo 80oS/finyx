@@ -39,4 +39,11 @@ class UserController extends Controller
 
         return redirect()->route('user.index')->with('success', 'rol asignado al usario con exito');
     }
+
+    public function anularRol(int $id, int $rolId)
+    {
+        $this->user_service->anularRol($id, $rolId);
+
+        return redirect()->route('user.index')->with('success', 'rol anulado al usario con exito');
+    }
 }

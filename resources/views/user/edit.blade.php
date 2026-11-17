@@ -31,7 +31,6 @@
                             @endif
                         @endforeach
                     </select>
-                    <input type="hidden" name="guard_name" value="web">
                 </div>
                 <div class="flex items-center justify-end gap-3 pt-4 border-t border-gris-suave/50">
                     <button type="submit" class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido rounded-lg cursor-pointer transition-all px-2 py-2">

@@ -17,6 +17,11 @@ class RolService{
         return $this->rol_repository->index();
     }
 
+    public function crear(array $datos)
+    {
+        return $this->rol_repository->crear($datos);
+    }
+
     public function buscarId(int $id)
     {
         return $this->rol_repository->buscarId($id);
@@ -25,6 +30,11 @@ class RolService{
     public function asignarPermisos(int $id, array $permisos)
     {
         return $this->rol_repository->asignarPermisos($id, $permisos);
+    }
+
+    public function anularPermisos(int $id, array $permisos)
+    {
+        return $this->rol_repository->anularPermisos($id, $permisos);
     }
 }
 ?>

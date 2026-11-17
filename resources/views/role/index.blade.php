@@ -21,9 +21,10 @@
             </div>
         </div>
         <div class="flex items-end justify-end">
-            <a href="" 
-            class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido rounded-sm px-5 py-1 text-right transition-all w-20"
-            >crear</a>
+            <a href="{{ route('rol.create') }}" 
+                class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido rounded-sm px-5 py-1 text-right transition-all w-20">
+                crear
+            </a>
         </div>
 
         <div class="dt-container">
@@ -34,6 +35,7 @@
                         <th>Rol</th>
                         <th>Detalles</th>
                         <th>Asignar permisos</th>
+                        <th>Anular permisos</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,15 +44,16 @@
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $rol->name }}</td>
                             <td>
-                                <button type="button">
-                                    permisos
-                                </button>
+                                <livewire:permisos-role :rol-id="$rol->id"/>
                             </td>
                             <td>
                                 <a href="{{ route('rol.edit', $rol->id) }}" class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
                                 text-base p-1 transition-all">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
+                            </td>
+                            <td>
+                                <livewire:anular-permisos-role :rol-id="$rol->id"/>
                             </td>
                         </tr>
                     @endforeach

@@ -21,9 +21,14 @@ class UserService{
         return $this->user_repository->buscarId($id);
     }
 
-    public function asignarRol(int $id, string $rol)
+    public function asignarRol(int $id, array $rol)
     {
         return $this->user_repository->asignarRol($id, $rol);
+    }
+
+    public function anularRol(int $id, int $rolId)
+    {
+        return $this->user_repository->anularRol($id, $rolId);
     }
 }
 ?>

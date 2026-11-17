@@ -60,15 +60,17 @@ class PermisoSeeder extends Seeder
 
             'roles.ver',
             'roles.crear',
-            'roles.editar',
-            'roles.eliminar',
+            'roles.editar', 
             'roles.asignar-permisos',
 
             'usuarios.ver',
             'usuarios.editar',
+            'configuracion',
+            'usuarios.role.anular',
 
             'registro.ver',
             'registro.crear'
+
         ];
 
         foreach ($permisos as $permiso) {

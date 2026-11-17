@@ -40,106 +40,117 @@ Route::middleware(['auth'])->group(function () {
 
     // productos
     Route::resource('/producto', ProductoController::class)->except(['destroy', 'show'])
-        ->middlewareFor(['index'], 'permission:producto.ver')
-        ->middlewareFor(['create', 'store'], 'permission:producto.crear')
-        ->middlewareFor(['edit', 'update'], 'permission:producto.editar');
+        ->middlewareFor(['index'], 'can:producto.ver')
+        ->middlewareFor(['create', 'store'], 'can:producto.crear')
+        ->middlewareFor(['edit', 'update'], 'can:producto.editar');
     Route::post('/productoChangeState/{id}', [ProductoController::class, 'changeState'])
-        ->middleware('permission:producto.changeState')->name('producto.changeState');
+        ->middleware('can:producto.changeState')->name('producto.changeState');
 
     //categoria
     Route::resource('/categoria', CategoriaController::class)->except('destroy', 'show')
-        ->middlewareFor(['index'], 'permission:categoria.ver')
-        ->middlewareFor(['create', 'store'], 'permission:categoria.crear')
-        ->middlewareFor(['edit', 'uptade'], 'permission:categoria.editar');
+        ->middlewareFor(['index'], 'can:categoria.ver')
+        ->middlewareFor(['create', 'store'], 'can:categoria.crear')
+        ->middlewareFor(['edit', 'uptade'], 'can:categoria.editar');
 
     Route::post('/categoriaChangeState/{id}', [CategoriaController::class, 'changeState'])
-        ->middleware('permission:categoria.changeState')
+        ->middleware('can:categoria.changeState')
         ->name('categoria.changeState');
 
     Route::get('/categorias/{categoria}/productos', [CategoriaController::class, 'productos'])
-        ->middleware('permission:categoria.productos')
+        ->middleware('can:categoria.productos')
         ->name('categorias.productos');
 
     //proveedor
-    Route::resource('/proveedores', ProveedorController::class)->except('show', 'destroy')
-        ->middlewareFor(['index'], 'permission:proveedor.ver')
-        ->middlewareFor(['create', 'store'], 'permission:proveedor.crear')
-        ->middlewareFor(['edit', 'update'], 'permission:proveedor.editar');
+    Route::resource('/proveedores', ProveedorController::class)->except('show')
+        ->middlewareFor(['index'], 'can:proveedor.ver')
+        ->middlewareFor(['create', 'store'], 'can:proveedor.crear')
+        ->middlewareFor(['edit', 'update'], 'can:proveedor.editar')
+        ->middlewareFor(['destroy'], 'can:proveedor.eliminar');
 
     //Compra
     Route::resource('/compra', CompraController::class)->except('destroy')
-        ->middlewareFor(['index'], 'permission:compra.ver')
-        ->middlewareFor(['create', 'store'], 'permission:compra.crear');
+        ->middlewareFor(['index'], 'can:compra.ver')
+        ->middlewareFor(['create', 'store'], 'can:compra.crear');
     Route::get('/compras/historial', HistorialCompras::class)
-        ->middleware('permission:compra.historial')
+        ->middleware('can:compra.historial')
         ->name('compras.historial');
 
     //cliente
     Route::resource('/cliente', ClienteController::class)->except('show')
-        ->middlewareFor(['index'], 'permission:cliente.ver')
-        ->middlewareFor(['create', 'store'], 'permission:cliente.crear')
-        ->middlewareFor(['edit', 'update'], 'permission:cliente.editar')
-        ->middlewareFor(['destroy'], 'permission:cliente.eliminar');
+        ->middlewareFor(['index'], 'can:cliente.ver')
+        ->middlewareFor(['create', 'store'], 'can:cliente.crear')
+        ->middlewareFor(['edit', 'update'], 'can:cliente.editar')
+        ->middlewareFor(['destroy'], 'can:cliente.eliminar');
 
     //ubicacion
     Route::resource('/ubicacion', UbicacionController::class)->except('destroy')
-        ->middlewareFor(['index'], 'permission:ubicacion.ver')
-        ->middlewareFor(['create', 'store'], 'permission:ubicacion.crear')
-        ->middlewareFor(['edit', 'update'], 'permission:ubicacion.editar');
+        ->middlewareFor(['index'], 'can:ubicacion.ver')
+        ->middlewareFor(['create', 'store'], 'can:ubicacion.crear')
+        ->middlewareFor(['edit', 'update'], 'can:ubicacion.editar');
 
     Route::post('/ubcacionChangeState/{id}', [UbicacionController::class, 'changeState'])
-        ->middleware('permission:ubicacion.changeState')
+        ->middleware('can:ubicacion.changeState')
         ->name('ubicacion.changeState');
     Route::put('/asignarProductosUbicacion/{id}/productos', [UbicacionController::class, 'asignarProductosUbicacion'])
-        ->middleware('permission:ubicacion.asignar-productos')
+        ->middleware('can:ubicacion.asignar-productos')
         ->name('ubicacion.asignarProducto');
     Route::post('/ubicacion/{id}/mover-productos', [UbicacionController::class, 'MoverProductosUbicacion'])
-        ->middleware('permission:ubicacion.mover-productos')
+        ->middleware('can:ubicacion.mover-productos')
         ->name('ubicacion.moverProductos');
 
     //venta
     Route::resource('/venta', VentasController::class)->except('destroy')
-        ->middlewareFor(['index', 'show'], 'permission:facturas.ver')
-        ->middlewareFor(['create', 'store'], 'permission:facturas.crear');
+        ->middlewareFor(['index', 'show'], 'can:facturas.ver')
+        ->middlewareFor(['create', 'store'], 'can:facturas.crear');
 
     //impuesto
     Route::resource('/impuesto', ImpuestoController::class)->except('destroy')
-        ->middlewareFor(['index'], 'permission:impuesto.ver')
-        ->middlewareFor(['create', 'store'], 'permission:impuesto.crear')
-        ->middlewareFor(['edit', 'update'], 'permission:impuesto.editar')
-        ->middlewareFor(['show'], 'permission:impuesto.show');
+        ->middlewareFor(['index'], 'can:impuesto.ver')
+        ->middlewareFor(['create', 'store'], 'can:impuesto.crear')
+        ->middlewareFor(['edit', 'update'], 'can:impuesto.editar')
+        ->middlewareFor(['show'], 'can:impuesto.show');
     Route::post('/impuesto/changeState/{id}', [ImpuestoController::class, 'changeState'])
-        ->middleware('permission:impuesto.changeState')
+        ->middleware('can:impuesto.changeState')
         ->name('impuesto.changeState');
     Route::post('/impuesto/AsignarImpuestoProducto/{id}', [ImpuestoController::class, 'asignarImpuestoProducto'])
-        ->middleware('permission:impuesto.producto')
+        ->middleware('can:impuesto.producto')
         ->name('impuesto.producto');
     Route::get('/impuesto/detalle/{id}', [ImpuestoController::class, 'detalleImpuesto'])
-        ->middleware('permission:impuesto.detalle')
+        ->middleware('can:impuesto.detalle')
         ->name('impuesto.detalle');
 
     //registro
     Route::get('/register', [AuthController::class, 'registroCreate'])
-        ->middleware('permission:registro.ver')
+        ->middleware('can:registro.ver')
         ->name('registro.create');
     Route::post('/register/store', [AuthController::class, 'registroStore'])
-        ->middleware('permission:registro.crear')
+        ->middleware('can:registro.crear')
         ->name('register');
 
     // User
     Route::get('/user/index', [UserController::class, 'index'])
-        ->middleware('permission:usuarios.ver')
+        ->middleware('can:usuarios.ver')
         ->name('user.index');
 
     Route::get('/user/{id}', [UserController::class, 'edit'])
-        ->middleware('permission:usuarios.editar')
+        ->middleware('can:usuarios.editar')
         ->name('user.edit');
     Route::post('user/role/{id}', [UserController::class, 'asignarRole'])
-        ->middleware('permission:usuarios.editar')
+        ->middleware('can:usuarios.editar')
         ->name('user.role');
     
-    //roles
-});
+    Route::delete('/user/{id}/rol/{rolId}', [UserController::class, 'anularRol'])->name('user.anular');
 
-Route::resource('/rol', RolController::class);
-Route::post('/rol/permiso/{id}', [RolController::class, 'asignarPermisos'])->name('role.permiso');
+    //roles
+    Route::resource('/rol', RolController::class)->except('destroy')
+        ->middlewareFor(['index'], 'can:roles.ver')
+        ->middlewareFor(['create', 'store'], 'can:roles.crear')
+        ->middlewareFor(['edit'], 'can:roles.editar');
+
+    Route::post('/rol/permiso/{id}', [RolController::class, 'asignarPermisos'])
+        ->middleware('can:roles.asignar-permisos')
+        ->name('role.permiso');
+    
+    Route::delete('/rol/anular/permisos/{id}', [RolController::class, 'anularPermisos'])
+        ->name('role.anular.permisos');
+});
