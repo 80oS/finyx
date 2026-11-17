@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('titulo', 'home')
@@ -26,6 +25,7 @@
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
 
         {{-- UNIDADES EN INVENTARIO --}}
+<<<<<<< HEAD
         <div class="rounded-2xl border border-linea-exterior-tabla bg-blanco-calido p-4 shadow-sm transition hover:shadow-md">
             <div class="flex items-center gap-3">
                 <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#465D4A] text-white">
@@ -50,6 +50,9 @@
                 </p>
             </div>
         </div>
+=======
+        <livewire:unidades-inventario />
+>>>>>>> fer
 
         {{-- TOTAL PRODUCTOS --}}
         <div class="rounded-2xl border border-linea-exterior-tabla bg-blanco-calido p-4 shadow-sm transition hover:shadow-md">
@@ -123,7 +126,8 @@
                 <p class="text-2xl sm:text-3xl font-bold text-gris-grafito truncate">
                     ${{ number_format($ventasHoy, 2, ',', '.') }}
                 </p>
-                <p class="mt-1 text-xs text-gray-500">
+
+                <p class="mt-2 text-xs text-gray-500">
                     Total del día
                 </p>
             </div>
