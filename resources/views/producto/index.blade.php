@@ -11,16 +11,81 @@
 </div>
 @endif
 
-<div class="grid grid-cols-2 gap-5 mb-5">
-    <div class="text-2xl font-bold tracking-tight text-foreground text-gris-calido-oscuro">
+<div class="flex items-center justify-between gap-4 mb-5">
+
+    <div class="text-2xl font-bold tracking-tight text-gris-calido-oscuro">
         Productos
     </div>
-    @can('producto.crear')
-        <div class="flex items-end justify-end">
-            <a href="{{ route('producto.create') }}"
-                class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido rounded-sm px-5 py-1 text-right transition-all w-20">crear</a>
+
+    <div class="flex items-center gap-3">
+
+        {{-- Filtro --}}
+        <div class="relative">
+
+            <button type="button" id="filtroBoton" onclick="toggleFiltroMenu(event)" title="Filtrar productos"
+                class="flex items-center justify-center w-9 h-9 rounded-sm border transition-all cursor-pointer
+                {{ request()->has('estado') ? 'bg-gris-calido-oscuro text-blanco-calido border-gris-calido-oscuro' : 'bg-blanco-calido text-gris-calido-oscuro border-linea-input hover:bg-gris-calido-claro/20' }}">
+
+                <i class="fa-solid fa-filter text-sm"></i>
+            </button>
+
+            {{-- Menú desplegable --}}
+            <div id="filtroMenu"
+                class="hidden absolute top-full right-0 mt-2 w-48 bg-blanco-calido border border-linea-input rounded-lg shadow-xl py-1.5 z-[100]">
+
+                <div
+                    class="px-3 py-2 text-xs font-semibold text-estalactita-cueva border-b border-linea-input/50 uppercase tracking-wider">
+                    Filtrar por estado
+                </div>
+
+                {{-- Todos --}}
+                <a href="{{ route('producto.index') }}"
+                    class="flex items-center justify-between px-3 py-2.5 text-xs font-medium transition-colors hover:bg-gris-calido-claro/20
+                    {{ request('estado') === null ? 'text-gris-calido-oscuro font-bold bg-gris-calido-claro/10' : 'text-gris-calido-oscuro' }}">
+
+                    <span>Todos</span>
+
+                    @if (request('estado') === null)
+                    <i class="fa-solid fa-check text-xs"></i>
+                    @endif
+                </a>
+
+                {{-- Disponibles --}}
+                <a href="{{ route('producto.index', ['estado' => 1]) }}"
+                    class="flex items-center justify-between px-3 py-2.5 text-xs font-medium transition-colors hover:bg-verde-salvia/10
+                    {{ request('estado') === '1' ? 'text-verde-salvia font-bold bg-verde-salvia/10' : 'text-gris-calido-oscuro' }}">
+
+                    <span>Disponibles</span>
+
+                    @if (request('estado') === '1')
+                    <i class="fa-solid fa-check text-xs text-verde-salvia"></i>
+                    @endif
+                </a>
+
+                {{-- Agotados --}}
+                <a href="{{ route('producto.index', ['estado' => 0]) }}"
+                    class="flex items-center justify-between px-3 py-2.5 text-xs font-medium transition-colors hover:bg-terracota-suave/10
+                    {{ request('estado') === '0' ? 'text-terracota-suave font-bold bg-terracota-suave/10' : 'text-gris-calido-oscuro' }}">
+
+                    <span>Agotados</span>
+
+                    @if (request('estado') === '0')
+                    <i class="fa-solid fa-check text-xs text-terracota-suave"></i>
+                    @endif
+                </a>
+
+            </div>
         </div>
-    @endcan
+
+        {{-- Crear --}}
+        @can('producto.crear')
+        <a href="{{ route('producto.create') }}"
+            class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido rounded-sm px-5 py-2 text-sm transition-all">
+            Crear
+        </a>
+        @endcan
+
+    </div>
 </div>
 
 <div class="dt-container">
@@ -93,4 +158,22 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    function toggleFiltroMenu(event) {
+    event.stopPropagation();
+    
+    const menu = document.getElementById('filtroMenu');
+    menu.classList.toggle('hidden');
+    }
+    
+    document.addEventListener('click', function (event) {
+    const menu = document.getElementById('filtroMenu');
+    const boton = document.getElementById('filtroBoton');
+    
+    if (menu && !menu.contains(event.target) && !boton.contains(event.target)) {
+    menu.classList.add('hidden');
+    }
+    });
+</script>
 @endsection

@@ -5,11 +5,12 @@ use App\Models\Producto;
 
 class ProductoRepository{
 
-   public function index($estado = null)
+    public function index($estado = null)
     {
         $query = Producto::with('categoria');
+
         if ($estado !== null && $estado !== '') {
-            $query->where('estado', (int)$estado);
+            $query->where('estado', (int) $estado);
         }
 
         return $query->get();
