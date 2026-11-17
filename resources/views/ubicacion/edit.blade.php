@@ -14,7 +14,7 @@
             </div>
             <div>
                 <h2 class="text-xl font-semibold tracking-tight text-gris-calido-oscuro text-center capitalize">
-                    Edidar ubicacion
+                    Editar ubicacion
                 </h2>
             </div>
         </div>
@@ -30,9 +30,9 @@
                             tipo de ubicacion
                         </label>
                         <select type="text" name="tipo" class="tom-select">
-                            <option value="estanteria">Estanteria</option>
-                            <option value="bodega">Bodega</option>
-                            <option value="nevera">nevera</option>
+                            <option value="estanteria"{{ $ubicacion->tipo == 'estanteria' ? 'selected' : '' }}>Estanteria</option>
+                            <option value="bodega" {{ $ubicacion->tipo == 'bodega' ? 'selected' : '' }}>Bodega</option>
+                            <option value="nevera" {{ $ubicacion->tipo == 'nevera' ? 'selected' : '' }}>nevera</option>
                         </select>
 
                         @error('tipo')
@@ -76,14 +76,14 @@
                             ubicacion principal
                         </label>
                         <select type="text" name="id_ubicacion_padre" class="tom-select">
-                            <option value="" @selected(old('id_ubicacion_padre', $ubicacion->id_ubicacion_padre) == '')>
+                            <option value="">
                                 Sin ubicación padre (principal)
                             </option>
-                            @foreach ($ubicaciones as $ubicacion)
-                            <option value="{{ $ubicacion->id }}" {{ $ubicacion->id_ubicacion_padre == $ubicacion->id ?
-                                'selected' : '' }}>
-                                {{ $ubicacion->nombre }}({{ $ubicacion->codigo }})
-                            </option>
+                            @foreach ($ubicaciones as $ubicacionPadre)
+                                <option value="{{ $ubicacionPadre->id }}" @selected(old('id_ubicacion_padre', $ubicacion->id_ubicacion_padre) ==
+                                    $ubicacionPadre->id)>
+                                    {{ $ubicacionPadre->nombre }} ({{ $ubicacionPadre->codigo }})
+                                </option>
                             @endforeach
                         </select>
                         @error('id_ubicacion_padre')
@@ -100,7 +100,7 @@
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
                                 capacidad
                             </label>
-                            <input type="text" name="capacidad" value="{{ $ubicacion->capacidad }}"
+                            <input type="text" name="capacidad" value="{{ old('capacidad', $ubicacion->capacidad) }}"
                                 class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
                             @error('capacidad')
                             <p
@@ -113,7 +113,7 @@
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
                                 unidad
                             </label>
-                            <input type="text" name="unidad_capacidad" value="{{ $ubicacion->unidad_capacidad }}"
+                            <input type="text" name="unidad_capacidad" value="{{ old('unidad_capacidad', $ubicacion->unidad_capacidad) }}"
                                 class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
 
                             @error('unidad_capacidad')
@@ -128,17 +128,29 @@
                         <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
                             descripcion
                         </label>
-                        <input type="text" name="descripcion" value="{{ $ubicacion->descripcion }}"
+                        <input type="text" name="descripcion" value="{{ old('descripcion', $ubicacion->descripcion) }}"
                             class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                        @error('descripcion')
+                        <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                            {{ $message }}
+                        </p>
+                        @enderror
                     </div>
                     <div class="mb-5">
                         <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">
                             estado
                         </label>
                         <input type="hidden" name="estado" value="inactiva">
-                        <input type="checkbox" name="estado" value="activa" @checked(old('estado', 'activa' )==='activa'
-                            ) class="h-5 w-5 accent-verde-salvia-claro border-verde-salvia-claro rounded">
+                        <input type="checkbox" name="estado" value="activa" @checked(old('estado', 'activa' )==='activa')
+                            class="h-5 w-5 accent-verde-salvia-claro border-verde-salvia-claro rounded">
                     </div>
+
+                    @error('estado')
+                    <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                        {{ $message }}
+                    </p>
+                    @enderror
+
                     <div class="flex items-center justify-end gap-3 pt-4 border-t border-gris-suave/50">
                         <button type="submit"
                             class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido rounded-lg cursor-pointer transition-all px-2 py-2">

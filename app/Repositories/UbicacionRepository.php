@@ -11,7 +11,7 @@ class UbicacionRepository{
     public function index()
     {
         return Ubicacion::query()->with('padre')
-        ->withCount('ProductoUbicacion')->orderBy('nombre')->get();
+        ->withCount('ProductoUbicacion')->get();
     }
 
     public function ubicacionPadre()

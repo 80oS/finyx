@@ -51,9 +51,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($ubicaciones as $index => $ubicacion)
+                @foreach ($ubicaciones as $ubicacion)
                     <tr>
-                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $ubicacion->id }}</td>
                     <td>{{ $ubicacion->codigo }}</td>
                     <td>{{ $ubicacion->padre?->nombre ?? 'Sin ubicacion principal' }}</td>
                     <td>{{ $ubicacion->nombre }}</td>

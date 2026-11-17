@@ -50,6 +50,8 @@ class UbicacionController extends Controller
         $ubicacion = $this->ubicacion_service->buscarId($id);
         $ubicaciones = $this->ubicacion_service->excluirIdUbicacion($id);
 
+        
+
         return view('ubicacion.edit', compact('ubicacion', 'ubicaciones'));
     }
 
