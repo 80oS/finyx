@@ -11,16 +11,6 @@
                 </h2>
             </div>
 
-            @if($errors->any())
-                <div class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             <form action="{{ route('producto.store') }}" method="POST">
                 @csrf
 
@@ -29,22 +19,47 @@
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Nombre</label>
                             <input type="text" name="nombre" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('nombre')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Codigo</label>
                             <input type="text" name="codigo" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('codigo')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Codigo de Barras</label>
                             <input type="text" name="barcode" autofocus class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('barcode')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Precio Unitario</label>
                             <input type="number" step="0.1" name="precio_unitario" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('precio_unitario')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">stock</label>
                             <input type="number" name="stock" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('stock')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                     </div>
                     <div class="">
@@ -58,6 +73,11 @@
                                 <option value="1">disponible</option>
                                 <option value="0">agotado</option>
                             </select>
+                            @error('estado')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Categoria</label>
@@ -66,6 +86,11 @@
                                     <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                                 @endforeach
                             </select>
+                            @error('id_categoria')
+                            <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                {{ $message }}
+                            </p>
+                            @enderror
                         </div>
                         <div class="flex items-center justify-end gap-3 pt-4 border-t border-gris-suave/50">
                             <button type="submit" 

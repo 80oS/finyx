@@ -15,13 +15,14 @@
             Proveedores
         </div>
 
-        <div class="flex items-end justify-end">
-            <a href="{{ route('proveedores.create') }}"
-                class="bg-verde-salvia hover:bg-verde-salvia text-blanco-calido 
-                rounded-sm px-5 py-1 text-right transition-all w-20">
-                crear
-            </a>
-        </div>
+        @can('proveedor.crear')
+            <div class="flex items-end justify-end">
+                <a href="{{ route('proveedores.create') }}" class="bg-verde-salvia hover:bg-verde-salvia text-blanco-calido 
+                            rounded-sm px-5 py-1 text-right transition-all w-20">
+                    crear
+                </a>
+            </div>
+        @endcan
     </div>
 
     <div class="dt-container">
@@ -35,8 +36,12 @@
                     <th>Telefono</th>
                     <th>Dirección</th>
                     <th>Correo</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
+                    @can('proveedor.editar')
+                        <th>Editar</th>
+                    @endcan        
+                    @can('proveedor.eliminar')
+                        <th>Eliminar</th>
+                    @endcan        
                 </tr>
             </thead>
             <tbody>
@@ -49,25 +54,27 @@
                         <td>{{ $proveedor->telefono }}</td>
                         <td>{{ $proveedor->direccion }}</td>
                         <td>{{ $proveedor->correo }}</td>
-                        <td>
-                            <a href="{{ route('proveedores.edit', $proveedor->id) }}" 
-                                class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
-                                text-base px-5 py-1 transition-all">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <form action="{{ route('proveedores.destroy', $proveedor->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    class="text-terracota-suave hover:text-terracota-oscuro 
-                                    rounded-sm px-2 py-1 transition-all cursor-pointer text-base"
-                                    onclick="return confirm('Seguro que quiere eliminar este proveedor')">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                            </form>
-                        </td>
+                        @can('proveedor.editar')
+                            <td>
+                                <a href="{{ route('proveedores.edit', $proveedor->id) }}" class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
+                                                            text-base px-5 py-1 transition-all">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </a>
+                            </td>
+                        @endcan    
+                        @can('proveedor.eliminar')
+                            <td>
+                                <form action="{{ route('proveedores.destroy', $proveedor->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-terracota-suave hover:text-terracota-oscuro 
+                                                                rounded-sm px-2 py-1 transition-all cursor-pointer text-base"
+                                        onclick="return confirm('Seguro que quiere eliminar este proveedor')">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        @endcan
                     </tr>
                 @endforeach
             </tbody>

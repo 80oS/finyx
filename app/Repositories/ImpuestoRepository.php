@@ -4,6 +4,7 @@ namespace App\Repositories;
 use App\Models\categoria;
 use App\Models\impuesto;
 use App\Models\Producto;
+use Illuminate\Support\Facades\DB;
 
 class ImpuestoRepository{
 
@@ -32,19 +33,29 @@ class ImpuestoRepository{
 
     public function changeState(int $id)
     {
-        $impuesto = impuesto::findOrFail($id);
+        return DB::transaction(function () use ($id) {
 
-        if($impuesto['estado'] == 1){
-            $impuesto['estado'] = 0;
-            $mensaje = 'impuesto inhabilitado correctamente';
-        }else{
-            $impuesto['estado'] = 1;
-            $mensaje = 'impuesto habilitado correctamente';
-        }
+            $impuesto = Impuesto::findOrFail($id);
 
-        $impuesto->save();
+            if ($impuesto->estado == 1) {
 
-        return $mensaje;
+                // Deshabilitar impuesto
+                $impuesto->estado = 0;
+                $impuesto->save();
+
+                // Eliminar las asignaciones con los productos
+                $impuesto->productos()->detach();
+
+                return 'Impuesto inhabilitado y desasignado de los productos correctamente.';
+            } else {
+
+                // Habilitar impuesto
+                $impuesto->estado = 1;
+                $impuesto->save();
+
+                return 'Impuesto habilitado correctamente.';
+            }
+        });
     }
 
     public function impuestoProducto(int $id)

@@ -12,9 +12,6 @@
         <div class="col-span-14 pl-5">
             <h1>FINYX</h1>
         </div>
-        <div>
-            <a href="{{ route('registro.create') }}">Registro</a>
-        </div>
     </nav>
 
     @if (session('success'))
@@ -36,7 +33,7 @@
                     <label for="">usuario</label>
                     <input type="text" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg 
                                     text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco 
-                                    focus:border-linea-foco transition-all" name="email">
+                                    focus:border-linea-foco transition-all" name="name">
                 </div>
 
                 <div class="mb-5">
@@ -54,7 +51,7 @@
                 @endif
 
                 <div class="flex items-center pt-4 border-t border-gris-calido-claro">
-                    <button type="submit" class="bg-verde-salvia hover:bg-verde-salvia-claro rounded-sm p-3 w-full">
+                    <button type="submit" class="bg-verde-salvia hover:bg-verde-salvia-claro rounded-sm p-3 w-full cursor-pointer">
                         iniciar sesion
                     </button>
                 </div>

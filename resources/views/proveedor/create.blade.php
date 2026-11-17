@@ -10,16 +10,6 @@
                     nuevo proveedor
                 </h2>
             </div>
-
-            @if($errors->any())
-                <div class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             
             <form action="{{ route('proveedores.store') }}" method="POST">
                 @csrf
@@ -29,15 +19,30 @@
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Nit</label>
                             <input type="text" name="nit" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('nit')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Cedula</label>
                             <input type="text" name="cedula" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('cedula')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Nombre</label>
                             <input type="text" name="nombre" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('nombre')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                     </div>
 
@@ -45,16 +50,31 @@
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Telefono</label>
                             <input type="text" name="telefono" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('telefono')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Dirección</label>
                             <input type="text" name="direccion" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('direccion')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="mb-5">
                             <label for="" class="block text-sm font-medium text-gris-calido-oscuro mb-1.5">Correo</label>
                             <input type="email" name="correo" class="w-full px-3.5 py-2.5 bg-blanco-calido border border-linea-input rounded-lg text-sm text-gris-calido-oscuro  focus:outline-none focus:ring-2 focus:ring-linea-foco focus:border-linea-foco transition-all">
+                            @error('correo')
+                                <p class="bg-alert-error border border-border-alert-error text-text-alert-error px-4 py-3 rounded mb-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
             

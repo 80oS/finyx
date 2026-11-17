@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('codigo')->unique();
-            $table->decimal('porcentaje', 5, 2);
+            $table->decimal('porcentaje', 12, 4);
             $table->string('tipo_calculo');
             $table->string('tipo_impuesto')->nullable();
             $table->boolean('estado');

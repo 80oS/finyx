@@ -15,13 +15,14 @@
         <div class="text-2xl font-bold tracking-tight text-foreground text-gris-calido-oscuro">
             Clientes
         </div>
-        <div class="flex items-end justify-end">
-            <a href="{{ route('cliente.create') }}" 
-                class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido 
-                rounded-sm px-5 py-1 text-right transition-all w-20">
-                crear
-            </a>
-        </div>
+        @can('cliente.crear')
+            <div class="flex items-end justify-end">
+                <a href="{{ route('cliente.create') }}" class="bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido 
+                            rounded-sm px-5 py-1 text-right transition-all w-20">
+                    crear
+                </a>
+            </div>
+        @endcan
     </div>
 
     <div class="dt-container">
@@ -34,8 +35,12 @@
                     <th>Telefono</th>
                     <th>Correo</th>
                     <th>Dirección</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
+                    @can('cliente.editar')
+                        <th>Editar</th>
+                    @endcan    
+                    @can('cliente.eliminar')
+                        <th>Eliminar</th>
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -47,26 +52,28 @@
                         <td>{{ $cliente->telefono }}</td>
                         <td>{{ $cliente->correo }}</td>
                         <td>{{ $cliente->direccion }}</td>
-                        <td>
-                            <a href="{{ route('cliente.edit', $cliente->id) }}"
-                                class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
-                                text-base px-5 py-1 transition-all">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit"
-                                    class="text-terracota-suave hover:text-terracota-oscuro 
-                                    text-base px-5 py-1 transition-all cursor-pointer"
-                                    onclick="return confirm('Seguro que quiere eliminar este cliente')">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                            </form>
-                        </td>
+                        @can('cliente.editar')
+                            <td>
+                                <a href="{{ route('cliente.edit', $cliente->id) }}" class="text-azul-grisaceo hover:text-azul-grisaceo-oscuro 
+                                                            text-base px-5 py-1 transition-all">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </a>
+                            </td>
+                        @endcan    
+                        @can('cliente.eliminar')
+                            <td>
+                                <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                            
+                                    <button type="submit" class="text-terracota-suave hover:text-terracota-oscuro 
+                                                                text-base px-5 py-1 transition-all cursor-pointer"
+                                        onclick="return confirm('Seguro que quiere eliminar este cliente')">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        @endcan
                     </tr>
                 @endforeach
             </tbody>

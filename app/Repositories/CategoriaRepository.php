@@ -2,6 +2,8 @@
 namespace App\Repositories;
 
 use App\Models\categoria;
+use App\Models\Producto;
+use Illuminate\Support\Facades\DB;
 
 class CategoriaRepository{
 
@@ -39,20 +41,25 @@ class CategoriaRepository{
 
     public function changeState(int $id)
     {
-        $categoria = categoria::findOrFail($id);
-        
-        if($categoria->estado == 1){
-            $categoria->estado = 0;
-            
-            $mensaje = 'Categoria desabilitada exitosamnete';
-        }else{
-            $categoria->estado = 1;
-            $mensaje = 'Categoria habilitada exitosamnete';
-        }
+        return DB::transaction(function () use ($id) {
 
-        $categoria->save();
-        
-        return $mensaje;
+            $categoria = Categoria::findOrFail($id);
+
+            $nuevoEstado = !$categoria->estado;
+
+            $categoria->estado = $nuevoEstado;
+            $categoria->save();
+
+            // Actualizar el estado de los productos asociados
+            Producto::where('id_categoria', $categoria->id)
+                ->update([
+                    'estado' => $nuevoEstado
+                ]);
+
+            return $nuevoEstado
+                ? 'Categoría habilitada exitosamente.'
+                : 'Categoría deshabilitada exitosamente.';
+        });
     }
 }
 ?>

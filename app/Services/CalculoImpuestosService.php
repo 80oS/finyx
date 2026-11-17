@@ -36,19 +36,29 @@ class CalculoImpuestosService{
                 'ip.id_impuesto',
                 'ip.tarifa_aplicada',
                 'i.nombre',
+                'i.tipo_calculo',
             ])
             ->get();
 
         $totalImpuestos = 0;
 
         foreach ($impuestos as $impuesto) {
+
             $tarifa = (float) $impuesto->tarifa_aplicada;
 
-            $valor = round(
-                $baseGravable * ($tarifa / 100),
-                2
-            );
+            if ($impuesto->tipo_calculo === 'porcentaje') {
 
+                $valor = round($baseGravable * $tarifa, 2);
+
+            } elseif ($impuesto->tipo_calculo === 'fijo') {
+
+                $valor = round(
+                    $cantidad * $tarifa,
+                    2
+                );
+            } else {
+                continue;
+            }
             $totalImpuestos += $valor;
         }
 
