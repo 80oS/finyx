@@ -30,7 +30,7 @@ class ProveedorRepository
         return $proveedor;
     }
 
-    public function destroy(int $id)
+    public function elminar(int $id)
     {
         Proveedor::destroy($id);
     }

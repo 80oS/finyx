@@ -51,7 +51,7 @@ class ProveedorController extends Controller
 
     public function destroy(int $id)
     {
-        $this->proveedor_service->destroy($id);
+        $this->proveedor_service->eliminar($id);
 
         return redirect()->route('proveedores.index')->with('success', 'Proveedor eliminado correctamente');
     }

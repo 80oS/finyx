@@ -10,7 +10,7 @@
     </div>
 
     <div class="mt-4 rounded-xl bg-this px-4 py-3">
-        <p class="text-3xl font-bold text-gris-grafito">{{ number_format($totalUnidades) }}</p>
+        <p class="text-3xl font-bold text-gris-grafito">{{ number_format($totalUnidades, 2, ',', '.') }}</p>
         <p class="mt-1 text-xs text-gray-500">Unidades disponibles</p>
     </div>
 </div>

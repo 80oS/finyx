@@ -66,4 +66,9 @@ class Producto extends Model
         ])->withTimestamps();
     }
 
+    public function detalles()
+    {
+        return $this->hasMany(DetalleCompra::class, 'id_producto');
+    }
+
 }

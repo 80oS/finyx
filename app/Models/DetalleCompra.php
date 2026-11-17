@@ -15,4 +15,14 @@ class DetalleCompra extends Model
         'precio_unitario',
         'subtotal',
     ];
+
+    public function compra()
+    {
+        return $this->belongsTo(Compra::class, 'id_compra');
+    }
+
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class, 'id_producto');
+    }
 }

@@ -33,8 +33,8 @@ class ProveedorService
         return $this->proveedor_repository->update($id, $datos);
     }
 
-    public function destroy(int $id)
+    public function eliminar(int $id)
     {
-        return $this->proveedor_repository->destroy($id);
+        return $this->proveedor_repository->elminar($id);
     }
 }

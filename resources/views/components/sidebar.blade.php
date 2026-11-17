@@ -61,7 +61,6 @@
                 x-transition:enter-end="opacity-100 translate-y-0"
                 class="ml-5 mt-1 border-l-2 border-ambar-claro pl-3">
 
-<<<<<<< HEAD
                 @can('producto.ver')
                     <a href="{{ route('producto.index') }}"
                     class="flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all 
@@ -72,16 +71,6 @@
                         <span>productos</span>
                     </a>
                 @endcan
-=======
-                <a href="{{ route('producto.index') }}"
-                class="flex items-center gap-3 rounded-lg capitalize px-3 py-3 transition-all 
-                {{ request()->routeIs('producto.index') 
-                ? 'bg-verde-salvia hover:bg-verde-salvia-claro text-blanco-calido hover:text-blanco-calido' 
-                : 'text-gris-calido-oscuro bg-sidebar-item-rest hover:bg-sidebar-item-hover hover:text-gris-calido-claro' }}">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span> productos</span>
-                </a>
->>>>>>> fer
 
                 @can('ubicacion.ver')
                     <a href="{{ route('ubicacion.index') }}" 

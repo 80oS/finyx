@@ -25,34 +25,7 @@
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
 
         {{-- UNIDADES EN INVENTARIO --}}
-<<<<<<< HEAD
-        <div class="rounded-2xl border border-linea-exterior-tabla bg-blanco-calido p-4 shadow-sm transition hover:shadow-md">
-            <div class="flex items-center gap-3">
-                <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#465D4A] text-white">
-                    <i class="fa-solid fa-boxes-stacked text-lg"></i>
-                </div>
-                <div>
-                    <p class="text-xs font-semibold text-gris-grafito">
-                        Unidades en inventario
-                    </p>
-                    <p class="text-xs text-gray-500">
-                        Existencias actuales
-                    </p>
-                </div>
-            </div>
-
-            <div class="mt-4 rounded-xl bg-this px-4 py-3">
-                <p class="text-3xl font-bold text-gris-grafito">
-                    {{ number_format($totalUnidades, 2, ',', '.') }}
-                </p>
-                <p class="mt-1 text-xs text-gray-500">
-                    Unidades disponibles
-                </p>
-            </div>
-        </div>
-=======
         <livewire:unidades-inventario />
->>>>>>> fer
 
         {{-- TOTAL PRODUCTOS --}}
         <div class="rounded-2xl border border-linea-exterior-tabla bg-blanco-calido p-4 shadow-sm transition hover:shadow-md">
@@ -72,7 +45,7 @@
 
             <div class="mt-4 rounded-xl bg-this px-4 py-3 min-w-0 overflow-hidden">
                 <p class="text-2xl sm:text-3xl font-bold text-gris-grafito truncate">
-                    {{ number_format($totalProductos, 2, ',', '.') }}
+                    {{ $totalProductos }}
                 </p>
                 <p class="mt-1 text-xs text-gray-500">
                     Productos registrados
@@ -182,7 +155,7 @@
                             </span>
 
                             <span class="shrink-0 font-semibold text-[#465D4A]">
-                                ${{ number_format($v->total_ventas, 2) }}
+                                ${{ number_format($v->total_ventas, 2, ',', '.') }}
                             </span>
                         </div>
 
@@ -225,7 +198,7 @@
                             </span>
 
                             <span class="font-semibold text-[#465D4A]">
-                                ${{ number_format($d->total_dia ?? 0, 2) }}
+                                ${{ number_format($d->total_dia ?? 0, 2, ',', '.') }}
                             </span>
                         </div>
 
@@ -282,7 +255,7 @@
                             </div>
 
                             <span class="shrink-0 text-sm font-bold text-[#465D4A]">
-                                ${{ number_format($f->total, 2) }}
+                                ${{ number_format($f->total, 2, ',', '.') }}
                             </span>
 
                         </div>
